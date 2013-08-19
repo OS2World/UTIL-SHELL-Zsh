@@ -1,0 +1,1120 @@
+CLOSUREP	glob.c	/^#define CLOSUREP(c)	(c->stat & C_CLOSURE)$/
+COMP_ISEXPAND	Zle/zle_tricky.c	/^#define COMP_ISEXPAND(X) ((X) >= COMP_EXPAND)$/
+DOMOD	init.c	/^#define DOMOD(boot) int boot(Module);$/
+DPUTS	zsh.h	/^# define DPUTS(X,Y) if (!(X)) {;} else dputs(Y)$/
+GETPGRP	system.h	/^# define GETPGRP() getpgrp()$/
+IFN	hashtable.h	/^#define IFN(X) ((int (*)_((void)))(X))$/
+INULL	zsh.h	/^#define INULL(x)	(((x) & 0xfc) == 0x98)$/
+IPDEF1	hashtable.h	/^#define IPDEF1(A,B,C,D) {NULL,A,PM_INTEGER|PM_SPEC/
+IPDEF2	hashtable.h	/^#define IPDEF2(A,B,C,D) {NULL,A,PM_SCALAR|PM_SPECI/
+IPDEF4	hashtable.h	/^#define IPDEF4(A,B) {NULL,A,PM_INTEGER|PM_READONLY/
+IPDEF5	hashtable.h	/^#define IPDEF5(A,B,F) {NULL,A,PM_INTEGER|PM_SPECIA/
+IPDEF6	hashtable.h	/^#define IPDEF6(A,B) {NULL,A,PM_SCALAR|PM_READONLY|/
+IPDEF7	hashtable.h	/^#define IPDEF7(A,B) {NULL,A,PM_SCALAR|PM_SPECIAL,N/
+IPDEF8	hashtable.h	/^#define IPDEF8(A,B,C) {NULL,A,PM_SCALAR|PM_SPECIAL/
+IPDEF9	hashtable.h	/^#define IPDEF9(A,B,C) {NULL,A,PM_ARRAY|PM_SPECIAL|/
+IS_APPEND_REDIR	zsh.h	/^#define IS_APPEND_REDIR(X)    ((X)>=WRITE && (X)<=/
+IS_CLOBBER_REDIR	zsh.h	/^#define IS_CLOBBER_REDIR(X)   ((X)>=WRITE && (X)<=/
+IS_ERROR_REDIR	zsh.h	/^#define IS_ERROR_REDIR(X)     ((X)>=ERRWRITE && (X/
+IS_READFD	zsh.h	/^#define IS_READFD(X)          (((X)>=READ && (X)<=/
+IS_REDIROP	zsh.h	/^#define IS_REDIROP(X)         ((X)>=OUTANG && (X)</
+LASTP	glob.c	/^#define LASTP(c)	(c->stat & C_LAST)$/
+LCIPDEF	hashtable.h	/^#define LCIPDEF(A,B) {NULL,A,PM_SCALAR|PM_SPECIAL|/
+MUSTUSEHEAP	zsh.h	/^# define MUSTUSEHEAP(X) if (useheap) {;} else \\$/
+M_BSLEN	mem.c	/^#define M_BSLEN(S) (((S) - sizeof(struct m_shdr *)/
+M_SBLEN	mem.c	/^#define M_SBLEN(S) ((S) * M_SNUM + sizeof(struct m/
+M_SIDX	mem.c	/^#define M_SIDX(S)  ((S) \/ M_ISIZE)$/
+M_SLEN	mem.c	/^#define M_SLEN(M)  ((M)->len \/ M_SNUM)$/
+Mmain	main.c	/^main(int argc, char **argv)$/
+NLENGTH	system.h	/^# define NLENGTH(dirent) strlen((dirent)->d_name)$/
+NT_N	zsh.h	/^#define NT_N(T, N) (((T) >> (8 + (N) * 4)) & 0xf)$/
+NT_NUM	zsh.h	/^#define NT_NUM(T) (((T) >> 24) & 7)$/
+NT_SET	zsh.h	/^#define NT_SET(T0, N, T1, T2, T3, T4) \\$/
+NT_TYPE	zsh.h	/^#define NT_TYPE(T) ((T) & 0xff)$/
+ONEHASHP	glob.c	/^#define ONEHASHP(c)	(c->stat & C_ONEHASH)$/
+PAT	glob.c	/^#define PAT(X) (pat[X] == Meta ? pat[(X)+1] ^ 32 :/
+PATHADDP	glob.c	/^#define PATHADDP(c)	(c->stat & C_PATHADD)$/
+PM_TYPE	zsh.h	/^#define PM_TYPE(X) (X & (PM_SCALAR|PM_INTEGER|PM_A/
+PPAT	glob.c	/^#define PPAT(X) (pat[(X)-1] == Meta ? pat[X] ^ 32 /
+PREFIX	hashtable.h	/^#define PREFIX(X,Y) {NULL,X,Y | BINF_PREFIX, NULLB/
+SELECT_ADD_COST	Zle/zle_refresh.c	/^#define SELECT_ADD_COST(X)	cost += X$/
+STOUC	zsh.h	/^# define STOUC(X)	((unsigned char)(unsigned short)/
+S_ISBLK	system.h	/^# define S_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)$/
+S_ISCHR	system.h	/^# define S_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)$/
+S_ISDIR	system.h	/^# define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)$/
+S_ISFIFO	system.h	/^# define S_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)$/
+S_ISLNK	system.h	/^# define S_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)$/
+S_ISMPB	system.h	/^# define S_ISMPB(m) (((m) & S_IFMT) == S_IFMPB)$/
+S_ISMPC	system.h	/^# define S_ISMPC(m) (((m) & S_IFMT) == S_IFMPC)$/
+S_ISNWK	system.h	/^# define S_ISNWK(m) (((m) & S_IFMT) == S_IFNWK)$/
+S_ISREG	system.h	/^# define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)$/
+S_ISSOCK	system.h	/^# define S_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)$/
+TWOHASHP	glob.c	/^#define TWOHASHP(c)	(c->stat & C_TWOHASH)$/
+UNTOK_AND_ESCAPE	subst.c	/^#define UNTOK_AND_ESCAPE(X) {\\$/
+WAIT	signals.c	/^# define  WAIT(pid, statusp, options) waitpid(pid,/
+WCOREDUMP	system.h	/^# define WCOREDUMP(X) ((X)&0200)$/
+WEXITSTATUS	system.h	/^# define WEXITSTATUS(X) (((X)>>8)&0377)$/
+WIFEXITED	system.h	/^# define WIFEXITED(X) (((X)&0377)==0)$/
+WIFSIGNALED	system.h	/^# define WIFSIGNALED(X) (((X)&0377)!=0&&((X)&0377)/
+WIFSTOPPED	system.h	/^# define WIFSTOPPED(X) (((X)&0377)==0177)$/
+WSTOPSIG	system.h	/^# define WSTOPSIG(X) (((X)>>8)&0377)$/
+WTERMSIG	system.h	/^# define WTERMSIG(X) ((X)&0177)$/
+ZLEGETCMD	Zle/zle.h	/^#define ZLEGETCMD(X)  ((X) >= ZLECMDCOUNT ? &zlecm/
+ZSTRTORLIMT	builtin.c	/^# define ZSTRTORLIMT(a, b, c)	zstrtoq((a), (b), (c/
+_	system.h	/^# define _(Args) Args$/
+_Cmd	text.c	/^#define _Cmd(X) ((Cmd) (X))$/
+_Cond	text.c	/^#define _Cond(X) ((Cond) (X))$/
+_List	text.c	/^#define _List(X) ((List) (X))$/
+_Pline	text.c	/^#define _Pline(X) ((Pline) (X))$/
+_Sublist	text.c	/^#define _Sublist(X) ((Sublist) (X))$/
+_casecmd	text.c	/^#define _casecmd(X) ((struct casecmd *) (X))$/
+_icom	ztype.h	/^#define _icom(X,Y) (typtab[STOUC(X)] & Y)$/
+_ifcmd	text.c	/^#define _ifcmd(X) ((struct ifcmd *) (X))$/
+_whilecmd	text.c	/^#define _whilecmd(X) ((struct whilecmd *) (X))$/
+acceptandhold	Zle/zle_misc.c	/^acceptandhold(void)$/
+acceptandinfernexthistory	Zle/zle_hist.c	/^acceptandinfernexthistory(void)$/
+acceptandmenucomplete	Zle/zle_tricky.c	/^acceptandmenucomplete(void)$/
+acceptline	Zle/zle_misc.c	/^acceptline(void)$/
+acceptlineanddownhistory	Zle/zle_hist.c	/^acceptlineanddownhistory(void)$/
+add	lex.c	/^add(int c)$/
+add_dep	module.c	/^add_dep(char *name, char *from)$/
+addbinding	Zle/zle_main.c	/^addbinding(int *tab, HashTable keytab, char *str, /
+addbufspc	prompt.c	/^addbufspc(int need)$/
+addbuiltin	module.c	/^addbuiltin(char *nam, int flags, HandlerFunc hfunc/
+addenv	params.c	/^addenv(char *name, char *value)$/
+addfd	exec.c	/^addfd(int forked, int *save, struct multio **mfds,/
+addhashnode	hashtable.c	/^addhashnode(HashTable ht, char *nam, void *nodeptr/
+addhnmatch	Zle/zle_tricky.c	/^addhnmatch(HashNode hn, int flags)$/
+addkeybindentry	Zle/zle_main.c	/^addkeybindentry(int *tab, HashTable keytab, char */
+addlinknode	zsh.h	/^#define addlinknode(X,Y) insertlinknode(X,(X)->las/
+addmatch	Zle/zle_tricky.c	/^addmatch(char *s, char *t)$/
+addnameddirnode	hashtable.c	/^addnameddirnode(HashTable ht, char *nam, void *nod/
+addpath	glob.c	/^addpath(char *s)$/
+addproc	jobs.c	/^addproc(pid_t pid, char *text)$/
+addtoline	hist.c	/^addtoline(int c)$/
+addundo	Zle/zle_utils.c	/^addundo(void)$/
+adduserdir	utils.c	/^adduserdir(char *s, char *t, int flags, int always/
+addvars	exec.c	/^addvars(LinkList l, int export)$/
+addx	Zle/zle_tricky.c	/^addx(char **ptmp)$/
+addzlefunction	Zle/zle_misc.c	/^addzlefunction(char *name, bindfunc *func, int fla/
+adjustwinsize	utils.c	/^adjustwinsize(void)$/
+allocnode	utils.c	/^allocnode(int type)$/
+arena	mem.c	/^#define arena(X)	((char *) (X) + sizeof(struct hea/
+arithsubst	subst.c	/^arithsubst(char *a, char **bptr, char *rest)$/
+arr2list	utils.c	/^arr2list(char **arr, VFunc func)$/
+arrdup	utils.c	/^arrdup(char **s)$/
+arrfixenv	params.c	/^arrfixenv(char *s, char **t)$/
+arrgetfn	params.c	/^arrgetfn(Param pm)$/
+arrlen	utils.c	/^arrlen(char **s)$/
+arrsetfn	params.c	/^arrsetfn(Param pm, char **x)$/
+arrvargetfn	params.c	/^arrvargetfn(Param pm)$/
+arrvarsetfn	params.c	/^arrvarsetfn(Param pm, char **x)$/
+attachtty	utils.c	/^attachtty(pid_t pgrp)$/
+backdel	Zle/zle_utils.c	/^backdel(int ct)$/
+backkill	Zle/zle_utils.c	/^backkill(int ct, int dir)$/
+backwardchar	Zle/zle_move.c	/^backwardchar(void)$/
+backwarddeletechar	Zle/zle_misc.c	/^backwarddeletechar(void)$/
+backwarddeleteword	Zle/zle_word.c	/^backwarddeleteword(void)$/
+backwardkillline	Zle/zle_misc.c	/^backwardkillline(void)$/
+backwardkillword	Zle/zle_word.c	/^backwardkillword(void)$/
+backwardword	Zle/zle_word.c	/^backwardword(void)$/
+beginningofbufferorhistory	Zle/zle_hist.c	/^beginningofbufferorhistory(void)$/
+beginningofhistory	Zle/zle_hist.c	/^beginningofhistory(void)$/
+beginningofline	Zle/zle_move.c	/^beginningofline(void)$/
+beginningoflinehist	Zle/zle_move.c	/^beginningoflinehist(void)$/
+bin_alias	builtin.c	/^bin_alias(char *name, char **argv, char *ops, int /
+bin_bindkey	Zle/zle_main.c	/^bin_bindkey(char *name, char **argv, char *ops, in/
+bin_break	builtin.c	/^bin_break(char *name, char **argv, char *ops, int /
+bin_cd	builtin.c	/^bin_cd(char *nam, char **argv, char *ops, int func/
+bin_compctl	Zle/compctl.c	/^bin_compctl(char *name, char **argv, char *ops, in/
+bin_dirs	builtin.c	/^bin_dirs(char *name, char **argv, char *ops, int f/
+bin_dot	builtin.c	/^bin_dot(char *name, char **argv, char *ops, int fu/
+bin_echotc	builtin.c	/^bin_echotc(char *name, char **argv, char *ops, int/
+bin_emulate	builtin.c	/^bin_emulate(char *nam, char **argv, char *ops, int/
+bin_enable	builtin.c	/^bin_enable(char *name, char **argv, char *ops, int/
+bin_eval	builtin.c	/^bin_eval(char *nam, char **argv, char *ops, int fu/
+bin_false	builtin.c	/^bin_false(char *name, char **argv, char *ops, int /
+bin_fc	builtin.c	/^bin_fc(char *nam, char **argv, char *ops, int func/
+bin_fg	builtin.c	/^bin_fg(char *name, char **argv, char *ops, int fun/
+bin_functions	builtin.c	/^bin_functions(char *name, char **argv, char *ops, /
+bin_getopts	builtin.c	/^bin_getopts(char *name, char **argv, char *ops, in/
+bin_hash	builtin.c	/^bin_hash(char *name, char **argv, char *ops, int f/
+bin_hashinfo	hashtable.c	/^bin_hashinfo(char *nam, char **args, char *ops, in/
+bin_kill	builtin.c	/^bin_kill(char *nam, char **argv, char *ops, int fu/
+bin_let	builtin.c	/^bin_let(char *name, char **argv, char *ops, int fu/
+bin_limit	builtin.c	/^bin_limit(char *nam, char **argv, char *ops, int f/
+bin_log	watch.c	/^bin_log(char *nam, char **argv, char *ops, int fun/
+bin_mem	mem.c	/^bin_mem(char *name, char **argv, char *ops, int fu/
+bin_print	builtin.c	/^bin_print(char *name, char **args, char *ops, int /
+bin_pwd	builtin.c	/^bin_pwd(char *name, char **argv, char *ops, int fu/
+bin_read	builtin.c	/^bin_read(char *name, char **args, char *ops, int f/
+bin_sched	builtin.c	/^bin_sched(char *nam, char **argv, char *ops, int f/
+bin_set	builtin.c	/^bin_set(char *nam, char **args, char *ops, int fun/
+bin_setopt	builtin.c	/^bin_setopt(char *nam, char **args, char *ops, int /
+bin_shift	builtin.c	/^bin_shift(char *name, char **argv, char *ops, int /
+bin_suspend	builtin.c	/^bin_suspend(char *name, char **argv, char *ops, in/
+bin_test	builtin.c	/^bin_test(char *name, char **argv, char *ops, int f/
+bin_times	builtin.c	/^bin_times(char *name, char **argv, char *ops, int /
+bin_trap	builtin.c	/^bin_trap(char *name, char **argv, char *ops, int f/
+bin_true	builtin.c	/^bin_true(char *name, char **argv, char *ops, int f/
+bin_ttyctl	builtin.c	/^bin_ttyctl(char *name, char **argv, char *ops, int/
+bin_typeset	builtin.c	/^bin_typeset(char *name, char **argv, char *ops, in/
+bin_ulimit	builtin.c	/^bin_ulimit(char *name, char **argv, char *ops, int/
+bin_umask	builtin.c	/^bin_umask(char *nam, char **args, char *ops, int f/
+bin_unhash	builtin.c	/^bin_unhash(char *name, char **argv, char *ops, int/
+bin_unlimit	builtin.c	/^bin_unlimit(char *nam, char **argv, char *ops, int/
+bin_unset	builtin.c	/^bin_unset(char *name, char **argv, char *ops, int /
+bin_vared	Zle/zle_main.c	/^bin_vared(char *name, char **args, char *ops, int /
+bin_whence	builtin.c	/^bin_whence(char *nam, char **argv, char *ops, int /
+bin_zmodload	module.c	/^bin_zmodload(char *nam, char **args, char *ops, in/
+boot_compctl	Zle/compctl.c	/^boot_compctl(Module m)$/
+boot_zle	Zle/zle_main.c	/^boot_zle(Module m)$/
+bop	math.c	/^bop(int tk)$/
+breakread	Zle/zle_main.c	/^breakread(int fd, char *buf, int n)$/
+calloc	mem.c	/^calloc(MALLOC_ARG_T n, MALLOC_ARG_T size)$/
+cancd	exec.c	/^cancd(char *s)$/
+cancd2	exec.c	/^cancd2(char *s)$/
+capitalizeword	Zle/zle_word.c	/^capitalizeword(void)$/
+cc_assign	Zle/compctl.c	/^cc_assign(char *name, Compctl *ccptr, Compctl cct,/
+cc_reassign	Zle/compctl.c	/^cc_reassign(Compctl cc)$/
+cd_able_vars	builtin.c	/^cd_able_vars(char *s)$/
+cd_do_chdir	builtin.c	/^cd_do_chdir(char *cnam, char *dest)$/
+cd_get_dest	builtin.c	/^cd_get_dest(char *nam, char **argv, char *ops, int/
+cd_new_pwd	builtin.c	/^cd_new_pwd(int func, LinkNode dir)$/
+cd_try_chdir	builtin.c	/^cd_try_chdir(char *pfix, char *dest)$/
+checkjobs	jobs.c	/^checkjobs(void)$/
+checkmailpath	utils.c	/^checkmailpath(char **s)$/
+checkparams	Zle/zle_tricky.c	/^checkparams(char *p)$/
+checkrmall	utils.c	/^checkrmall(char *s)$/
+child_block	signals.h	/^#define child_block()      signal_block(signal_mas/
+child_suspend	signals.h	/^#define child_suspend(S)   signal_suspend(SIGCHLD,/
+child_unblock	signals.h	/^#define child_unblock()    signal_unblock(signal_m/
+chuck	utils.c	/^chuck(char *str)$/
+cleanup_compctl	Zle/compctl.c	/^cleanup_compctl(Module m)$/
+cleanup_module	module.c	/^cleanup_module(Module m)$/
+clearjobtab	jobs.c	/^clearjobtab(void)$/
+clearscreen	Zle/zle_refresh.c	/^clearscreen(void)$/
+clobber_open	exec.c	/^clobber_open(struct redir *f)$/
+closeallelse	exec.c	/^closeallelse(struct multio *mn)$/
+closem	exec.c	/^closem(int how)$/
+closemn	exec.c	/^closemn(struct multio **mfds, int fd)$/
+closemnodes	exec.c	/^closemnodes(struct multio **mfds)$/
+cmdpop	zsh.h	/^# define cmdpop()  if (cmdsp <= 0) { \\$/
+cmdpush	zsh.h	/^#define cmdpush(X) if (!(cmdsp >= 0 && cmdsp < 256/
+cmphaswilds	Zle/zle_tricky.c	/^cmphaswilds(char *str)$/
+colonarrgetfn	params.c	/^colonarrgetfn(Param pm)$/
+colonarrsetfn	params.c	/^colonarrsetfn(Param pm, char *x)$/
+colonsplit	utils.c	/^colonsplit(char *s, int uniq)$/
+compctl_process_cc	Zle/compctl.c	/^compctl_process_cc(char **s, Compctl cc)$/
+compctlsetup	Zle/zle_main.c	/^compctlsetup(void)$/
+completeword	Zle/zle_tricky.c	/^completeword(void)$/
+convamps	hist.c	/^convamps(char *out, char *in, int inlen)$/
+convbase	params.c	/^convbase(char *s, long v, int base)$/
+copyprevword	Zle/zle_misc.c	/^copyprevword(void)$/
+copyregionaskill	Zle/zle_misc.c	/^copyregionaskill(void)$/
+countlinknodes	linklist.c	/^countlinknodes(LinkList list)$/
+createaliasnode	hashtable.c	/^createaliasnode(char *txt, int flags)$/
+createaliastable	hashtable.c	/^createaliastable(void)$/
+createaltkeybindtable	Zle/zle_main.c	/^createaltkeybindtable(void)$/
+createbuiltintable	hashtable.c	/^createbuiltintable(void)$/
+createcmdnamtable	hashtable.c	/^createcmdnamtable(void)$/
+createcompctltable	Zle/zle_main.c	/^createcompctltable(void)$/
+createemkeybindtable	Zle/zle_main.c	/^createemkeybindtable(void)$/
+createnameddirtable	hashtable.c	/^createnameddirtable(void)$/
+createparam	params.c	/^createparam(char *name, int flags)$/
+createparamtable	params.c	/^createparamtable(void)$/
+createreswdtable	hashtable.c	/^createreswdtable(void)$/
+createshfunctable	hashtable.c	/^createshfunctable(void)$/
+createvikeybindtable	Zle/zle_main.c	/^createvikeybindtable(void)$/
+cstrpcmp	subst.c	/^cstrpcmp(const void *a, const void *b)$/
+ctxtlex	lex.c	/^ctxtlex(void)$/
+cut	Zle/zle_utils.c	/^cut(int i, int ct, int dir)$/
+dashgetfn	params.c	/^dashgetfn(Param pm)$/
+defset	zsh.h	/^#define defset(X) (!!(optns[X].flags & (1 << emula/
+delenv	params.c	/^delenv(char *x)$/
+deletebuiltin	module.c	/^deletebuiltin(char *nam)$/
+deletechar	Zle/zle_misc.c	/^deletechar(void)$/
+deletecharorlist	Zle/zle_tricky.c	/^deletecharorlist(void)$/
+deletefilelist	jobs.c	/^deletefilelist(LinkList file_list)$/
+deletejob	jobs.c	/^deletejob(Job jn)$/
+deleteword	Zle/zle_word.c	/^deleteword(void)$/
+deletezlefunction	Zle/zle_misc.c	/^deletezlefunction(int zcn)$/
+delprefbinding	Zle/zle_main.c	/^delprefbinding(int *tab, HashTable keytab, Key ky,/
+describekeybriefly	Zle/zle_main.c	/^describekeybriefly(void)$/
+difftime	compat.c	/^difftime(time_t t2, time_t t1)$/
+digitargument	Zle/zle_misc.c	/^digitargument(void)$/
+dircmp	utils.c	/^dircmp(char *s, char *t)$/
+disablehashnode	hashtable.c	/^disablehashnode(HashNode hn, int flags)$/
+disableshfuncnode	hashtable.c	/^disableshfuncnode(HashNode hn, int flags)$/
+dlclose	module.c	/^# define dlclose(X) ((X), 0)$/
+do_ambig_menu	Zle/zle_tricky.c	/^do_ambig_menu(void)$/
+do_ambiguous	Zle/zle_tricky.c	/^do_ambiguous(void)$/
+do_load_module	module.c	/^do_load_module(char const *name)$/
+do_menucmp	Zle/zle_tricky.c	/^do_menucmp(int lst)$/
+do_single	Zle/zle_tricky.c	/^do_single(char *str)$/
+doaccess	cond.c	/^doaccess(char *s, int c)$/
+docomplete	Zle/zle_tricky.c	/^docomplete(int lst)$/
+docompletion	Zle/zle_tricky.c	/^docompletion(char *s, int lst, int incmd, int unto/
+doesmatch	glob.c	/^doesmatch(Comp c)$/
+doexpandhist	Zle/zle_tricky.c	/^doexpandhist(void)$/
+doexpansion	Zle/zle_tricky.c	/^doexpansion(char *s, int lst, int olst, int explin/
+doisearch	Zle/zle_hist.c	/^doisearch(int dir)$/
+dolstat	cond.c	/^dolstat(char *s)$/
+domatch	glob.c	/^domatch(char *str, Comp c, int fist)$/
+dopadding	subst.c	/^dopadding(char *str, int prenum, int postnum, char/
+dosetopt	utils.c	/^dosetopt(int optno, int value, int force)$/
+doshfunc	exec.c	/^doshfunc(List list, LinkList doshargs, int flags, /
+dostat	cond.c	/^dostat(char *s)$/
+dotrap	signals.c	/^dotrap(int sig)$/
+dowatch	watch.c	/^dowatch(void)$/
+downcase	hist.c	/^downcase(char **x)$/
+downcaseword	Zle/zle_word.c	/^downcaseword(void)$/
+downhistory	Zle/zle_hist.c	/^downhistory(void)$/
+downlineorhistory	Zle/zle_hist.c	/^downlineorhistory(void)$/
+downlineorsearch	Zle/zle_hist.c	/^downlineorsearch(void)$/
+dputs	utils.c	/^dputs(char *message)$/
+dquote_parse	lex.c	/^dquote_parse(char endchar, int sub)$/
+dstackent	subst.c	/^dstackent(char ch, int val)$/
+dtime	jobs.c	/^dtime(struct timeval *dt, struct timeval *t1, stru/
+dumphashtable	Zle/zle_tricky.c	/^dumphashtable(HashTable ht, int what)$/
+dumptime	jobs.c	/^dumptime(Job jn)$/
+duparray	utils.c	/^duparray(char **arr, VFunc func)$/
+duplist	utils.c	/^duplist(LinkList l, VFunc func)$/
+dupstring	mem.c	/^dupstring(const char *s)$/
+dupstrspace	Zle/zle_tricky.c	/^dupstrspace(const char *str)$/
+dupstruct	utils.c	/^dupstruct(void *a)$/
+dupstruct2	utils.c	/^dupstruct2(void *a)$/
+dyncat	glob.c	/^dyncat(char *s1, char *s2)$/
+egidgetfn	params.c	/^egidgetfn(Param pm)$/
+egidsetfn	params.c	/^egidsetfn(Param pm, gid_t x)$/
+emacsbackwardword	Zle/zle_word.c	/^emacsbackwardword(void)$/
+emacsforwardword	Zle/zle_word.c	/^emacsforwardword(void)$/
+empty	zsh.h	/^#define empty(X)     ((X)->first == NULL)$/
+emptyaltkeybindtable	Zle/zle_main.c	/^emptyaltkeybindtable(HashTable ht)$/
+emptycmdnamtable	hashtable.c	/^emptycmdnamtable(HashTable ht)$/
+emptyemkeybindtable	Zle/zle_main.c	/^emptyemkeybindtable(HashTable ht)$/
+emptyhashtable	hashtable.c	/^emptyhashtable(HashTable ht, int newsize)$/
+emptynameddirtable	hashtable.c	/^emptynameddirtable(HashTable ht)$/
+emptyvikeybindtable	Zle/zle_main.c	/^emptyvikeybindtable(HashTable ht)$/
+emulate	init.c	/^emulate(const char *zsh_name, int fully)$/
+enablehashnode	hashtable.c	/^enablehashnode(HashNode hn, int flags)$/
+enableshfuncnode	hashtable.c	/^enableshfuncnode(HashNode hn, int flags)$/
+endofbufferorhistory	Zle/zle_hist.c	/^endofbufferorhistory(void)$/
+endofhistory	Zle/zle_hist.c	/^endofhistory(void)$/
+endofline	Zle/zle_move.c	/^endofline(void)$/
+endoflinehist	Zle/zle_move.c	/^endoflinehist(void)$/
+entersubsh	exec.c	/^entersubsh(int how, int cl, int fake)$/
+equalsplit	utils.c	/^equalsplit(char *s, char **t)$/
+errnogetfn	params.c	/^errnogetfn(Param pm)$/
+euidgetfn	params.c	/^euidgetfn(Param pm)$/
+euidsetfn	params.c	/^euidsetfn(Param pm, uid_t x)$/
+evalcond	cond.c	/^evalcond(Cond c)$/
+exalias	lex.c	/^exalias(void)$/
+exchangepointandmark	Zle/zle_move.c	/^exchangepointandmark(void)$/
+excluded	glob.c	/^excluded(Comp c, char *eptr)$/
+execarith	exec.c	/^execarith(Cmd cmd)$/
+execbuiltin	builtin.c	/^execbuiltin(LinkList args, Builtin bn)$/
+execcase	loop.c	/^execcase(Cmd cmd)$/
+execcmd	exec.c	/^execcmd(Cmd cmd, int input, int output, int how, i/
+execcond	exec.c	/^execcond(Cmd cmd)$/
+execcursh	exec.c	/^execcursh(Cmd cmd)$/
+execerr	exec.c	/^#define execerr() if (!forked) { lastval = 1; retu/
+execfor	loop.c	/^execfor(Cmd cmd)$/
+execfuncdef	exec.c	/^execfuncdef(Cmd cmd)$/
+execif	loop.c	/^execif(Cmd cmd)$/
+execlist	exec.c	/^execlist(List list, int dont_change_job, int exiti/
+execpline	exec.c	/^execpline(Sublist l, int how, int last1)$/
+execpline2	exec.c	/^execpline2(Pline pline, int how, int input, int ou/
+execrepeat	loop.c	/^execrepeat(Cmd cmd)$/
+execrestore	exec.c	/^execrestore(void)$/
+execsave	exec.c	/^execsave(void)$/
+execselect	loop.c	/^execselect(Cmd cmd)$/
+execshfunc	exec.c	/^execshfunc(Cmd cmd, Shfunc shf)$/
+execstring	exec.c	/^execstring(char *s, int dont_change_job, int exiti/
+exectime	exec.c	/^exectime(Cmd cmd)$/
+execute	exec.c	/^execute(Cmdnam not_used_yet, int dash)$/
+executenamedcommand	Zle/zle_misc.c	/^executenamedcommand(char *prmt)$/
+execwhile	loop.c	/^execwhile(Cmd cmd)$/
+exists	glob.c	/^exists(char *s)$/
+expandcmdpath	Zle/zle_tricky.c	/^expandcmdpath(void)$/
+expandhashtable	hashtable.c	/^expandhashtable(HashTable ht)$/
+expandhistory	Zle/zle_tricky.c	/^expandhistory(void)$/
+expandorcomplete	Zle/zle_tricky.c	/^expandorcomplete(void)$/
+expandorcompleteprefix	Zle/zle_tricky.c	/^expandorcompleteprefix(void)$/
+expandstruct	utils.c	/^expandstruct(struct node *n, int exp)$/
+expandword	Zle/zle_tricky.c	/^expandword(void)$/
+fcedit	builtin.c	/^fcedit(char *ename, char *fn)$/
+fcgetcomm	builtin.c	/^fcgetcomm(char *s)$/
+fclist	builtin.c	/^fclist(FILE *f, int n, int r, int D, int d, int fi/
+fcsubs	builtin.c	/^fcsubs(char **sp, struct asgment *sub)$/
+feep	utils.c	/^feep(void)$/
+file_type	glob.c	/^file_type(mode_t filemode)$/
+filesub	subst.c	/^filesub(char **namptr, int assign)$/
+filesubstr	subst.c	/^filesubstr(char **namptr, int assign)$/
+fillcmdnamtable	hashtable.c	/^fillcmdnamtable(HashTable ht)$/
+fillnameddirtable	hashtable.c	/^fillnameddirtable(HashTable ht)$/
+find_module	module.c	/^find_module(const char *name)$/
+findbol	Zle/zle_utils.c	/^findbol(void)$/
+findcmd	exec.c	/^findcmd(char *arg0)$/
+finddir	utils.c	/^finddir(char *s)$/
+finddir_scan	utils.c	/^finddir_scan(HashNode hn, int flags)$/
+findeol	Zle/zle_utils.c	/^findeol(void)$/
+findjobnam	builtin.c	/^findjobnam(char *s)$/
+findline	Zle/zle_utils.c	/^findline(int *a, int *b)$/
+findproc	jobs.c	/^findproc(pid_t pid, Job *jptr, Process *pptr)$/
+findpwd	utils.c	/^findpwd(char *s)$/
+findsep	utils.c	/^findsep(char **s, char *sep)$/
+findword	utils.c	/^findword(char **s, char *sep)$/
+firsthist	hist.c	/^firsthist(void)$/
+firstnode	zsh.h	/^#define firstnode(X) ((X)->first)$/
+fixdir	builtin.c	/^fixdir(char *dest, char *src)$/
+fixfds	exec.c	/^fixfds(int *save)$/
+foredel	Zle/zle_utils.c	/^foredel(int ct)$/
+forekill	Zle/zle_utils.c	/^forekill(int ct, int dir)$/
+forget_edits	Zle/zle_hist.c	/^forget_edits(void)$/
+forwardchar	Zle/zle_move.c	/^forwardchar(void)$/
+forwardword	Zle/zle_word.c	/^forwardword(void)$/
+fprintdir	utils.c	/^fprintdir(char *s, FILE *f)$/
+free	mem.c	/^free(FREE_ARG_T p)$/
+freealiasnode	hashtable.c	/^freealiasnode(HashNode hn)$/
+freearray	utils.c	/^freearray(char **s)$/
+freebuiltinnode	hashtable.c	/^freebuiltinnode(HashNode hn)$/
+freecmdnamnode	hashtable.c	/^freecmdnamnode(HashNode hn)$/
+freecompcond	Zle/zle_misc.c	/^freecompcond(void *a)$/
+freecompctl	Zle/zle_main.c	/^freecompctl(Compctl cc)$/
+freecompctlp	Zle/zle_main.c	/^freecompctlp(HashNode hn)$/
+freeheap	mem.c	/^freeheap(void)$/
+freekeynode	Zle/zle_main.c	/^freekeynode(HashNode hn)$/
+freelinklist	linklist.c	/^freelinklist(LinkList list, FreeFunc freefunc)$/
+freenameddirnode	hashtable.c	/^freenameddirnode(HashNode hn)$/
+freeparamnode	hashtable.c	/^freeparamnode(HashNode hn)$/
+freeshfuncnode	hashtable.c	/^freeshfuncnode(HashNode hn)$/
+freestr	utils.c	/^freestr(void *a)$/
+freestruct	utils.c	/^freestruct(void *a)$/
+gen_matches_files	Zle/zle_tricky.c	/^gen_matches_files(int dirs, int execs, int all)$/
+genprompts	Zle/zle_refresh.c	/^genprompts(void)$/
+get_ccompctl	Zle/zle_tricky.c	/^get_ccompctl(Compctl occ, int *compadd, int incmd)/
+get_comp_string	Zle/zle_tricky.c	/^get_comp_string(void)$/
+get_compctl	Zle/compctl.c	/^get_compctl(char *name, char ***av, Compctl cc, in/
+get_cond_num	parse.c	/^get_cond_num(char *tst)$/
+get_intarg	subst.c	/^get_intarg(char **s)$/
+get_isrch_spot	Zle/zle_hist.c	/^get_isrch_spot(int num, int *hlp, int *posp, int */
+get_match_ret	glob.c	/^get_match_ret(char *s, int b, int e, int fl)$/
+get_strarg	subst.c	/^get_strarg(char *s)$/
+get_user_var	Zle/zle_tricky.c	/^get_user_var(char *nam)$/
+get_username	utils.c	/^get_username(void)$/
+get_xcompctl	Zle/compctl.c	/^get_xcompctl(char *name, char ***av, Compctl cc, i/
+getaddrdata	zsh.h	/^#define getaddrdata(X) (&((X)->dat))$/
+getaparam	params.c	/^getaparam(char *s)$/
+getarg	params.c	/^getarg(char **str, int *inv, Value v, int a2, long/
+getargc	hist.c	/^getargc(Histent ehist)$/
+getargs	hist.c	/^getargs(Histent elist, int arg1, int arg2)$/
+getargspec	hist.c	/^getargspec(int argc, int marg, int evset)$/
+getarrvalue	params.c	/^getarrvalue(Value v)$/
+getasg	builtin.c	/^getasg(char *s)$/
+getbaudrate	utils.c	/^getbaudrate(struct ttyinfo *shttyinfo)$/
+getcond	text.c	/^getcond(Cond nm, int addpar)$/
+getcpat	Zle/zle_tricky.c	/^getcpat(char *wrd, int cpatindex, char *cpat, int /
+getcurcmd	Zle/zle_tricky.c	/^getcurcmd(void)$/
+getcvar	math.c	/^getcvar(LV s)$/
+getdata	zsh.h	/^#define getdata(X)   ((X)->dat)$/
+getfpfunc	exec.c	/^getfpfunc(char *s)$/
+getfullpath	glob.c	/^getfullpath(char *s)$/
+gethashnode	hashtable.c	/^gethashnode(HashTable ht, char *nam)$/
+gethashnode2	hashtable.c	/^gethashnode2(HashTable ht, char *nam)$/
+gethere	exec.c	/^gethere(char *str, int typ)$/
+getherestr	exec.c	/^getherestr(struct redir *fn)$/
+gethist	hist.c	/^gethist(int ev)$/
+gethistent	zsh.h	/^#define gethistent(X) (histentarr+((X)%histentct))/
+gethostname	compat.c	/^gethostname(char *name, int namelen)$/
+getindex	params.c	/^getindex(char **pptr, Value v)$/
+getintvalue	params.c	/^getintvalue(Value v)$/
+getiparam	params.c	/^getiparam(char *s)$/
+getjob	builtin.c	/^getjob(char *s, char *prog)$/
+getjobtext	text.c	/^getjobtext(struct node *n)$/
+getkey	Zle/zle_main.c	/^getkey(int keytmout)$/
+getkeycmd	Zle/zle_main.c	/^getkeycmd(void)$/
+getkeystring	utils.c	/^getkeystring(char *s, int *len, int fromwhere, int/
+getline	Zle/zle_hist.c	/^getline(void)$/
+getlinknode	linklist.c	/^getlinknode(LinkList list)$/
+getlogin	system.h	/^# define getlogin() cuserid(NULL)$/
+getlogtime	watch.c	/^getlogtime(STRUCT_UTMP *u, int inout)$/
+getmatch	glob.c	/^getmatch(char **sp, char *pat, int fl, int n)$/
+getnameddir	utils.c	/^getnameddir(char *name)$/
+getoutput	exec.c	/^getoutput(char *cmd, int qt)$/
+getoutputfile	exec.c	/^getoutputfile(char *cmd)$/
+getparen	glob.c	/^getparen(char *str)$/
+getpermtext	text.c	/^getpermtext(struct node *n)$/
+getpipe	exec.c	/^getpipe(char *cmd)$/
+getproc	exec.c	/^getproc(char *cmd)$/
+getquery	utils.c	/^getquery(char *valid_chars)$/
+getreal	Zle/zle_tricky.c	/^getreal(char *str)$/
+getredirs	text.c	/^getredirs(Cmd cmd)$/
+getshfunc	utils.c	/^getshfunc(char *nam)$/
+getsignum	builtin.c	/^getsignum(char *s)$/
+getsimptext	text.c	/^getsimptext(Cmd cmd)$/
+getsparam	params.c	/^getsparam(char *s)$/
+getstat	cond.c	/^getstat(char *s)$/
+getstrvalue	params.c	/^getstrvalue(Value v)$/
+getsubsargs	hist.c	/^getsubsargs(char *subline)$/
+gettempname	utils.c	/^gettempname(void)$/
+gettext2	text.c	/^gettext2(struct node *n)$/
+gettimeofday	compat.c	/^gettimeofday(struct timeval *tv, struct timezone */
+gettok	lex.c	/^gettok(void)$/
+gettokstr	lex.c	/^gettokstr(int c, int sub)$/
+gettygrp	utils.c	/^gettygrp(void)$/
+gettyinfo	utils.c	/^gettyinfo(struct ttyinfo *ti)$/
+getvalue	params.c	/^getvalue(char **pptr, int bracks)$/
+getvirange	Zle/zle_vi.c	/^getvirange(int wf)$/
+getvisrchstr	Zle/zle_hist.c	/^getvisrchstr(void)$/
+getzlequery	Zle/zle_utils.c	/^getzlequery(void)$/
+gidgetfn	params.c	/^gidgetfn(Param pm)$/
+gidsetfn	params.c	/^gidsetfn(Param pm, gid_t x)$/
+glob	glob.c	/^glob(LinkList list, LinkNode np)$/
+global_heapalloc	mem.c	/^global_heapalloc(void)$/
+global_permalloc	mem.c	/^global_permalloc(void)$/
+globlist	subst.c	/^globlist(LinkList list)$/
+gosmacstransposechars	Zle/zle_misc.c	/^gosmacstransposechars(void)$/
+gotword	Zle/zle_tricky.c	/^gotword(void)$/
+gt2	text.c	/^#define gt2(X) gettext2((struct node *) (X))$/
+halloc	mem.c	/^halloc(size_t size)$/
+handler	signals.c	/^handler(int sig)$/
+has_token	utils.c	/^has_token(const char *s)$/
+hasbraces	glob.c	/^hasbraces(char *str)$/
+hashcmd	exec.c	/^hashcmd(char *arg0, char **pp)$/
+hashdir	hashtable.c	/^hashdir(char **dirp)$/
+hasher	hashtable.c	/^hasher(char *str)$/
+hasspecial	utils.c	/^hasspecial(char const *s)$/
+haswilds	glob.c	/^haswilds(char *str)$/
+havefiles	jobs.c	/^havefiles(void)$/
+hbegin	hist.c	/^hbegin(void)$/
+hcalloc	mem.c	/^hcalloc(size_t size)$/
+hcomsearch	hist.c	/^hcomsearch(char *str)$/
+hconsearch	hist.c	/^hconsearch(char *str, int *marg)$/
+hdynread	hist.c	/^hdynread(int stop)$/
+hdynread2	hist.c	/^hdynread2(int stop)$/
+hend	hist.c	/^hend(void)$/
+hgetc	hist.c	/^hgetc(void)$/
+hgetline	hist.c	/^hgetline(void)$/
+histbackword	hist.c	/^histbackword(void)$/
+histcharsgetfn	params.c	/^histcharsgetfn(Param pm)$/
+histcharssetfn	params.c	/^histcharssetfn(Param pm, char *x)$/
+histcmp	hist.c	/^histcmp(Histent he)$/
+historybeginningsearchbackward	Zle/zle_hist.c	/^historybeginningsearchbackward(void)$/
+historybeginningsearchforward	Zle/zle_hist.c	/^historybeginningsearchforward(void)$/
+historyincrementalsearchbackward	Zle/zle_hist.c	/^historyincrementalsearchbackward(void)$/
+historyincrementalsearchforward	Zle/zle_hist.c	/^historyincrementalsearchforward(void)$/
+historysearchbackward	Zle/zle_hist.c	/^historysearchbackward(void)$/
+historysearchforward	Zle/zle_hist.c	/^historysearchforward(void)$/
+histreduceblanks	hist.c	/^histreduceblanks(void)$/
+histsizegetfn	params.c	/^histsizegetfn(Param pm)$/
+histsizesetfn	params.c	/^histsizesetfn(Param pm, long v)$/
+histsubchar	hist.c	/^histsubchar(int c)$/
+hnamcmp	hashtable.c	/^hnamcmp(struct hashnode **a, struct hashnode **b)$/
+holdintr	signals.c	/^holdintr(void)$/
+homegetfn	params.c	/^homegetfn(Param pm)$/
+homesetfn	params.c	/^homesetfn(Param pm, char *x)$/
+hrealloc	mem.c	/^hrealloc(char *p, int old, int new)$/
+hstrnstr	Zle/zle_utils.c	/^hstrnstr(char *haystack, int pos, char *needle, in/
+hungetc	hist.c	/^hungetc(int c)$/
+hwaddc	hist.c	/^hwaddc(int c)$/
+hwbegin	hist.c	/^hwbegin(int offset)$/
+hwend	hist.c	/^hwend(void)$/
+hwget	hist.c	/^hwget(char **startptr)$/
+hwrep	hist.c	/^hwrep(char *rep)$/
+ialnum	ztype.h	/^#define ialnum(X) _icom(X,IALNUM)$/
+ialpha	ztype.h	/^#define ialpha(X) _icom(X,IALPHA)$/
+iblank	ztype.h	/^#define iblank(X) _icom(X,IBLANK)	\/* blank, not in/
+icntrl	ztype.h	/^#define icntrl(X) _icom(X,ICNTRL)$/
+idigit	ztype.h	/^#define idigit(X) _icom(X,IDIGIT)$/
+ifsgetfn	params.c	/^ifsgetfn(Param pm)$/
+ifssetfn	params.c	/^ifssetfn(Param pm, char *x)$/
+iident	ztype.h	/^#define iident(X) _icom(X,IIDENT)$/
+imeta	ztype.h	/^#define imeta(X) _icom(X,IMETA)$/
+inblank	ztype.h	/^#define inblank(X) _icom(X,INBLANK)	\/* blank or \\n/
+incnode	zsh.h	/^#define incnode(X) (X = nextnode(X))$/
+inerrflush	input.c	/^inerrflush(void)$/
+infernexthistory	Zle/zle_hist.c	/^infernexthistory(void)$/
+ingetc	input.c	/^ingetc(void)$/
+init_bltinmods	init.c	/^init_bltinmods(void)$/
+init_io	init.c	/^init_io(void)$/
+init_misc	init.c	/^init_misc(void)$/
+init_module	module.c	/^init_module(Module m)$/
+init_shout	init.c	/^init_shout(void)$/
+init_signals	init.c	/^init_signals(void)$/
+init_term	init.c	/^init_term(void)$/
+inithist	hist.c	/^inithist(void)$/
+initjob	jobs.c	/^initjob(void)$/
+initkeybindings	Zle/zle_main.c	/^initkeybindings(void)$/
+initlextabs	lex.c	/^initlextabs(void)$/
+inittyptab	utils.c	/^inittyptab(void)$/
+initundo	Zle/zle_utils.c	/^initundo(void)$/
+inpop	input.c	/^inpop(void)$/
+inpoptop	input.c	/^inpoptop(void)$/
+inpush	input.c	/^inpush(char *str, int flags, Alias inalias)$/
+inputline	input.c	/^inputline(void)$/
+inputsetline	input.c	/^inputsetline(char *str, int flags)$/
+insert	glob.c	/^insert(char *s)$/
+insertlastword	Zle/zle_hist.c	/^insertlastword(void)$/
+insertlinklist	linklist.c	/^insertlinklist(LinkList l, LinkNode where, LinkLis/
+insertlinknode	linklist.c	/^insertlinknode(LinkList list, LinkNode node, void /
+install_handler	signals.c	/^install_handler(int sig)$/
+inststr	Zle/zle_tricky.c	/^#define inststr(X) inststrlen((X),1,-1)$/
+inststrlen	Zle/zle_tricky.c	/^inststrlen(char *str, int move, int len)$/
+intgetfn	params.c	/^intgetfn(Param pm)$/
+intr	signals.c	/^intr(void)$/
+intsetfn	params.c	/^intsetfn(Param pm, long x)$/
+intvargetfn	params.c	/^intvargetfn(Param pm)$/
+intvarsetfn	params.c	/^intvarsetfn(Param pm, long x)$/
+inungetc	input.c	/^inungetc(int c)$/
+invalidatelist	Zle/zle_tricky.c	/^invalidatelist(void)$/
+invcstrpcmp	subst.c	/^invcstrpcmp(const void *a, const void *b)$/
+invstrpcmp	subst.c	/^invstrpcmp(const void *a, const void *b)$/
+isanum	builtin.c	/^isanum(char *s)$/
+isbrack	subst.c	/^#define isbrack(c)  ((c) == '[' || (char)(c) == In/
+iscom	exec.c	/^iscom(char *s)$/
+isend	subst.c	/^#define isend(c) ( !(c) || (c)=='\/' || (c)==Inpar /
+isend2	subst.c	/^#define isend2(c) ( !(c) || (c)==Inpar || (assign /
+isep	ztype.h	/^#define isep(X) _icom(X,ISEP)$/
+isgooderr	exec.c	/^isgooderr(int e, char *dir)$/
+isident	params.c	/^isident(char *s)$/
+ispecial	ztype.h	/^#define ispecial(X) _icom(X,ISPECIAL)$/
+ispwd	utils.c	/^ispwd(char *s)$/
+isrelative	exec.c	/^isrelative(char *s)$/
+isset	zsh.h	/^#define isset(X) (opts[X])$/
+isstring	subst.c	/^#define	isstring(c) ((c) == '$' || (char)(c) == St/
+itok	ztype.h	/^#define itok(X) _icom(X,ITOK)$/
+iuser	ztype.h	/^#define iuser(X) _icom(X,IUSER)	\/* username char */
+iword	ztype.h	/^#define iword(X) _icom(X,IWORD)$/
+iwsep	ztype.h	/^#define iwsep(X) _icom(X,IWSEP)$/
+killbuffer	Zle/zle_misc.c	/^killbuffer(void)$/
+killjb	signals.c	/^killjb(Job jn, int sig)$/
+killline	Zle/zle_misc.c	/^killline(void)$/
+killpg	signals.h	/^# define killpg(pgrp,sig) kill(-(pgrp),sig)$/
+killregion	Zle/zle_misc.c	/^killregion(void)$/
+killrunjobs	signals.c	/^killrunjobs(int from_signal)$/
+killwholeline	Zle/zle_misc.c	/^killwholeline(void)$/
+killword	Zle/zle_word.c	/^killword(void)$/
+langsetfn	params.c	/^langsetfn(Param pm, char *x)$/
+lastnode	zsh.h	/^#define lastnode(X)  ((X)->last)$/
+lc_allsetfn	params.c	/^lc_allsetfn(Param pm, char *x)$/
+lcsetfn	params.c	/^lcsetfn(Param pm, char *x)$/
+lexinit	lex.c	/^lexinit(void)$/
+lexrestore	lex.c	/^lexrestore(void)$/
+lexsave	lex.c	/^lexsave(void)$/
+list2arr	utils.c	/^list2arr(LinkList l, VFunc func)$/
+listchoices	Zle/zle_tricky.c	/^listchoices(void)$/
+listexpand	Zle/zle_tricky.c	/^listexpand(void)$/
+listlist	Zle/zle_tricky.c	/^listlist(LinkList l)$/
+listmatches	Zle/zle_tricky.c	/^listmatches(void)$/
+load_module	module.c	/^load_module(char const *name)$/
+load_zle_syms	module.c	/^load_zle_syms(void *handle)$/
+load_zleread	module.c	/^load_zleread(char *lp, char *rp)$/
+loop	init.c	/^loop(int toplevel)$/
+magicspace	Zle/zle_tricky.c	/^magicspace(void)$/
+make_casecmd	parse.c	/^#define make_casecmd()  allocnode(N_CASE)$/
+make_cmd	parse.c	/^#define make_cmd()      allocnode(N_CMD)$/
+make_cond	parse.c	/^#define make_cond()     allocnode(N_COND)$/
+make_forcmd	parse.c	/^#define make_forcmd()   allocnode(N_FOR)$/
+make_ifcmd	parse.c	/^#define make_ifcmd()    allocnode(N_IF)$/
+make_list	parse.c	/^#define make_list()     allocnode(N_LIST)$/
+make_pline	parse.c	/^#define make_pline()    allocnode(N_PLINE)$/
+make_sublist	parse.c	/^#define make_sublist()  allocnode(N_SUBLIST)$/
+make_varnode	parse.c	/^#define make_varnode()  allocnode(N_VARASG)$/
+make_whilecmd	parse.c	/^#define make_whilecmd() allocnode(N_WHILE)$/
+makearray	Zle/zle_tricky.c	/^makearray(LinkList l)$/
+makecapitals	hist.c	/^makecapitals(char **junkptr)$/
+makecline	exec.c	/^makecline(LinkList list)$/
+makecomplist	Zle/zle_tricky.c	/^makecomplist(char *s, int incmd, int *delit, int */
+makefunckey	Zle/zle_main.c	/^makefunckey(int fun)$/
+makelowercase	hist.c	/^makelowercase(char **junkptr)$/
+makeprefix	Zle/zle_main.c	/^makeprefix(int *tab, HashTable keytab, int i)$/
+makequote	Zle/zle_misc.c	/^makequote(char *str, size_t *len)$/
+makerunning	jobs.c	/^makerunning(Job jn)$/
+maketildelist	Zle/zle_tricky.c	/^maketildelist(void)$/
+makeuppercase	hist.c	/^makeuppercase(char **junkptr)$/
+malloc	mem.c	/^malloc(MALLOC_ARG_T size)$/
+match_username	Zle/zle_tricky.c	/^match_username(nis_name table, nis_object *object,/
+matchpat	glob.c	/^matchpat(char *a, char *b)$/
+matheval	math.c	/^matheval(char *s)$/
+mathevalarg	math.c	/^mathevalarg(char *s, char **ss)$/
+mathevall	math.c	/^mathevall(char *s, int prek, char **ep)$/
+mathparse	math.c	/^mathparse(int pc)$/
+menucomplete	Zle/zle_tricky.c	/^menucomplete(void)$/
+menuexpandorcomplete	Zle/zle_tricky.c	/^menuexpandorcomplete(void)$/
+metadiffer	utils.c	/^metadiffer(char const *s, char const *r, int len)$/
+metafy	utils.c	/^metafy(char *buf, int len, int heap)$/
+metafy_keybuf	Zle/zle_main.c	/^metafy_keybuf(void)$/
+metafy_line	Zle/zle_tricky.c	/^metafy_line(void)$/
+metalen	utils.c	/^metalen(const char *s, int len)$/
+mindist	utils.c	/^mindist(char *dir, char *mindistguess, char *mindi/
+minimum	zsh.h	/^#define minimum(a,b)  ((a) < (b) ? (a) : (b))$/
+mkarray	utils.c	/^mkarray(char *s)$/
+mkenvstr	params.c	/^mkenvstr(char *name, char *value)$/
+modify	subst.c	/^modify(char **str, char **ptr)$/
+movefd	utils.c	/^movefd(int fd)$/
+moveto	Zle/zle_refresh.c	/^moveto(int ln, int cl)$/
+mpipe	exec.c	/^mpipe(int *pp)$/
+multsub	subst.c	/^multsub(char **s, char ***a, int *isarr, char *sep/
+namedpipe	exec.c	/^namedpipe(void)$/
+negargument	Zle/zle_misc.c	/^negargument(void)$/
+newhashtable	hashtable.c	/^newhashtable(int size)$/
+newlinklist	linklist.c	/^newlinklist(void)$/
+nextnode	zsh.h	/^#define nextnode(X)  ((X)->next)$/
+nicechar	utils.c	/^nicechar(int c)$/
+nicefputs	utils.c	/^nicefputs(char *s, FILE *f)$/
+nicestrlen	utils.c	/^nicestrlen(char *s)$/
+nicezputs	utils.c	/^nicezputs(char const *s, FILE *stream)$/
+niceztrlen	utils.c	/^niceztrlen(char const *s)$/
+noholdintr	signals.c	/^noholdintr(void)$/
+nointr	signals.c	/^nointr(void)$/
+nolval	math.c	/^#define nolval() {stack[sp].lval= -1;}$/
+nonempty	zsh.h	/^#define nonempty(X)  ((X)->first != NULL)$/
+noop_function	module.c	/^noop_function(void)$/
+noop_function_int	module.c	/^noop_function_int(int nothing)$/
+notstrcmp	glob.c	/^notstrcmp(char **a, char **b)$/
+notzero	math.c	/^notzero(long a)$/
+nullsetfn	params.c	/^nullsetfn(Param pm, char *x)$/
+op	math.c	/^op(int what)$/
+optid	zsh.h	/^#define optid(X) ( isset(SHOPTIONLETTERS) ? (X).id/
+optison	cond.c	/^optison(char *s)$/
+optlookup	utils.c	/^optlookup(char *s)$/
+optlookupc	utils.c	/^optlookupc(char c)$/
+overwritemode	Zle/zle_misc.c	/^overwritemode(void)$/
+par_case	parse.c	/^par_case(Cmd c)$/
+par_cmd	parse.c	/^par_cmd(void)$/
+par_cond	parse.c	/^par_cond(void)$/
+par_cond_1	parse.c	/^par_cond_1(void)$/
+par_cond_2	parse.c	/^par_cond_2(void)$/
+par_cond_double	parse.c	/^par_cond_double(char *a, char *b)$/
+par_cond_triple	parse.c	/^par_cond_triple(char *a, char *b, char *c)$/
+par_dinbrack	parse.c	/^par_dinbrack(Cmd c)$/
+par_dinpar	parse.c	/^par_dinpar(Cmd c)$/
+par_event	parse.c	/^par_event(void)$/
+par_for	parse.c	/^par_for(Cmd c)$/
+par_funcdef	parse.c	/^par_funcdef(Cmd c)$/
+par_if	parse.c	/^par_if(Cmd c)$/
+par_list	parse.c	/^par_list(void)$/
+par_list1	parse.c	/^par_list1(void)$/
+par_nl_wordlist	parse.c	/^par_nl_wordlist(void)$/
+par_pline	parse.c	/^par_pline(void)$/
+par_redir	parse.c	/^par_redir(LinkList l)$/
+par_repeat	parse.c	/^par_repeat(Cmd c)$/
+par_simple	parse.c	/^par_simple(Cmd c)$/
+par_sublist	parse.c	/^par_sublist(void)$/
+par_sublist2	parse.c	/^par_sublist2(void)$/
+par_subsh	parse.c	/^par_subsh(Cmd c)$/
+par_time	parse.c	/^par_time(Cmd c)$/
+par_while	parse.c	/^par_while(Cmd c)$/
+par_wordlist	parse.c	/^par_wordlist(void)$/
+paramsubst	subst.c	/^paramsubst(LinkList l, LinkNode n, char **str, int/
+parse_event	parse.c	/^parse_event(void)$/
+parse_list	parse.c	/^parse_list(void)$/
+parse_string	exec.c	/^parse_string(char *s)$/
+parse_subst_string	lex.c	/^parse_subst_string(char *s)$/
+parseargs	init.c	/^parseargs(char **argv)$/
+parsecmd	exec.c	/^parsecmd(char *cmd)$/
+parsecomp	glob.c	/^parsecomp(void)$/
+parsecomplist	glob.c	/^parsecomplist(void)$/
+parsecompsw	glob.c	/^parsecompsw(int pathadd)$/
+parsepat	glob.c	/^parsepat(char *str)$/
+parsereg	glob.c	/^parsereg(char *str)$/
+parsestr	lex.c	/^parsestr(char *s)$/
+peekfirst	zsh.h	/^#define peekfirst(X) ((X)->first->dat)$/
+pfxlen	Zle/zle_tricky.c	/^pfxlen(char *s, char *t)$/
+pop2	math.c	/^#define pop2() { \\$/
+pop2lv	math.c	/^#define pop2lv() { pop2() lv = stack[sp+1].lval; }/
+pop3	math.c	/^#define pop3() { \\$/
+popheap	mem.c	/^popheap(void)$/
+poundgetfn	params.c	/^poundgetfn(Param pm)$/
+poundinsert	Zle/zle_misc.c	/^poundinsert(void)$/
+pputc	prompt.c	/^pputc(char c)$/
+prefork	subst.c	/^prefork(LinkList list, int flags)$/
+preprompt	utils.c	/^preprompt(void)$/
+prevnode	zsh.h	/^#define prevnode(X)  ((X)->last)$/
+printaliasnode	hashtable.c	/^printaliasnode(HashNode hn, int printflags)$/
+printbind	Zle/zle_main.c	/^printbind(char const *s, int len)$/
+printbinding	Zle/zle_main.c	/^printbinding(HashNode hn, int printflags)$/
+printbuiltinnode	hashtable.c	/^printbuiltinnode(HashNode hn, int printflags)$/
+printcmdnamnode	hashtable.c	/^printcmdnamnode(HashNode hn, int printflags)$/
+printcompctl	Zle/compctl.c	/^printcompctl(char *s, Compctl cc, int printflags)$/
+printcompctlp	Zle/compctl.c	/^printcompctlp(HashNode hn, int printflags)$/
+printdirstack	builtin.c	/^printdirstack(void)$/
+printfmt	Zle/zle_tricky.c	/^printfmt(char *fmt, int n, int dopr)$/
+printfuncbind	Zle/zle_main.c	/^printfuncbind(HashNode hn, int printflags)$/
+printhashtabinfo	hashtable.c	/^printhashtabinfo(HashTable ht)$/
+printhhmmss	jobs.c	/^printhhmmss(double secs)$/
+printif	builtin.c	/^printif(char *str, int c)$/
+printjob	jobs.c	/^printjob(Job jn, int lng, int synch)$/
+printmetabind	Zle/zle_main.c	/^printmetabind(char const *s)$/
+printnameddirnode	hashtable.c	/^printnameddirnode(HashNode hn, int printflags)$/
+printoptions	builtin.c	/^printoptions(int set)$/
+printparamnode	hashtable.c	/^printparamnode(HashNode hn, int printflags)$/
+printqt	builtin.c	/^printqt(char *str)$/
+printreswdnode	hashtable.c	/^printreswdnode(HashNode hn, int printflags)$/
+printshfuncnode	hashtable.c	/^printshfuncnode(HashNode hn, int printflags)$/
+printtime	jobs.c	/^printtime(struct timeval *real, struct timeinfo *t/
+printulimit	builtin.c	/^printulimit(int lim, int hard, int head)$/
+processcmd	Zle/zle_tricky.c	/^processcmd(void)$/
+pttime	builtin.c	/^#define pttime(X) printf("%ldm%ld.%02lds",((long) /
+push	math.c	/^push(long val, LV lval)$/
+pushheap	mem.c	/^pushheap(void)$/
+pushinput	Zle/zle_hist.c	/^pushinput(void)$/
+pushline	Zle/zle_hist.c	/^pushline(void)$/
+pushlineoredit	Zle/zle_hist.c	/^pushlineoredit(void)$/
+pushnode	zsh.h	/^#define pushnode(X,Y) insertlinknode(X,(LinkNode) /
+pushv	math.c	/^#define pushv(X) { push(X,-1); }$/
+putprompt	prompt.c	/^putprompt(char *fmin, int *lenp, int *wp, int cnt)/
+putpromptchar	prompt.c	/^putpromptchar(int doprint, int endchar)$/
+putraw	utils.c	/^putraw(int c)$/
+putshout	utils.c	/^putshout(int c)$/
+putstr	prompt.c	/^putstr(int d)$/
+qgetevent	Zle/zle_hist.c	/^qgetevent(int ev)$/
+qgetnum	glob.c	/^qgetnum(char **s)$/
+qgetoctnum	glob.c	/^qgetoctnum(char **s)$/
+qualdev	glob.c	/^qualdev(struct stat *buf, long dv)$/
+qualeqflags	glob.c	/^qualeqflags(struct stat *buf, long mod)$/
+qualflags	glob.c	/^qualflags(struct stat *buf, long mod)$/
+qualgid	glob.c	/^qualgid(struct stat *buf, long gid)$/
+qualisblk	glob.c	/^qualisblk(struct stat *buf, long junk)$/
+qualischar	glob.c	/^qualischar(struct stat *buf, long junk)$/
+qualiscom	glob.c	/^qualiscom(struct stat *buf, long mod)$/
+qualisdev	glob.c	/^qualisdev(struct stat *buf, long junk)$/
+qualmode	glob.c	/^qualmode(struct stat *buf, long mod)$/
+qualnlink	glob.c	/^qualnlink(struct stat *buf, long ct)$/
+qualsize	glob.c	/^qualsize(struct stat *buf, long size)$/
+qualtime	glob.c	/^qualtime(struct stat *buf, long days)$/
+qualuid	glob.c	/^qualuid(struct stat *buf, long uid)$/
+queue_signals	signals.h	/^#define queue_signals()    (queueing_enabled++)$/
+quietgetevent	hist.c	/^quietgetevent(int ev)$/
+quietgethist	hist.c	/^quietgethist(int ev)$/
+quote	hist.c	/^quote(char **tr)$/
+quotebreak	hist.c	/^quotebreak(char **tr)$/
+quotedinsert	Zle/zle_misc.c	/^quotedinsert(void)$/
+quotedzputs	utils.c	/^quotedzputs(char const *s, FILE *stream)$/
+quoteline	Zle/zle_misc.c	/^quoteline(void)$/
+quotename	Zle/zle_tricky.c	/^quotename(char *s, char **e, char *te, int *pl)$/
+quotepresuf	Zle/zle_tricky.c	/^quotepresuf(char **ps)$/
+quoteregion	Zle/zle_misc.c	/^quoteregion(void)$/
+randomgetfn	params.c	/^randomgetfn(Param pm)$/
+randomsetfn	params.c	/^randomsetfn(Param pm, long v)$/
+readhistfile	hist.c	/^readhistfile(char *s, int err)$/
+readoutput	exec.c	/^readoutput(int in, int qt)$/
+readwtab	watch.c	/^readwtab(void)$/
+realloc	mem.c	/^realloc(MALLOC_RET_T p, MALLOC_ARG_T size)$/
+redisplay	Zle/zle_refresh.c	/^redisplay(void)$/
+redup	utils.c	/^redup(int x, int y)$/
+refresh	Zle/zle_refresh.c	/^refresh(void)$/
+refreshline	Zle/zle_refresh.c	/^refreshline(int ln)$/
+rembslash	Zle/zle_tricky.c	/^rembslash(char *s)$/
+rembutext	hist.c	/^rembutext(char **junkptr)$/
+remember_edits	Zle/zle_hist.c	/^remember_edits(void)$/
+remhist	hist.c	/^remhist(void)$/
+remlpaths	hist.c	/^remlpaths(char **junkptr)$/
+remnode	linklist.c	/^remnode(LinkList list, LinkNode nd)$/
+remnulargs	glob.c	/^remnulargs(char *s)$/
+removehashnode	hashtable.c	/^removehashnode(HashTable ht, char *nam)$/
+removenameddirnode	hashtable.c	/^removenameddirnode(HashTable ht, char *nam)$/
+removeshfuncnode	hashtable.c	/^removeshfuncnode(HashTable ht, char *nam)$/
+remtext	hist.c	/^remtext(char **junkptr)$/
+remtpath	hist.c	/^remtpath(char **junkptr)$/
+replenv	params.c	/^replenv(char *e, char *value)$/
+resetvideo	Zle/zle_refresh.c	/^resetvideo(void)$/
+resizehistents	hist.c	/^resizehistents(void)$/
+restore_params	exec.c	/^restore_params(LinkList restorelist, LinkList remo/
+reversemenucomplete	Zle/zle_tricky.c	/^reversemenucomplete(void)$/
+rolllist	linklist.c	/^rolllist(LinkList l, LinkNode nd)$/
+run_init_scripts	init.c	/^run_init_scripts(void)$/
+safeinungetc	hist.c	/^safeinungetc(int c)$/
+save_params	exec.c	/^save_params(Cmd cmd, LinkList *restore_p, LinkList/
+savehistfile	hist.c	/^savehistfile(char *s, int err, int app)$/
+scanhashtable	hashtable.c	/^scanhashtable(HashTable ht, int sorted, int flags1/
+scanjobs	jobs.c	/^scanjobs(void)$/
+scanmatchtable	hashtable.c	/^scanmatchtable(HashTable ht, Comp com, int flags1,/
+scanner	glob.c	/^scanner(Complist q)$/
+scrollwindow	Zle/zle_refresh.c	/^scrollwindow(int tline)$/
+secondsgetfn	params.c	/^secondsgetfn(Param pm)$/
+secondssetfn	params.c	/^secondssetfn(Param pm, long x)$/
+selectlist	loop.c	/^selectlist(LinkList l)$/
+selfinsert	Zle/zle_misc.c	/^selfinsert(void)$/
+selfinsertunmeta	Zle/zle_misc.c	/^selfinsertunmeta(void)$/
+sendbreak	Zle/zle_misc.c	/^sendbreak(void)$/
+sendstring	Zle/zle_main.c	/^sendstring(void)$/
+sepjoin	utils.c	/^sepjoin(char **s, char *sep)$/
+sepsplit	utils.c	/^sepsplit(char *s, char *sep, int allownull)$/
+set	math.c	/^#define set(X) { push(setvar(lv,X),lv); }$/
+set_isrch_spot	Zle/zle_hist.c	/^set_isrch_spot(int num, int hl, int pos, int cs, i/
+setaparam	params.c	/^setaparam(char *s, char **val)$/
+setarrvalue	params.c	/^setarrvalue(Value v, char **val)$/
+setcbreak	utils.c	/^setcbreak(void)$/
+setdata	zsh.h	/^#define setdata(X,Y) ((X)->dat = (Y))$/
+setegid	system.h	/^#  define setegid(X) setregid(-1,X)$/
+seteuid	system.h	/^#  define seteuid(X) setreuid(-1,X)$/
+setgid	system.h	/^#  define setgid(X) setregid(X,X)$/
+setintenv	params.c	/^setintenv(char *s, long val)$/
+setintvalue	params.c	/^setintvalue(Value v, long val)$/
+setiparam	params.c	/^setiparam(char *s, long val)$/
+setlang	params.c	/^setlang(char *x)$/
+setlimits	exec.c	/^setlimits(char *nam)$/
+setline	Zle/zle_utils.c	/^setline(char const *s)$/
+setmarkcommand	Zle/zle_move.c	/^setmarkcommand(void)$/
+setprevjob	jobs.c	/^setprevjob(void)$/
+setsparam	params.c	/^setsparam(char *s, char *val)$/
+setstrvalue	params.c	/^setstrvalue(Value v, char *val)$/
+setterm	Zle/zle_main.c	/^setterm(void)$/
+settrap	signals.c	/^settrap(int sig, List l)$/
+settyinfo	utils.c	/^settyinfo(struct ttyinfo *ti)$/
+setuid	system.h	/^#  define setuid(X) setreuid(X,X)$/
+setupvals	init.c	/^setupvals(void)$/
+setvar	math.c	/^setvar(LV s, long v)$/
+sfxlen	Zle/zle_tricky.c	/^sfxlen(char *s, char *t)$/
+shelltime	jobs.c	/^shelltime(void)$/
+shingetline	input.c	/^shingetline(void)$/
+should_report_time	jobs.c	/^should_report_time(Job j)$/
+showlimits	builtin.c	/^showlimits(int hard, int lim)$/
+sigaddset	signals.h	/^# define sigaddset(s,n)    (*(s) |=  (1 << ((n) - /
+sigdelset	signals.h	/^# define sigdelset(s,n)    (*(s) &= ~(1 << ((n) - /
+sigemptyset	signals.h	/^# define sigemptyset(s)    (*(s) = 0)$/
+sigfillset	signals.h	/^#  define sigfillset(s)    (*(s) = ~(sigset_t)0, 0/
+sigismember	signals.h	/^# define sigismember(s,n)  ((*(s) & (1 << ((n) - 1/
+signal_block	signals.c	/^signal_block(sigset_t set)$/
+signal_default	signals.h	/^#define signal_default(S)  signal(S, SIG_DFL)$/
+signal_ignore	signals.h	/^#define signal_ignore(S)   signal(S, SIG_IGN)$/
+signal_longjmp	signals.c	/^# define signal_longjmp(b,n)  siglongjmp((b),(n))$/
+signal_mask	signals.c	/^signal_mask(int sig)$/
+signal_process	signals.c	/^# define signal_process(sig)  signal_ignore(sig)$/
+signal_reset	signals.c	/^# define signal_reset(sig)    install_handler(sig)/
+signal_setjmp	signals.c	/^# define signal_setjmp(b)     sigsetjmp((b),1)$/
+signal_setmask	signals.c	/^signal_setmask(sigset_t set)$/
+signal_suspend	signals.c	/^signal_suspend(int sig, int sig2)$/
+signal_unblock	signals.c	/^signal_unblock(sigset_t set)$/
+simplifyright	utils.c	/^simplifyright(List l)$/
+simplifystruct	utils.c	/^simplifystruct(struct node *n)$/
+singlerefresh	Zle/zle_refresh.c	/^singlerefresh(void)$/
+singmoveto	Zle/zle_refresh.c	/^singmoveto(int pos)$/
+singsub	subst.c	/^singsub(char **s)$/
+sizeline	Zle/zle_utils.c	/^sizeline(int sz)$/
+skipcomm	lex.c	/^skipcomm(void)$/
+skipparens	utils.c	/^skipparens(char inpar, char outpar, char **s)$/
+skipwsep	utils.c	/^skipwsep(char **s)$/
+slashsplit	utils.c	/^slashsplit(char *s)$/
+source	init.c	/^source(char *s)$/
+sourcehome	init.c	/^sourcehome(char *s)$/
+spaceinline	Zle/zle_utils.c	/^spaceinline(int ct)$/
+spacesplit	utils.c	/^spacesplit(char *s, int allownull)$/
+spawnjob	jobs.c	/^spawnjob(void)$/
+spawnpipes	exec.c	/^spawnpipes(LinkList l)$/
+spckword	utils.c	/^spckword(char **s, int hist, int cmd, int ask)$/
+spdist	utils.c	/^spdist(char *s, char *t, int thresh)$/
+spellword	Zle/zle_tricky.c	/^spellword(void)$/
+spname	utils.c	/^spname(char *oldname)$/
+spscan	utils.c	/^spscan(HashNode hn, int scanflags)$/
+startvichange	Zle/zle_vi.c	/^startvichange(int im)$/
+startvitext	Zle/zle_vi.c	/^startvitext(int im)$/
+stradd	prompt.c	/^stradd(char *d)$/
+strbpcmp	Zle/zle_tricky.c	/^strbpcmp(const void *a, const void *b)$/
+strcatsub	subst.c	/^strcatsub(char **d, char *pb, char *pe, char *src,/
+strerror	compat.c	/^strerror(int errnum)$/
+strgetfn	params.c	/^strgetfn(Param pm)$/
+strinbeg	hist.c	/^strinbeg(void)$/
+strinend	hist.c	/^strinend(void)$/
+stringsubst	subst.c	/^stringsubst(LinkList list, LinkNode node, int ssub/
+strpcmp	subst.c	/^strpcmp(const void *a, const void *b)$/
+strpfx	utils.c	/^strpfx(char *s, char *t)$/
+strsetfn	params.c	/^strsetfn(Param pm, char *x)$/
+strsfx	utils.c	/^strsfx(char *s, char *t)$/
+strstr	compat.c	/^strstr(const char *s, const char *t)$/
+strucpy	utils.c	/^strucpy(char **s, char *t)$/
+struncpy	utils.c	/^struncpy(char **s, char *t, int n)$/
+strvargetfn	params.c	/^strvargetfn(Param pm)$/
+strvarsetfn	params.c	/^strvarsetfn(Param pm, char *x)$/
+stuff	input.c	/^stuff(char *fn)$/
+subst	hist.c	/^subst(char **strptr, char *in, char *out, int gbal/
+taddchr	text.c	/^taddchr(int c)$/
+taddint	text.c	/^taddint(int x)$/
+taddlist	text.c	/^taddlist(LinkList l)$/
+taddnl	text.c	/^taddnl(void)$/
+taddstr	text.c	/^taddstr(char *s)$/
+tc_delchars	Zle/zle_refresh.c	/^#define tc_delchars(X)	(void) tcmultout(TCDEL, TCM/
+tc_downcurs	Zle/zle_refresh.c	/^tc_downcurs(int ct)$/
+tc_inschars	Zle/zle_refresh.c	/^#define tc_inschars(X)	(void) tcmultout(TCINS, TCM/
+tc_leftcurs	Zle/zle_refresh.c	/^#define tc_leftcurs(X)	(void) tcmultout(TCLEFT, TC/
+tc_rightcurs	Zle/zle_refresh.c	/^tc_rightcurs(int cl)$/
+tc_upcurs	Zle/zle_refresh.c	/^#define tc_upcurs(X)	(void) tcmultout(TCUP, TCMULT/
+tccan	zsh.h	/^#define tccan(X) (tclen[X])$/
+tcdelcost	Zle/zle_refresh.c	/^#define tcdelcost(X)   (tccan(TCMULTDEL) ? tclen[T/
+tcinscost	Zle/zle_refresh.c	/^#define tcinscost(X)   (tccan(TCMULTINS) ? tclen[T/
+tcmultout	Zle/zle_refresh.c	/^tcmultout(int cap, int multcap, int ct)$/
+tcout	Zle/zle_refresh.c	/^tcout(int cap)$/
+tcoutarg	Zle/zle_refresh.c	/^tcoutarg(int cap, int arg)$/
+termgetfn	params.c	/^termgetfn(Param pm)$/
+termsetfn	params.c	/^termsetfn(Param pm, char *x)$/
+testlex	builtin.c	/^testlex(void)$/
+tokenize	glob.c	/^tokenize(char *s)$/
+transposechars	Zle/zle_misc.c	/^transposechars(void)$/
+transposewords	Zle/zle_word.c	/^transposewords(void)$/
+trashzle	Zle/zle_main.c	/^trashzle(void)$/
+tricat	glob.c	/^tricat(char *s1, char *s2, char *s3)$/
+try	exec.c	/^#define try(X) { if (iscom(X)) return ztrdup(X); }/
+try_load_module	module.c	/^try_load_module(char const *name)$/
+tsetcap	prompt.c	/^tsetcap(int cap, int flag)$/
+ttyidlegetfn	params.c	/^ttyidlegetfn(Param pm)$/
+tulower	utils.c	/^tulower(int c)$/
+tuupper	utils.c	/^tuupper(int c)$/
+txtchangeisset	zsh.h	/^#define txtchangeisset(X)	(txtchange & (X))$/
+txtchangeset	zsh.h	/^#define txtchangeset(X, Y)	(txtchange |= (X), txtc/
+txtisset	zsh.h	/^#define txtisset(X)  (txtattrmask & (X))$/
+txtset	zsh.h	/^#define txtset(X)    (txtattrmask |= (X))$/
+txtunset	zsh.h	/^#define txtunset(X)  (txtattrmask &= ~(X))$/
+ucmp	watch.c	/^ucmp(STRUCT_UTMP *u, STRUCT_UTMP *v)$/
+ugetnode	linklist.c	/^ugetnode(LinkList list)$/
+uidgetfn	params.c	/^uidgetfn(Param pm)$/
+uidsetfn	params.c	/^uidsetfn(Param pm, uid_t x)$/
+unbindzlefunc	Zle/zle_main.c	/^unbindzlefunc(int ifunc, int notall)$/
+undefinedkey	Zle/zle_misc.c	/^undefinedkey(void)$/
+underscoregetfn	params.c	/^underscoregetfn(Param pm)$/
+undo	Zle/zle_misc.c	/^undo(void)$/
+ungetkey	Zle/zle_main.c	/^ungetkey(int ch)$/
+ungetkeycmd	Zle/zle_main.c	/^ungetkeycmd(void)$/
+ungetkeys	Zle/zle_main.c	/^ungetkeys(char *s, int len)$/
+uniqarray	params.c	/^uniqarray(char **x)$/
+universalargument	Zle/zle_misc.c	/^universalargument(void)$/
+unmeta	utils.c	/^unmeta(const char *file_name)$/
+unmetafy	utils.c	/^unmetafy(char *s, int *len)$/
+unmetafy_line	Zle/zle_tricky.c	/^unmetafy_line(void)$/
+unqueue_signals	signals.h	/^#define unqueue_signals()  do { \\$/
+unset	zsh.h	/^#define unset(X) (!opts[X])$/
+unsetparam	params.c	/^unsetparam(char *s)$/
+unsetparam_pm	params.c	/^unsetparam_pm(Param pm, int altflag)$/
+unsettrap	signals.c	/^unsettrap(int sig)$/
+untok	glob.c	/^#define untok(C)  (itok(C) ? ztokens[(C) - Pound] /
+untokenize	exec.c	/^untokenize(char *s)$/
+upcase	hist.c	/^upcase(char **x)$/
+upcaseword	Zle/zle_word.c	/^upcaseword(void)$/
+update_job	jobs.c	/^update_job(Job jn)$/
+update_process	jobs.c	/^update_process(Process pn, int status)$/
+uphistory	Zle/zle_hist.c	/^uphistory(void)$/
+uplineorhistory	Zle/zle_hist.c	/^uplineorhistory(void)$/
+uplineorsearch	Zle/zle_hist.c	/^uplineorsearch(void)$/
+uremnode	linklist.c	/^uremnode(LinkList list, LinkNode nd)$/
+usernamegetfn	params.c	/^usernamegetfn(Param pm)$/
+usernamesetfn	params.c	/^usernamesetfn(Param pm, char *x)$/
+usetab	Zle/zle_tricky.c	/^usetab(void)$/
+viaddeol	Zle/zle_vi.c	/^viaddeol(void)$/
+viaddnext	Zle/zle_vi.c	/^viaddnext(void)$/
+vibackwardblankword	Zle/zle_word.c	/^vibackwardblankword(void)$/
+vibackwardchar	Zle/zle_move.c	/^vibackwardchar(void)$/
+vibackwarddeletechar	Zle/zle_vi.c	/^vibackwarddeletechar(void)$/
+vibackwardkillword	Zle/zle_word.c	/^vibackwardkillword(void)$/
+vibackwardword	Zle/zle_word.c	/^vibackwardword(void)$/
+vibeginningofline	Zle/zle_move.c	/^vibeginningofline(void)$/
+vicapslockpanic	Zle/zle_vi.c	/^vicapslockpanic(void)$/
+vichange	Zle/zle_vi.c	/^vichange(void)$/
+vichangeeol	Zle/zle_vi.c	/^vichangeeol(void)$/
+vichangewholeline	Zle/zle_vi.c	/^vichangewholeline(void)$/
+vicmdmode	Zle/zle_vi.c	/^vicmdmode(void)$/
+videlete	Zle/zle_vi.c	/^videlete(void)$/
+videletechar	Zle/zle_vi.c	/^videletechar(void)$/
+vidownlineorhistory	Zle/zle_hist.c	/^vidownlineorhistory(void)$/
+viendofline	Zle/zle_move.c	/^viendofline(void)$/
+vifetchhistory	Zle/zle_hist.c	/^vifetchhistory(void)$/
+vifindnextchar	Zle/zle_move.c	/^vifindnextchar(void)$/
+vifindnextcharskip	Zle/zle_move.c	/^vifindnextcharskip(void)$/
+vifindprevchar	Zle/zle_move.c	/^vifindprevchar(void)$/
+vifindprevcharskip	Zle/zle_move.c	/^vifindprevcharskip(void)$/
+vifirstnonblank	Zle/zle_move.c	/^vifirstnonblank(void)$/
+viforwardblankword	Zle/zle_word.c	/^viforwardblankword(void)$/
+viforwardblankwordend	Zle/zle_word.c	/^viforwardblankwordend(void)$/
+viforwardchar	Zle/zle_move.c	/^viforwardchar(void)$/
+viforwardword	Zle/zle_word.c	/^viforwardword(void)$/
+viforwardwordend	Zle/zle_word.c	/^viforwardwordend(void)$/
+vigetkey	Zle/zle_vi.c	/^vigetkey(void)$/
+vigotocolumn	Zle/zle_move.c	/^vigotocolumn(void)$/
+vigotomark	Zle/zle_move.c	/^vigotomark(void)$/
+vigotomarkline	Zle/zle_move.c	/^vigotomarkline(void)$/
+vihistorysearchbackward	Zle/zle_hist.c	/^vihistorysearchbackward(void)$/
+vihistorysearchforward	Zle/zle_hist.c	/^vihistorysearchforward(void)$/
+viindent	Zle/zle_vi.c	/^viindent(void)$/
+viinsert	Zle/zle_vi.c	/^viinsert(void)$/
+viinsertbol	Zle/zle_vi.c	/^viinsertbol(void)$/
+vijoin	Zle/zle_vi.c	/^vijoin(void)$/
+vikilleol	Zle/zle_vi.c	/^vikilleol(void)$/
+vikillline	Zle/zle_vi.c	/^vikillline(void)$/
+vimatchbracket	Zle/zle_move.c	/^vimatchbracket(void)$/
+viopenlineabove	Zle/zle_vi.c	/^viopenlineabove(void)$/
+viopenlinebelow	Zle/zle_vi.c	/^viopenlinebelow(void)$/
+vioperswapcase	Zle/zle_vi.c	/^vioperswapcase(void)$/
+vipoundinsert	Zle/zle_vi.c	/^vipoundinsert(void)$/
+viputafter	Zle/zle_vi.c	/^viputafter(void)$/
+viputbefore	Zle/zle_vi.c	/^viputbefore(void)$/
+viquotedinsert	Zle/zle_vi.c	/^viquotedinsert(void)$/
+virepeatchange	Zle/zle_vi.c	/^virepeatchange(void)$/
+virepeatfind	Zle/zle_move.c	/^virepeatfind(void)$/
+virepeatsearch	Zle/zle_hist.c	/^virepeatsearch(void)$/
+vireplace	Zle/zle_vi.c	/^vireplace(void)$/
+vireplacechars	Zle/zle_vi.c	/^vireplacechars(void)$/
+virevrepeatfind	Zle/zle_move.c	/^virevrepeatfind(void)$/
+virevrepeatsearch	Zle/zle_hist.c	/^virevrepeatsearch(void)$/
+visetbuffer	Zle/zle_vi.c	/^visetbuffer(void)$/
+visetmark	Zle/zle_move.c	/^visetmark(void)$/
+visubstitute	Zle/zle_vi.c	/^visubstitute(void)$/
+viswapcase	Zle/zle_vi.c	/^viswapcase(void)$/
+viunindent	Zle/zle_vi.c	/^viunindent(void)$/
+viuplineorhistory	Zle/zle_hist.c	/^viuplineorhistory(void)$/
+viyank	Zle/zle_vi.c	/^viyank(void)$/
+viyankeol	Zle/zle_vi.c	/^viyankeol(void)$/
+viyankwholeline	Zle/zle_vi.c	/^viyankwholeline(void)$/
+waitforpid	jobs.c	/^waitforpid(pid_t pid)$/
+waitjob	jobs.c	/^waitjob(int job, int sig)$/
+waitjobs	jobs.c	/^waitjobs(void)$/
+watch3ary	watch.c	/^watch3ary(int inout, STRUCT_UTMP *u, char *fmt, in/
+watchlog	watch.c	/^watchlog(int inout, STRUCT_UTMP *u, char **w, char/
+watchlog2	watch.c	/^watchlog2(int inout, STRUCT_UTMP *u, char *fmt, in/
+whereis	Zle/zle_main.c	/^whereis(void)$/
+wordcharsgetfn	params.c	/^wordcharsgetfn(Param pm)$/
+wordcharssetfn	params.c	/^wordcharssetfn(Param pm, char *x)$/
+wordcount	utils.c	/^wordcount(char *s, char *sep, int mul)$/
+xpandbraces	glob.c	/^xpandbraces(LinkList list, LinkNode *np)$/
+xpandredir	glob.c	/^xpandredir(struct redir *fn, LinkList tab)$/
+xsymlink	utils.c	/^xsymlink(char *s)$/
+xsymlinks	utils.c	/^xsymlinks(char *s, int flag)$/
+yank	Zle/zle_misc.c	/^yank(void)$/
+yankpop	Zle/zle_misc.c	/^yankpop(void)$/
+yyerror	parse.c	/^yyerror(void)$/
+yylex	lex.c	/^yylex(void)$/
+zalloc	mem.c	/^zalloc(size_t size)$/
+zcalloc	mem.c	/^zcalloc(size_t size)$/
+zclose	utils.c	/^zclose(int fd)$/
+zerobinding	Zle/zle_main.c	/^zerobinding(HashNode hn, int ifunc)$/
+zerr	utils.c	/^zerr(const char *fmt, const char *str, int num)$/
+zerrnam	utils.c	/^zerrnam(const char *cmd, const char *fmt, const ch/
+zexecve	exec.c	/^zexecve(char *pth, char **argv)$/
+zexit	builtin.c	/^zexit(int val, int from_signal)$/
+zfork	exec.c	/^zfork(void)$/
+zfree	mem.c	/^zfree(void *p, int sz)$/
+zgetcwd	compat.c	/^zgetcwd(void)$/
+zgetenv	params.c	/^zgetenv(char *name)$/
+zjoin	utils.c	/^zjoin(char **arr, int delim)$/
+zle_get_event	Zle/zle_hist.c	/^zle_get_event(int ev)$/
+zlefindfunc	Zle/zle_main.c	/^zlefindfunc(char *name)$/
+zleread	Zle/zle_main.c	/^zleread(char *lp, char *rp)$/
+zlevarsetfn	params.c	/^zlevarsetfn(Param pm, long x)$/
+zputc	Zle/zle_refresh.c	/^#define zputc(a, b)		putc(a, b), cost++$/
+zputs	utils.c	/^zputs(char const *s, FILE *stream)$/
+zread	builtin.c	/^zread(void)$/
+zreaddir	utils.c	/^zreaddir(DIR *dir)$/
+zrealloc	mem.c	/^zrealloc(void *ptr, size_t size)$/
+zsetlimit	exec.c	/^zsetlimit(int limnum, char *nam)$/
+zsfree	mem.c	/^zsfree(char *p)$/
+zstrtol	utils.c	/^zstrtol(const char *s, char **t, int base)$/
+zstrtoq	utils.c	/^zstrtoq(const char *s, char **t, int base)$/
+ztat	Zle/zle_tricky.c	/^ztat(char *nam, struct stat *buf, int ls)$/
+ztrcmp	utils.c	/^ztrcmp(unsigned char const *s1, unsigned char cons/
+ztrdup	mem.c	/^ztrdup(const char *s)$/
+ztrftime	utils.c	/^ztrftime(char *buf, int bufsize, char *fmt, struct/
+ztrlen	utils.c	/^ztrlen(char const *s)$/
+ztrncpy	utils.c	/^ztrncpy(char *s, char *t, int len)$/
+ztrsub	utils.c	/^ztrsub(char const *t, char const *s)$/
+zwarnnam	utils.c	/^zwarnnam(const char *cmd, const char *fmt, const c/
+zwrite	Zle/zle_refresh.c	/^#define zwrite(a, b, c, d)	fwrite(a, b, c, d), cos/
+zzlex	math.c	/^zzlex(void)$/

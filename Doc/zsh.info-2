@@ -1,0 +1,1290 @@
+This is Info file zsh.info, produced by Makeinfo-1.55 from the input
+file ./zsh.texi.
+
+This is a texinfo version of the man page for the Z Shell, originally by
+Paul Falstad.  It was converted from the `zsh.1' file distributed with
+zsh v2.5.0 by Jonathan Hardwick, `jch@cs.cmu.edu' and updated/modified
+by Clive Messer, `clive@epos.demon.co.uk' to its present state.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the entire resulting derived work is distributed under the terms
+of a permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: zsh.info,  Node: Modifiers,  Prev: Word Designators,  Up: History Expansion
+
+Modifiers
+---------
+
+After the optional word designator, you can add a sequence of one or
+more of the following modifiers, each preceded by a `:'.  These
+modifiers also work on the result of filename and parameter expansion.
+
+`h'
+     Remove a trailing pathname component,  leaving the head.
+
+`r'
+     Remove a trailing suffix of the form `.xxx', leaving the basename.
+
+`e'
+     Remove all but the suffix.
+
+`t'
+     Remove all leading pathname components, leaving the tail.
+
+`&'
+     Repeat the previous substitution.
+
+`g'
+     Apply the change to the first occurrence of a match in each word,
+     by prefixing the above (for example, `g&').
+
+`p'
+     Print the new command but do not execute it.
+
+`q'
+     Quote the substituted words, escaping further substitutions.
+
+`x'
+     Like `q', but break into words at each blank.
+
+`l'
+     Convert the words to all lowercase.
+
+`u'
+     Convert the words to all uppercase.
+
+`f'
+     Repeats the immediately (without a colon) following modifier until
+     the resulting word doesn't change any more.  This and the
+     following  `F', `w' and `W' modifier only work with parameter and
+     filename expansion.
+
+`F:EXPR:'
+     Like `f', but repeats only `n' times if the expression EXPR
+     evaluates to `n'. Any character can be used instead of the `:', if
+     any of `(', `[', or `{' is used as the opening delimiter the
+     second one has to be `)', `]', or `}' respectively.
+
+`w'
+     Makes the immediately following modifier work on each word in the
+     string.
+
+`W:SEP:'
+     Like `w' but words are considered to be the parts of the string
+     that are separated by SEP.  Any character can be used instead of
+     the `:', opening parentheses are handled specially, see above.
+
+`s/L/R[/]'
+     Substitute R for L.
+
+Unless preceded by a `g', the substitution is done only  for the first
+string that matches `l'.
+
+The left-hand side of substitutions are not regular expressions, but
+character strings.  Any character can be used as the delimiter in place
+of `/'.  A backslash quotes the delimiter character.  The character
+`&', in the right hand side, is replaced by the text from the
+left-hand-side.  The `&' can be quoted with a backslash.   A null `l'
+uses the previous string either from a `l' or from a contextual scan
+string `s' from `!?s'.  You can omit the rightmost delimiter if a
+newline immediately follows `r'; the right-most `?' in a context scan
+can similarly be omitted.
+
+By default, a history reference with no event specification refers to
+the same line as the last history reference on that command line,
+unless it is the first history reference in a command.  In that case, a
+history reference with no event specification always refers to the
+previous command.   However, if the option `CSH_JUNKIE_HISTORY' is set,
+then history reference with no event specification will always refer to
+the previous command.  For example, `!!:1' will always refer to the
+first word of the previous command and `!!$' will always refer to the
+last word of the previous command.  And with `CSH_JUNKIE_HISTORY' set,
+then `!:1' and `!$' will function in the same manner as `!!:1' and
+`!!$', respectively.   However, if `CSH_JUNKIE_HISTORY' is unset, then
+`!:1' and `!$' will refer to the first and last words respectively, of
+the last command referenced on the current command line.  However, if
+they are the first history reference on the command line, then they
+refer to the previous command.
+
+The character sequence `^FOO^BAR' repeats the last command, replacing
+the string FOO with the string BAR.
+
+If the shell encounters the character sequence `!"' in the input, the
+history mechanism is temporarily disabled until the current list is
+fully parsed.  The `!"' is removed from the input, and any subsequent
+`!' characters have no special significance.
+
+A less convenient but more comprehensible form of command history
+support is provided by the `fc' builtin (*note Shell Builtin
+Commands::.).
+
+
+File: zsh.info,  Node: Redirection,  Next: Command Execution,  Prev: Expansion,  Up: Top
+
+Redirection
+***********
+
+Before a command is executed, its input and output may be redirected.
+The following may appear anywhere in a simple command or may precede or
+follow a complex command.  Substitution occurs before WORD or DIGIT is
+used except as noted below.  If the result of substitution on WORD
+produces more than one filename, redirection occurs for each separate
+filename in turn.
+
+`<WORD'
+     Open file WORD as standard input.
+
+`<>WORD'
+     Open file WORD for reading and writing as standard input.  If the
+     file does not exist then it is created.
+
+`>WORD'
+     Open file WORD as standard output.  If the file does not exist
+     then it is created.  If the file exists, and the `CLOBBER' option
+     is unset, this causes an error; otherwise, it is truncated to zero
+     length.
+
+`>|WORD'
+`>!WORD'
+     Same as `>', except that the file is truncated to zero length if it
+     exists, even if `CLOBBER' is unset.
+
+`>>WORD'
+     Open file WORD as standard output.  If the file exists then output
+     is appended to it.  If the file does not exist, and the `CLOBBER'
+     option is unset, this causes an error; otherwise, the file is
+     created.
+
+`>>|WORD'
+`>>!WORD'
+     Same as `>>', except that the file is created if it does not exist,
+     even if `CLOBBER' is unset.
+
+`<<[-]WORD'
+     The shell input is read up to a line that is the same as WORD, or
+     to an end-of-file.  No parameter substitution, command
+     substitution or filename generation is performed on WORD.  The
+     resulting document, called a "here-document", becomes the standard
+     input.  If any character of WORD is quoted with single or double
+     quotes or a `\', no interpretation is placed upon the characters
+     of the document.  Otherwise, parameter and command substitution
+     occurs, `\' followed by a newline is removed, and `\' must be used
+     to quote the characters `\', `$', ``', and the first character of
+     WORD.  If `<<-' is used, then all leading tabs are stripped from
+     WORD and from the document.
+
+`<<<WORD'
+     Perform shell expansion on WORD and pass the result to standard
+     input.
+
+`<&DIGIT'
+     The standard input is duplicated from file descriptor DIGIT (see
+     `dup(2)').  Similarly for standard output using `>&DIGIT'.
+
+`>&WORD'
+     Same as `>WORD 2>&1'.
+
+`>>&WORD'
+     Same as `>>WORD 2>&1'.
+
+`<&-'
+     Close the standard input.
+
+`>&-'
+     Close the standard output.
+
+`<&p'
+     The input from the coprocess is moved to the standard input.
+
+`>&p'
+     The output to the coprocess is moved to the standard output.
+
+If one of the above is preceded by a digit, then the file descriptor
+referred to is that specified by the digit (instead of the default 0 or
+1).  The order in which redirections are specified is significant.  The
+shell evaluates each redirection in terms of the (FILE DESCRIPTOR,
+FILE) association at the time of evaluation.  For example:
+
+   `... 1>FNAME 2>&1'
+
+first associates file descriptor 1 with file FNAME.  It then associates
+file descriptor 2 with the file associated with file descriptor 1 (that
+is, FNAME).  If the order of redirections were reversed, file
+descriptor 2 would be associated with the terminal (assuming file
+descriptor 1 had been) and then file descriptor 1 would be associated
+with file FNAME.
+
+If the user tries to open a file descriptor for writing more than once,
+the shell opens the file descriptor as a pipe to a process that copies
+its input to all the specified outputs, similar to `tee(1)', provided
+the `MULTIOS' option is set.  Thus:
+
+   `date >foo >bar'
+
+writes the date to two files, named `foo' and `bar'.  Note that a pipe
+is an implicit indirection; thus
+
+   `date >foo | cat'
+
+writes the date to the file `foo', and also pipes it to `cat'.
+
+If the `MULTIOS' option is set, the word after a redirection operator
+is also subjected to filename generation (globbing).  Thus
+
+   `: > *'
+
+will truncate all files in the current directory, assuming there's at
+least one.  (Without the `MULTIOS' option, it would create an empty
+file called `*'.)
+
+If the user tries to open a file descriptor for reading more than once,
+the shell opens the file descriptor as a pipe to a process that copies
+all the specified inputs to its output in the order specified, similar
+to `cat(1)', provided the `MULTIOS' option is set.  Thus
+
+   `sort <foo <fubar'
+
+or even
+
+   `sort <f{oo,ubar}'
+
+is equivalent to `cat foo fubar | sort'.  Similarly, you can do
+
+   `echo exit 0 >> *.sh'
+
+   Note that a pipe is an implicit indirection; thus
+
+   `cat bar | sort <foo'
+
+is equivalent to `cat bar foo | sort' (note the order of the inputs).
+
+If the `MULTIOS' option is unset, each redirection replaces the previous
+redirection for that file descriptor.  However, all files redirected to
+are actually opened, so
+
+   `echo foo > bar > baz'
+
+   when `MULTIOS' is unset will truncate `bar', and write `foo' into
+`baz'.
+
+If a simple command consists of one or more redirection operators and
+zero or more parameter assignments, but no command name, the command
+`cat' is assumed.  Thus
+
+   `< file'
+
+prints the contents of `file'.
+
+If a command is followed by `&' and job control is not active, then the
+default standard input for the command is the empty file `/dev/null'.
+Otherwise, the environment for the execution of a command contains the
+file descriptors of the invoking shell as modified by input/output
+specifications.
+
+
+File: zsh.info,  Node: Command Execution,  Next: Functions,  Prev: Redirection,  Up: Top
+
+Command Execution
+*****************
+
+If a command name contains no slashes, the shell attempts to locate it.
+If there exists a shell function by that name, the function is invoked
+as described below (*note Functions::.).  If there exists a shell
+builtin by that name, the builtin is invoked.
+
+Otherwise, the shell searches each element of `path' for a directory
+containing an executable file by that name.  If the search is
+unsuccessful, the shell prints an error message and returns a nonzero
+exit status.
+
+If execution fails because the file is not in executable format, and the
+file is not a directory, it is assumed to be a shell script.  `/bin/sh'
+is spawned to execute it.  If the program is a file beginning with
+`#!', the remainder of the first line specifies an interpreter for the
+program.  The shell will execute the specified interpreter on operating
+systems that do not handle this executable format in the kernel.
+
+
+File: zsh.info,  Node: Functions,  Next: Jobs & Signals,  Prev: Command Execution,  Up: Top
+
+Functions
+*********
+
+The `function' reserved word is used to define shell functions.  Shell
+functions are read in and stored internally.  Alias names are resolved
+when the function is read.  Functions are executed like commands with
+the arguments passed as positional parameters.
+
+Functions execute in the same process as the caller and share all files
+and the present working directory with the caller.  A trap on `EXIT'
+set inside a function is executed after the function completes in the
+environment of the caller.
+
+The `return' builtin is used to return from function calls.
+
+Function identifiers can be listed with the `functions' builtin.
+Functions can be undefined with the `unfunction' builtin.
+
+The following functions, if defined, have special meaning to the shell:
+
+`chpwd'
+     Executed whenever the current working directory is changed.
+
+`precmd'
+     Executed before each prompt.
+
+`periodic'
+     If the parameter `PERIOD' is set, this function is executed every
+     `PERIOD' seconds, just before a prompt.
+
+`TRAPXXX'
+     If defined and non-null, this function will be executed whenever
+     the shell catches a signal `SIGXXX', where XXX is a signal name as
+     specified for the `kill' builtin (*note Shell Builtin
+     Commands::.).  In addition, `TRAPZERR' is executed whenever a
+     command has a non-zero exit status, `TRAPDEBUG' is executed after
+     each command, and `TRAPEXIT' is executed when the shell exits, or
+     when the current function exits if defined inside a function.  If
+     a function of this form is defined and null, the shell and
+     processes spawned by it will ignore `SIGXXX'.
+
+
+File: zsh.info,  Node: Jobs & Signals,  Next: Arithmetic Evaluation,  Prev: Functions,  Up: Top
+
+Jobs & Signals
+**************
+
+If the `MONITOR' option is set, an interactive shell associates a "job"
+with each pipeline.  It keeps a table of current jobs, printed by the
+`jobs' command, and assigns them small integer numbers.  When a job is
+started asynchronously with `&', the shell prints a line which looks
+like:
+
+   `[1] 1234'
+
+indicating that the job which was started asynchronously was job number
+1 and had one (top-level) process, whose process id was 1234.
+
+If a job is started with `&|' or `&!', then that job is immediately
+disowned.  After startup, it does not have a place in the job table,
+and is not subject to the job control features described here.
+
+If you are running a job and wish to do something else you may hit the
+key `^Z' (control-Z) which sends a `TSTP' signal to the current job.
+The shell will then normally indicate that the job has been
+"suspended", and print another prompt.  You can then manipulate the
+state of this job, putting it into the background with the `bg'
+command, or run some other commands and then eventually bring the job
+back into the foreground with the foreground command `fg'.  A `^Z'
+takes effect immediately and is like an interrupt in that pending
+output and unread input are discarded when it is typed.
+
+A job being run in the background will suspend if it tries to read from
+the terminal.  Background jobs are normally allowed to produce output,
+but this can be disabled by giving the command `stty tostop'.  If you
+set this tty option, then background jobs will suspend when they try to
+produce output, like they do when they try to read input.
+
+There are several ways to refer to jobs in the shell.  A job can be
+referred to by the process id of any process of the job or by one of the
+following:
+
+`%NUMBER'
+     The job with the given number.
+
+`%STRING'
+     Any job whose command line begins with STRING.
+
+`%?STRING'
+     Any job whose command line contains STRING.
+
+`%%'
+     Current job.
+
+`%+'
+     Equivalent to `%%'.
+
+`%-'
+     Previous job.
+
+The shell learns immediately whenever a process changes state.  It
+normally informs you whenever a job becomes blocked so that no further
+progress is possible.  If `notify' is not set, it waits until just
+before it prints a prompt before it informs you.
+
+When the monitor mode is on, each background job that completes triggers
+any trap set for `CHLD'.
+
+When you try to leave the shell while jobs are running or suspended, you
+will be warned that `You have suspended (running) jobs'.  You may use
+the `jobs' command to see what they are.  If you do this or immediately
+try to exit again, the shell will not warn you a second time; the
+suspended jobs will be terminated, and the running jobs will be sent a
+`SIGHUP' signal.  To avoid having the shell terminate the running jobs,
+either use the `nohup(1)' command or the `disown' builtin (*note Shell
+Builtin Commands::.).
+
+The `INT' and `QUIT' signals for an invoked command are ignored if the
+command is followed by `&' and the job `monitor' option is not active.
+Otherwise, signals have the values inherited by the shell from its
+parent (but *Note Functions::, for the `TRAPXXX' special functions).
+
+
+File: zsh.info,  Node: Arithmetic Evaluation,  Next: Conditional Expressions,  Prev: Jobs & Signals,  Up: Top
+
+Arithmetic Evaluation
+*********************
+
+An ability to perform integer arithmetic is provided with the builtin
+`let'.  Evaluations are performed using *long* arithmetic.  A leading
+`0x' or `0X' denotes hexadecimal.  Otherwise, numbers are of the form
+`[BASE#]N' where BASE is a decimal number between two and thirty-six
+representing the arithmetic base and N is a number in that base (for
+example, `16#ff' is 255 in hexadecimal).  If BASE is omitted then base
+10 is used.  For backwards compatibility the form `[16]ff' is also
+accepted.
+
+An arithmetic expression uses nearly the same syntax, precedence, and
+associativity of expressions in C.  The following operators are
+supported (listed in decreasing order of precedence):
+
+`+ - ! ~ ++ --'
+     Unary plus/minus, logical NOT, complement, {pre,post}{in,de}crement
+
+`<< >>'
+     Bitwise shift left, right.
+
+`&'
+     Bitwise AND
+
+`^'
+     Bitwise XOR
+
+`|'
+     Bitwise OR
+
+`**'
+     Exponentiation
+
+`* / %'
+     Multiplication, division, modulus (remainder)
+
+`+ -'
+     Addition, subtraction
+
+`< > <= >='
+     Comparison
+
+`== !='
+     Equality and inequality
+
+`&&'
+     Logical AND
+
+`|| ^^'
+     Logical OR, XOR
+
+`? :'
+     Ternary operator
+
+`= += -= *= /= %= &= ^= |= <<= >>= &&= ||= ^^= **='
+     Assignment
+
+`,'
+     Comma operator
+
+The operators `&&', `||', `&&=', and `||=' are short-circuiting, and
+only one of the latter two expressions in a ternary operator is
+evaluated.  Note the precedence of the bitwise AND, OR, and XOR
+operators.
+
+An expression of the form `#\x' where `x' is any character gives the
+ASCII value of this character.  An expression of the form `#foo' gives
+the ASCII value of the first character of the value of the parameter
+`foo'.
+
+Named parameters and subscripted arrays can be referenced by name
+within an arithmetic expression without using the parameter
+substitution syntax.
+
+An internal integer representation of a named parameter can be specified
+with the `integer' builtin.  Arithmetic evaluation is performed on the
+value of each assignment to a named parameter declared integer in this
+manner.
+
+Since many of the arithmetic operators require quoting, an alternative
+form of the `let' command is provided.  For any command which begins
+with a `((', all the characters until a matching `))' are treated as a
+quoted expression.  More precisely, `(( ... ))' is equivalent to `let
+"..."'.
+
+
+File: zsh.info,  Node: Conditional Expressions,  Next: Compatibility,  Prev: Arithmetic Evaluation,  Up: Top
+
+Conditional Expressions
+***********************
+
+A "conditional expression" is used with the `[[' compound command to
+test attributes of files and to compare strings.  Each expression can
+be constructed from one or more of the following unary or binary
+expressions:
+
+`-a FILE'
+     True if FILE exists.
+
+`-b FILE'
+     True if FILE exists and is a block special file.
+
+`-c FILE'
+     True if FILE exists and is a character special file.
+
+`-d FILE'
+     True if FILE exists and is a directory.
+
+`-e FILE'
+     True if FILE exists.
+
+`-f FILE'
+     True if FILE exists and is an ordinary file.
+
+`-g FILE'
+     True if FILE exists and has its setgid bit set.
+
+`-h FILE'
+     True if FILE exists and is a symbolic link.
+
+`-k FILE'
+     True if FILE exists and has its sticky bit set.
+
+`-n STRING'
+     True if length of STRING is non-zero.
+
+`-o OPTION'
+     True if option named OPTION is on.  OPTION may be a single
+     character, in which case it is a single letter option name.  *Note
+     Specifying Options::.
+
+`-p FILE'
+     True if FILE exists and is a FIFO special file or a pipe.
+
+`-r FILE'
+     True if FILE exists and is readable by the current process.
+
+`-s FILE'
+     True if FILE exists and has size greater than zero.
+
+`-t FD'
+     True if file descriptor number FD is open and associated with a
+     terminal device (note: FD is not optional).
+
+`-u FILE'
+     True if FILE exists and has its setuid bit set.
+
+`-w FILE'
+     True if FILE exists and is writable by current process.
+
+`-x FILE'
+     True if FILE exists and is executable by current process.  If FILE
+     exists and is a directory, then the current process has permission
+     to search in the directory.
+
+`-z STRING'
+     True if length of STRING is zero.
+
+`-L FILE'
+     True if FILE exists and is a symbolic link.
+
+`-O FILE'
+     True if FILE exists and is owned by the effective user id of this
+     process.
+
+`-G FILE'
+     True if FILE exists and its group matches the effective group id
+     of this process.
+
+`-S FILE'
+     True if FILE exists and is a socket.
+
+`-N FILE'
+     True if FILE exists and its access time is not newer than its
+     modification time.
+
+`FILE1 -nt FILE2'
+     True if FILE1 exists and is newer than FILE2.
+
+`FILE1 -ot FILE2'
+     True if FILE1 exists and is older than FILE2.
+
+`FILE1 -ef FILE2'
+     True if FILE1 and FILE2 exist and refer to the same file.
+
+`STRING == PATTERN'
+`STRING = PATTERN'
+     True if STRING matches PATTERN.  The first form is the preferred
+     one.  The other form is for backward compatibility and should be
+     considered obsolete.
+
+`STRING != PATTERN'
+     True if STRING does not match PATTERN.
+
+`STRING1 < STRING2'
+     True if STRING1 comes before STRING2 based on ASCII value of their
+     characters.
+
+`STRING1 > STRING2'
+     True if STRING1 comes after STRING2 based on ASCII value of their
+     characters.
+
+`EXP1 -eq EXP2'
+     True if EXP1 is equal to EXP2.
+
+`EXP1 -ne EXP2'
+     True if EXP1 is not equal to EXP2.
+
+`EXP1 -lt EXP2'
+     True if EXP1 is less than EXP2.
+
+`EXP1 -gt EXP2'
+     True if EXP1 is greater than EXP2.
+
+`EXP1 -le EXP2'
+     True if EXP1 is less than or equal to EXP2.
+
+`EXP1 -ge EXP2'
+     True if EXP1 is greater than or equal to EXP2.
+
+`( EXP )'
+     True if EXP is true.
+
+`! EXP'
+     True if EXP is false.
+
+`EXP1 && EXP2'
+     True if EXP1 and EXP2 are both true.
+
+`EXP1 || EXP2'
+     True if either EXP1 or EXP2 is true.
+
+In each of the above expressions, if FILE is of the form `/dev/fd/N',
+where N is an integer, then the test is applied to the open file whose
+descriptor number is N, even if the underlying system does not support
+the `/dev/fd' directory.
+
+
+File: zsh.info,  Node: Compatibility,  Next: Zsh Line Editor,  Prev: Conditional Expressions,  Up: Top
+
+Compatibility
+*************
+
+`zsh' tries to emulate `sh' or `ksh' when it is invoked as `sh' or
+`ksh' respectively.  In this mode the following parameters are not
+special: `ARGC', `argv', `cdpath', `fignore', `fpath', `HISTCHARS',
+`mailpath', `MANPATH', `manpath', `path', `prompt', `PROMPT',
+`PROMPT2', `PROMPT3', `PROMPT4', `psvar', `status', `watch'.
+
+The usual `zsh' startup/shutdown scripts are not executed.  Login shells
+source `/etc/profile' followed by `$HOME/.profile'.  If the `ENV'
+environment variable is set on invocation, `$ENV' is sourced after the
+profile scripts.  The value of `ENV' is subjected to "parameter
+expansion", "command substitution", and "arithmetic expansion" before
+being interpreted as a pathname.  Note that the `PRIVILEGED' option
+also affects the execution of startup files.  *Note Options::, for more
+details.
+
+The following options are set if the shell is invoked as `sh' or `ksh':
+`NO_BAD_PATTERN', `NO_BANG_HIST', `NO_BG_NICE', `NO_EQUALS',
+`NO_FUNCTION_ARGZERO', `GLOB_SUBST', `NO_HUP', `INTERACTIVE_COMMENTS',
+`KSH_ARRAYS', `NO_MULTIOS', `NO_NOMATCH', `RM_STAR_SILENT',
+`POSIX_BUILTINS', `SH_FILE_EXPANSION', `SH_GLOB', `SH_OPTION_LETTERS',
+`SH_WORD_SPLIT'.  Additionally the `KSH_OPTION_PRINT', `LOCAL_OPTIONS',
+`PROMPT_SUBST' and `SINGLE_LINE_ZLE' options are set if `zsh' is
+invoked as `ksh' and the `IGNORE_BRACES' and `BSD_ECHO' options are set
+if `zsh' is invoked as `sh'.
+
+
+File: zsh.info,  Node: Zsh Line Editor,  Next: Parameters,  Prev: Compatibility,  Up: Top
+
+Zsh Line Editor
+***************
+
+If the `ZLE' option is set (it is by default) and the shell input is
+attached to the terminal, the user is allowed to edit command lines.
+
+There are two display modes.  The first, multi-line mode, is the
+default.  It only works if the `TERM' parameter is set to a valid
+terminal type that can move the cursor up.  The second, single line
+mode, is used if `TERM' is invalid or incapable of moving the cursor
+up, or if the `SINGLE_LINE_ZLE' option is set.  This mode is similar to
+ksh, and uses no termcap sequences.  If `TERM' is `emacs', the `ZLE'
+option will be unset by the shell.
+
+Bindings
+========
+
+Command bindings may be set using the `bindkey' builtin.  There are two
+keymaps; the main keymap and the alternate keymap.  The alternate
+keymap is bound to vi command mode.  The main keymap is bound to emacs
+mode by default.  To bind the main keymap to vi insert mode, use
+`bindkey -v'.  However, if either of the `VISUAL' or `EDITOR'
+environment variables contains the string `vi' when the shell starts up
+the main keymap will be bound to vi insert mode by default.
+
+The following is a list of all the key commands and their default
+bindings in emacs mode, vi command mode and vi insert mode.
+
+* Menu:
+
+* Movement::
+* History Control::
+* Modifying Text::
+* Arguments::
+* Completion::
+* Miscellaneous::
+
+
+File: zsh.info,  Node: Movement,  Next: History Control,  Up: Zsh Line Editor
+
+Movement
+========
+
+`vi-backward-blank-word (unbound) (`B') (unbound)'
+     Move backward one word, where a word is defined as a series of
+     non-blank characters.
+
+`backward-char (`^B' `ESC-[D') (unbound)'
+     Move backward one character.
+
+`vi-backward-char (unbound) (`^H' `h' `^?') (unbound)'
+     Move backward one character, without changing lines.
+
+`backward-word (`ESC-B' `ESC-b') (unbound) (unbound)'
+     Move to the beginning of the previous word.
+
+`emacs-backward-word'
+     Move to the beginning of the previous word.
+
+`vi-backward-word (unbound) (`b') (unbound)'
+     Move to the beginning of the previous word, vi-style.
+
+`beginning-of-line (`^A') (unbound) (unbound)'
+     Move to the beginning of the line.  If already at the beginning of
+     the line, move to the beginning of the previous line, if any.
+
+`vi-beginning-of-line'
+     Move to the beginning of the line, without changing lines.
+
+`end-of-line (`^E') (unbound) (unbound)'
+     Move to the end of the line.  If already at the end of the line,
+     move to the end of the next line, if any.
+
+`vi-end-of-line (unbound) (`$') (unbound)'
+     Move to the end of the line.  If an argument is given to this
+     command, the cursor will be moved to the end of the line (argument
+     - 1) lines down.
+
+`vi-forward-blank-word (unbound) (`W') (unbound)'
+     Move forward one word, where a word is defined as a series of
+     non-blank characters.
+
+`vi-forward-blank-word-end (unbound) (`E') (unbound)'
+     Move to the end of the current word, or, if at the end of the
+     current word, to the end of the next word, where a word is defined
+     as a series of non-blank characters.
+
+`forward-char (`^F' `ESC-[C') (unbound) (unbound)'
+     Move forward one character.
+
+`vi-forward-char (unbound) (SPACE `l') (unbound)'
+     Move forward one character.
+
+`vi-find-next-char (`^X^F') (`f') (unbound)'
+     Read a character from the keyboard, and move to the next
+     occurrence of it in the line.
+
+`vi-find-next-char-skip (unbound) (`t') (unbound)'
+     Read a character from the keyboard, and move to the position just
+     before the next occurrence of it in the line.
+
+`vi-find-prev-char (unbound) (`F') (unbound)'
+     Read a character from the keyboard, and move to the previous
+     occurrence of it in the line.
+
+`vi-find-prev-char-skip (unbound) (`T') (unbound)'
+     Read a character from the keyboard, and move to the position just
+     after the previous occurrence of it in the line.
+
+`vi-first-non-blank (unbound) (`^') (unbound)'
+     Move to the first non-blank character in the line.
+
+`vi-forward-word (unbound) (`w') (unbound)'
+     Move forward one word, vi-style.
+
+`forward-word (`ESC-F' `ESC-f') (unbound) (unbound)'
+     Move to the beginning of the next word.  The editor's idea of a
+     word is specified with the `WORDCHARS' parameter.
+
+`emacs-forward-word'
+     Move to the end of the next word.
+
+`vi-forward-word-end (unbound) (`e') (unbound)'
+     Move to the end of the next word.
+
+`vi-goto-column (`ESC-|') (`|') (unbound)'
+     Move to the column specified by the numeric argument.
+
+`vi-goto-mark (unbound) (``') (unbound)'
+     Move to the specified mark.
+
+`vi-goto-mark-line (unbound) (`'') (unbound)'
+     Move to the beginning of the line containing the specified mark.
+
+`vi-repeat-find (unbound) (`;') (unbound)'
+     Repeat the last `vi-find' command.
+
+`vi-rev-repeat-find (unbound) (`,') (unbound)'
+     Repeat the last `vi-find' command in the opposite direction.
+
+
+File: zsh.info,  Node: History Control,  Next: Modifying Text,  Prev: Movement,  Up: Zsh Line Editor
+
+History Control
+===============
+
+`beginning-of-buffer-or-history (`ESC-<') (unbound) (unbound)'
+     Move to the beginning of the buffer, or if already there, move to
+     the first event in the history list.
+
+`beginning-of-line-hist'
+     Move to the beginning of the line.  If already at the beginning of
+     the buffer, move to the previous history line.
+
+`beginning-of-history'
+     Move to the first event in the history list.
+
+`down-line-or-history (`^N' `ESC-[B') (`j') (unbound)'
+     Move down a line in the buffer, or if already at the bottom line,
+     move to the next event in the history list.
+
+`vi-down-line-or-history (unbound) (`+') (unbound)'
+     Move down a line in the buffer, or if already at the bottom line,
+     move to the next event in the history list.  Then move to the
+     first non-blank character on the line.
+
+`down-line-or-search'
+     Move down a line in the buffer, or if already at the bottom line,
+     search forward in the history for a line beginning with the first
+     word in the buffer.
+
+`down-history (unbound) (`^N') (unbound)'
+     Move to the next event in the history list.
+
+`history-beginning-search-backward'
+     Search backward in the history for a line beginning with the
+     current line up to the cursor.  This leaves the cursor in its
+     original position.
+
+`end-of-buffer-or-history (`ESC->') (unbound) (unbound)'
+     Move to the end of the buffer, or if already there, move to the
+     last event in the history list.
+
+`end-of-line-hist'
+     Move to the end of the line.  If already at the end of the buffer,
+     move to the next history line.
+
+`end-of-history'
+     Move to the last event in the history list.
+
+`vi-fetch-history (unbound) (`G') (unbound)'
+     Fetch the history line specified by the numeric argument.  This
+     defaults to the current history line (i.e. the one that isn't
+     history yet).
+
+`history-incremental-search-backward (`^R' `^Xr') (unbound) (unbound)'
+     Search backward incrementally for a specified string.  The string
+     may begin with `^' to anchor the search to the beginning of the
+     line.  A restricted set of editing functions is available in the
+     mini-buffer.  An interrupt signal, as defined by the stty setting,
+     will stop the search and go back to the original line.  An
+     undefined key will have the same effect.  The supported functions
+     are: `backward-delete-char', `vi-backward-delete-character',
+     `clearscreen', `redisplay', `quoted-insert', `vi-quoted-insert',
+     `accept-and-hold', `accept-and-infer-next-history', `accept-line'
+     and `accept-line-and-down-history'; `magic-space' just inserts a
+     space.  `vi-cmd-mode' toggles between the main and alternate key
+     bindings; the main key bindings (insert mode) will be selected
+     initially.  Any string that is bound to an out-string (via
+     `bindkey -s') will behave as if out-string were typed directly.
+     Typing the binding of `history-incremental-search-backward' will
+     get the next occurrence of the contents of the mini-buffer.
+     Typing the binding of `history-incremental-search-forward' inverts
+     the sense of the search.  The direction of the search is indicated
+     in the mini-buffer.  Any single character that is not bound to one
+     of the above functions, or `self-insert' or `self-insert-unmeta'
+     will have the same effect but the function will be executed.
+
+`history-incremental-search-forward (`^S' `^Xs') (unbound) (unbound)'
+     Search forward incrementally for a specified string.  The string
+     may begin with `^' to anchor the search to the beginning of the
+     line.  The functions available in the mini-buffer are the same as
+     for `history-incremental-search-backward'.
+
+`history-search-backward (`ESC-P' `ESC-p') (unbound) (unbound)'
+     Search backward in the history for a line beginning with the first
+     word in the buffer.
+
+`vi-history-search-backward (unbound) (`/') (unbound)'
+     Search backward in the history for a specified string.  The string
+     may begin with `^' to anchor the search to the beginning of the
+     line.  A restricted set of editing functions is available in the
+     mini-buffer.  An interrupt signal, as defined by the stty setting,
+     will stop the search.  The functions available in the mini-buffer
+     are: `accept-line', `vi-cmd-mode' (treated the same as
+     `acceptline'), `backward-delete-char', `vi-backward-delete-char',
+     `backward-kill-word', `vi-backward-kill-word', `clear-screen',
+     `redisplay', `magic-space' (treated as a space), `quoted-insert'
+     and `vi-quoted-insert'.  Any string that is not bound to an
+     out-string (via `bindkey -s') will behave as if out-string were
+     typed directly. Any other character that is not bound to
+     `self-insert' or `self-insert-unmeta' will beep and be ignored.  If
+     the function is called from vi command mode, the bindings of the
+     current insert mode will be used.
+
+`history-search-forward (`ESC-N' `ESC-n') (unbound) (unbound)'
+     Search forward in the history for a line beginning with the first
+     word in the buffer.
+
+`vi-history-search-forward (unbound) (`?') (unbound)'
+     Search forward in the history for a specified string.  The string
+     may begin with `^' to anchor the search to the beginning of the
+     line.  The functions available in the mini-buffer are the same as
+     for `vi-history-search-backward'.
+
+`infer-next-history (`^X^N') (unbound) (unbound)'
+     Search in the history for a line matching the current one and
+     fetch the event following it.
+
+`insert-last-word (`ESC-_' `ESC-.') (unbound) (unbound)'
+     Insert the last word from the previous history event at the cursor
+     position.  If a positive numeric argument is given, insert that
+     word from the end of the previous history event.  If the argument
+     is zero or negative insert that word from the left (zero inserts
+     the previous command word).
+
+`vi-repeat-search (unbound) (`n') (unbound)'
+     Repeat the last vi history search.
+
+`vi-rev-repeat-search (unbound) (`N') (unbound)'
+     Repeat the last vi history search, but in reverse.
+
+`up-line-or-history (`^P' `ESC-[A') (`k') (unbound)'
+     Move up a line in the buffer, or if already at the top line, move
+     to the previous event in the history list.
+
+`up-line-or-search'
+     Move up a line in the buffer, or if already at the top line, search
+     backward in the history for a line beginning with the first word
+     in the buffer.
+
+`up-history (unbound) (`^P') (unbound)'
+     Move to the previous event in the history list.
+
+`history-beginning-search-forward'
+     Search forward in the history for a line beginning with the
+     current line up to the cursor.  This leaves the cursor at its
+     original position.
+
+
+File: zsh.info,  Node: Modifying Text,  Next: Arguments,  Prev: History Control,  Up: Zsh Line Editor
+
+Modifying Text
+==============
+
+`vi-add-eol (unbound) (`A') (unbound)'
+     Move to the end of the line and enter insert mode.
+
+`vi-add-next (unbound) (`a') (unbound)'
+     Enter insert mode after the current cursor position, without
+     changing lines.
+
+`backward-delete-char (`^H' `^?') (unbound) (unbound)'
+     Delete the character behind the cursor.
+
+`vi-backward-delete-char (unbound) (`X') (`^H')'
+     Delete the character behind the cursor, without changing lines.
+     If in insert mode this won't delete past the point where insert
+     mode was last entered.
+
+`backward-delete-word'
+     Delete the word behind the cursor.
+
+`backward-kill-line'
+     Kill from the beginning of the line to the cursor position.
+
+`backward-kill-word (`^W' `ESC-^H' `ESC-^?') (unbound) (unbound)'
+     Kill the word behind the cursor.
+
+`vi-backward-kill-word (unbound) (unbound) (`^W')'
+     Kill the word behind the cursor, without going past the point
+     where insert mode was last entered.
+
+`capitalize-word (`ESC-C' `ESC-c') (unbound) (unbound)'
+     Capitalize the current word and move past it.
+
+`vi-change (unbound) (`c') (unbound)'
+     Read a movement command from the keyboard, and kill from the cursor
+     position to the endpoint of the movement.  Then enter insert mode.
+     If the command is `vi-change', kill the current line.
+
+`vi-change-eol (unbound) (`C') (unbound)'
+     Kill to the end of the line and enter insert mode.
+
+`vi-change-whole-line (unbound) (`S') (unbound)'
+     Kill the current line and enter insert mode.
+
+`copy-region-as-kill (`ESC-W' `ESC-w') (unbound) (unbound)'
+     Copy the area from the cursor to the mark to the kill buffer.
+
+`copy-prev-word (`ESC-^_') (unbound) (unbound)'
+     Duplicate the word behind the cursor.
+
+`vi-delete (unbound) (`d') (unbound)'
+     Read a movement command from the keyboard, and kill from the cursor
+     position to the endpoint of the movement.  If the command is
+     `vi-delete', kill the current line.
+
+`delete-char'
+     Delete the character under the cursor.
+
+`vi-delete-char (unbound) (`x') (unbound)'
+     Delete the character under the cursor, without going past the end
+     of the line.
+
+`delete-word'
+     Delete the current word.
+
+`down-case-word (`ESC-L' `ESC-l') (unbound) (unbound)'
+     Convert the current word to all lowercase and move past it.
+
+`kill-word (`ESC-D' `ESC-d') (unbound) (unbound)'
+     Kill the current word.
+
+`gosmacs-transpose-chars'
+     Exchange the two characters behind the cursor.
+
+`vi-indent (unbound) (`>') (unbound)'
+     Indent a number of lines.
+
+`vi-insert (unbound) (`i') (unbound)'
+     Enter insert mode.
+
+`vi-insert-bol (unbound) (`I') (unbound)'
+     Move to the beginning of the line and enter insert mode.
+
+`vi-join (`^X^J') (`J') (unbound)'
+     Join the current line with the next one.
+
+`kill-line (`^K') (unbound) (unbound)'
+     Kill from the cursor to the end of the line.
+
+`vi-kill-line (unbound) (unbound) (`^U')'
+     Kill from the cursor back to wherever insert mode was last entered.
+
+`vi-kill-eol (unbound) (`D') (unbound)'
+     Kill from the cursor to the end of the line.
+
+`kill-region'
+     Kill from the cursor to the mark.
+
+`kill-buffer (`^X^K') (unbound) (unbound)'
+     Kill the entire buffer.
+
+`kill-whole-line (`^U') (unbound) (unbound)'
+     Kill the current line.
+
+`vi-match-bracket (`^X^B') (`%') (unbound)'
+     Move to the bracket character (one of `{}', `()', or `[]') that
+     matches the one under the cursor.  If the cursor is not on a
+     bracket character, move forward without going past the end of the
+     line to find one, and then go to the matching bracket.
+
+`vi-open-line-above (unbound) (`O') (unbound)'
+     Open a line above the cursor and enter insert mode.
+
+`vi-open-line-below (unbound) (`o') (unbound)'
+     Open a line below the cursor and enter insert mode.
+
+`vi-oper-swap-case'
+     Read a movement command from the keyboard, and swap the case of all
+     characters from the cursor position to the endpoint of the
+     movement.  If the movement command is `vi-oper-swap-case', swap
+     the case of all characters on the current line.
+
+`overwrite-mode (`^X^O') (unbound) (unbound)'
+     Toggle between overwrite mode and insert mode.
+
+`vi-put-before (unbound) (`P') (unbound)'
+     Insert the contents of the kill buffer before the cursor.  If the
+     kill buffer contains a sequence of lines (as opposed to
+     characters), paste it above the current line.
+
+`vi-put-after (unbound) (`p') (unbound)'
+     Insert the contents of the kill buffer after the cursor.  If the
+     kill buffer contains a sequence of lines (as opposed to
+     characters), paste it below the current line.
+
+`quoted-insert (`^V') (unbound) (unbound)'
+     Insert the next character typed into the buffer literally.  An
+     interrupt character will not be inserted.
+
+`vi-quoted-insert (unbound) (unbound) (`^Q' `^V')'
+     Display a `^' at the current position, and insert the next
+     character typed into the buffer literally.  An interrupt character
+     will not be inserted.
+
+`quote-line (`ESC-'') (unbound) (unbound)'
+     Quote the current line; that is, put a `'' character at the
+     beginning and the end, and convert all `'' characters to `\''.
+
+`quote-region (`ESC-"') (unbound) (unbound)'
+     Quote the region from the cursor to the mark.
+
+`vi-replace (unbound) (`R') (unbound)'
+     Enter overwrite mode.
+
+`vi-repeat-change (unbound) (`.') (unbound)'
+     Repeat the last vi mode text modification.  If a count was used
+     with the modification, it is remembered.  If a count is given to
+     this command, it overrides the remembered count, and is remembered
+     for future uses of this command.  The cut buffer specification is
+     similarly remembered.
+
+`vi-replace-chars (unbound) (`r') (unbound)'
+     Replace the character under the cursor with a character read from
+     the keyboard.
+
+`self-insert (printable characters) (unbound) (printable characters and some control characters)'
+     Put a character in the buffer at the cursor position.
+
+`self-insert-unmeta (`ESC-^I' `ESC-^J' `ESC-^M') (unbound) (unbound)'
+     Put a character in the buffer after stripping the meta bit and
+     converting `^M' to `^J'.
+
+`vi-substitute (unbound) (`s') (unbound)'
+     Substitute the next character(s).
+
+`vi-swap-case (unbound) (`~') (unbound)'
+     Swap the case of the character under the cursor and move past it.
+
+`transpose-chars (`^T') (unbound) (unbound)'
+     Exchange the two characters to the left of the cursor if at end of
+     line, else exchange the character under the cursor with the
+     character to the left.
+
+`transpose-words (`ESC-T' `ESC-t')  (unbound) (unbound)'
+     Exchange the current word with the one before it.
+
+`vi-unindent (unbound) (`<') (unbound)'
+     Unindent a number of lines.
+
+`up-case-word (`ESC-U' `ESC-u') (unbound) (unbound)'
+     Convert the current word to all caps and move past it.
+
+`yank (`^Y') (unbound) (unbound)'
+     Insert the contents of the kill buffer at the cursor position.
+
+`yank-pop (`ESC-y') (unbound) (unbound)'
+     Remove the text just yanked, rotate the kill-ring, and yank the
+     new top.  Only works following `yank' or `yank-pop'.
+
+`vi-yank (unbound) (`y') (unbound)'
+     Read a movement command from the keyboard, and copy the region
+     from the cursor position to the endpoint of the movement into the
+     kill buffer.  If the command is `vi-yank', copy the current line.
+
+`vi-yank-whole-line (unbound) (`Y') (unbound)'
+     Copy the current line into the kill buffer.
+
+`vi-yank-eol'
+     Copy the region from the cursor position to the end of the line
+     into the kill buffer.  Arguably, this is what `Y' should do in vi,
+     but it isn't what it actually does.
+
+
+File: zsh.info,  Node: Arguments,  Next: Completion,  Prev: Modifying Text,  Up: Zsh Line Editor
+
+Arguments
+=========
+
+`digit-argument (`ESC-0'...`ESC-9') (1-9) (unbound)'
+     Start a new numeric argument, or add to the current one.  See also
+     `vi-digit-or-beginning-of-line'.
+
+`neg-argument (`ESC--') (unbound) (unbound)'
+     Changes the sign of the following argument.
+
+`universal-argument'
+     Multiply the argument of the next command by 4.
+
+
+File: zsh.info,  Node: Completion,  Next: Miscellaneous,  Prev: Arguments,  Up: Zsh Line Editor
+
+Completion
+==========
+
+`accept-and-menu-complete'
+     In a menu completion, insert the current completion into the
+     buffer, and advance to the next possible completion.
+
+`complete-word'
+     Attempt completion on the current word.
+
+`delete-char-or-list (`^D') (unbound) (unbound)'
+     Delete the character under the cursor.  If the cursor is at the
+     end of the line, list possible completions for the current word.
+
+`expand-cmd-path'
+     Expand the current command to its full pathname.
+
+`expand-or-complete (TAB) (unbound) (TAB)'
+     Attempt shell expansion on the current word.  If that fails,
+     attempt completion.
+
+`expand-or-complete-prefix'
+     Attempt shell expansion on the current word up to cursor.
+
+`expand-history (`ESC-SPACE' `ESC-!') (unbound) (unbound)'
+     Perform history expansion on the edit buffer.
+
+`expand-word (`^X*') (unbound) (unbound)'
+     Attempt shell expansion on the current word.
+
+`list-choices (`ESC-^D') (`^D=') (`^D')'
+     List possible completions for the current word.
+
+`list-expand (`^Xg' `^XG') (`^G') (`^G')'
+     List the expansion of the current word.
+
+`magic-space'
+     Perform history expansion and insert a space into the buffer.
+     This is intended to be bound to SPACE.
+
+`menu-complete'
+     Like `complete-word', except that menu completion is used.  *Note
+     Options::, for the `MENU_COMPLETE' option.
+
+`menu-expand-or-complete'
+     Like `expand-or-complete', except that menu completion is used.
+
+`reverse-menu-complete'
+     *Note Options::, for the `MENU_COMPLETE' option.
+

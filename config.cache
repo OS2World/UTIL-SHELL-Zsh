@@ -1,0 +1,117 @@
+# This file is a shell script that caches the results of configure
+# tests run on this system so they can be shared between configure
+# scripts and configure runs.  It is not useful on other systems.
+# If it contains results you don't want to keep, you may remove or edit it.
+#
+# By default, configure uses ./config.cache as the cache file,
+# creating it if it does not exist already.  You can give configure
+# the --cache-file=FILE option to use a different cache file; that is
+# what configure does when it calls configure scripts in
+# subdirectories, so they share the cache.
+# Giving --cache-file=/dev/null disables caching, for debugging configure.
+# config.status only pays attention to the cache file if you give it the
+# --recheck option to rerun configure.
+#
+zsh_cv_header_sys_ioctl_h_ioctl_proto=${zsh_cv_header_sys_ioctl_h_ioctl_proto='yes'}
+ac_cv_func_gethostname=${ac_cv_func_gethostname='yes'}
+ac_cv_func_tcsetpgrp=${ac_cv_func_tcsetpgrp='yes'}
+ac_cv_func_waitpid=${ac_cv_func_waitpid='yes'}
+ac_cv_type_size_t=${ac_cv_type_size_t='yes'}
+ac_cv_prog_cc_works=${ac_cv_prog_cc_works='yes'}
+ac_cv_func_seteuid=${ac_cv_func_seteuid='yes'}
+zsh_cv_header_unistd_h_sbrk_proto=${zsh_cv_header_unistd_h_sbrk_proto='yes'}
+ac_cv_header_sys_times_h=${ac_cv_header_sys_times_h='yes'}
+zsh_cv_sys_clobbers_typeahead=${zsh_cv_sys_clobbers_typeahead='no'}
+ac_cv_func_initgroups=${ac_cv_func_initgroups='yes'}
+ac_cv_func_select=${ac_cv_func_select='yes'}
+ac_cv_header_stdlib_h=${ac_cv_header_stdlib_h='yes'}
+zsh_cv_prog_sh_echo_escape=${zsh_cv_prog_sh_echo_escape='no'}
+zsh_cv_header_unistd_h_brk_proto=${zsh_cv_header_unistd_h_brk_proto='yes'}
+ac_cv_func_sigprocmask=${ac_cv_func_sigprocmask='yes'}
+ac_cv_header_sys_time_h=${ac_cv_header_sys_time_h='yes'}
+zsh_cv_sys_nis=${zsh_cv_sys_nis='no'}
+zsh_cv_path_signal_h=${zsh_cv_path_signal_h='/usr/include/sys/signal.h'}
+zsh_cv_header_termios_h_tiocgwinsz=${zsh_cv_header_termios_h_tiocgwinsz='yes'}
+ac_cv_header_libc_h=${ac_cv_header_libc_h='no'}
+ac_cv_prog_cc_g=${ac_cv_prog_cc_g='yes'}
+zsh_cv_sys_nis_plus=${zsh_cv_sys_nis_plus='no'}
+ac_cv_func_killpg=${ac_cv_func_killpg='yes'}
+ac_cv_path_install=${ac_cv_path_install='/usr/bin/install -c'}
+ac_cv_func_wait3=${ac_cv_func_wait3='yes'}
+ac_cv_func_strftime=${ac_cv_func_strftime='yes'}
+ac_cv_header_dirent_dirent_h=${ac_cv_header_dirent_dirent_h='yes'}
+ac_cv_func_difftime=${ac_cv_func_difftime='yes'}
+zsh_cv_decl_ospeed_include_defines=${zsh_cv_decl_ospeed_include_defines='yes'}
+ac_cv_header_sys_wait_h=${ac_cv_header_sys_wait_h='yes'}
+ac_cv_header_sys_ptem_h=${ac_cv_header_sys_ptem_h='no'}
+zsh_cv_path_utmp=${zsh_cv_path_utmp='/var/run/utmp'}
+ac_cv_func_sigaction=${ac_cv_func_sigaction='yes'}
+zsh_cv_sys_posix_termios=${zsh_cv_sys_posix_termios='yes'}
+ac_cv_header_fcntl_h=${ac_cv_header_fcntl_h='yes'}
+zsh_cv_path_wtmp=${zsh_cv_path_wtmp='/var/log/wtmp'}
+ac_cv_func_sigblock=${ac_cv_func_sigblock='yes'}
+ac_cv_func_strstr=${ac_cv_func_strstr='yes'}
+ac_cv_c_const=${ac_cv_c_const='yes'}
+ac_cv_prog_gcc_traditional=${ac_cv_prog_gcc_traditional='no'}
+zsh_cv_func_tgetent_accepts_null=${zsh_cv_func_tgetent_accepts_null='no'}
+ac_cv_header_termios_h=${ac_cv_header_termios_h='yes'}
+zsh_cv_func_strcoll=${zsh_cv_func_strcoll='yes'}
+zsh_cv_type_sigset_t=${zsh_cv_type_sigset_t='yes'}
+ac_cv_header_sys_resource_h=${ac_cv_header_sys_resource_h='yes'}
+ac_cv_prog_CC=${ac_cv_prog_CC='gcc'}
+zsh_cv_sys_fifo=${zsh_cv_sys_fifo='yes'}
+ac_cv_func_setuid=${ac_cv_func_setuid='yes'}
+ac_cv_func_sigsetmask=${ac_cv_func_sigsetmask='yes'}
+ac_cv_type_mode_t=${ac_cv_type_mode_t='yes'}
+ac_cv_header_termio_h=${ac_cv_header_termio_h='no'}
+zsh_cv_sys_dev_fd=${zsh_cv_sys_dev_fd='yes'}
+zsh_cv_struct_timezone=${zsh_cv_struct_timezone='yes'}
+ac_cv_header_sys_select_h=${ac_cv_header_sys_select_h='yes'}
+ac_cv_header_limits_h=${ac_cv_header_limits_h='yes'}
+ac_cv_prog_cc_stdc=${ac_cv_prog_cc_stdc=''}
+ac_cv_func_gettimeofday=${ac_cv_func_gettimeofday='yes'}
+ac_cv_header_stdc=${ac_cv_header_stdc='yes'}
+ac_cv_header_time=${ac_cv_header_time='yes'}
+zsh_cv_sys_superroot=${zsh_cv_sys_superroot='no'}
+ac_cv_type_signal=${ac_cv_type_signal='void'}
+ac_cv_lib_dir_opendir=${ac_cv_lib_dir_opendir='no'}
+ac_cv_prog_make_make_set=${ac_cv_prog_make_make_set='yes'}
+ac_cv_sizeof_long=${ac_cv_sizeof_long='4'}
+zsh_cv_path_rlimit_h=${zsh_cv_path_rlimit_h='/usr/include/sys/resource.h'}
+ac_cv_header_unistd_h=${ac_cv_header_unistd_h='yes'}
+ac_cv_header_locale_h=${ac_cv_header_locale_h='yes'}
+ac_cv_header_string_h=${ac_cv_header_string_h='yes'}
+ac_cv_header_sys_param_h=${ac_cv_header_sys_param_h='yes'}
+ac_cv_func_getlogin=${ac_cv_func_getlogin='yes'}
+zsh_cv_c_broken_signed_to_unsigned_casting=${zsh_cv_c_broken_signed_to_unsigned_casting='no'}
+ac_cv_header_sys_utsname_h=${ac_cv_header_sys_utsname_h='yes'}
+ac_cv_header_memory_h=${ac_cv_header_memory_h='yes'}
+ac_cv_header_sys_filio_h=${ac_cv_header_sys_filio_h='yes'}
+ac_cv_prog_gcc=${ac_cv_prog_gcc='yes'}
+ac_cv_prog_cc_cross=${ac_cv_prog_cc_cross='no'}
+ac_cv_func_strerror=${ac_cv_func_strerror='yes'}
+ac_cv_func_getrlimit=${ac_cv_func_getrlimit='yes'}
+ac_cv_type_off_t=${ac_cv_type_off_t='yes'}
+ac_cv_header_errno_h=${ac_cv_header_errno_h='yes'}
+ac_cv_func_tcgetattr=${ac_cv_func_tcgetattr='yes'}
+ac_cv_func_getpgrp_void=${ac_cv_func_getpgrp_void='yes'}
+ac_cv_lib_nsl_getdomainname=${ac_cv_lib_nsl_getdomainname='no'}
+ac_cv_func_sigrelse=${ac_cv_func_sigrelse='no'}
+ac_cv_type_pid_t=${ac_cv_type_pid_t='yes'}
+ac_cv_func_getdomainname=${ac_cv_func_getdomainname='no'}
+zsh_cv_header_time_h_select_h_conflicts=${zsh_cv_header_time_h_select_h_conflicts='yes'}
+ac_cv_header_stat_broken=${ac_cv_header_stat_broken='no'}
+ac_cv_func_sighold=${ac_cv_func_sighold='no'}
+ac_cv_header_termcap_h=${ac_cv_header_termcap_h='yes'}
+ac_cv_prog_AWK=${ac_cv_prog_AWK='awk'}
+ac_cv_prog_CPP=${ac_cv_prog_CPP='gcc -E'}
+ac_cv_func_lstat=${ac_cv_func_lstat='yes'}
+ac_cv_lib_termcap_tgetent=${ac_cv_lib_termcap_tgetent='yes'}
+ac_cv_func_setresuid=${ac_cv_func_setresuid='no'}
+ac_cv_type_uid_t=${ac_cv_type_uid_t='yes'}
+zsh_cv_c_variable_length_arrays=${zsh_cv_c_variable_length_arrays='yes'}
+ac_cv_func_nis_list=${ac_cv_func_nis_list='no'}
+ac_cv_func_setreuid=${ac_cv_func_setreuid='yes'}
+ac_cv_func_setpgid=${ac_cv_func_setpgid='yes'}
+zsh_cv_struct_utmp_ut_host=${zsh_cv_struct_utmp_ut_host='yes'}
+ac_cv_func_mkfifo=${ac_cv_func_mkfifo='yes'}

@@ -1,0 +1,1459 @@
+This is Info file zsh.info, produced by Makeinfo-1.55 from the input
+file ./zsh.texi.
+
+This is a texinfo version of the man page for the Z Shell, originally by
+Paul Falstad.  It was converted from the `zsh.1' file distributed with
+zsh v2.5.0 by Jonathan Hardwick, `jch@cs.cmu.edu' and updated/modified
+by Clive Messer, `clive@epos.demon.co.uk' to its present state.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the entire resulting derived work is distributed under the terms
+of a permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: zsh.info,  Node: Top,  Next: The Z Shell Guide,  Prev: (dir),  Up: (dir)
+
+The Z Shell Guide
+*****************
+
+This Info file documents Zsh, a freely available UNIX command
+interpreter (shell), which of the standard shells most closely
+resembles the Korn shell (ksh), although it is not completely
+compatible.
+
+Document Edition 2.1.10, last updated 15 October 1996, of `The Z Shell
+Guide', for zsh, Version 3.0.1.
+
+* Menu:
+
+* The Z Shell Guide::
+* Introduction::
+* Invocation::
+* Startup/Shutdown Files::
+* Shell Grammar::
+* Expansion::
+* Redirection::
+* Command Execution::
+* Functions::
+* Jobs & Signals::
+* Arithmetic Evaluation::
+* Conditional Expressions::
+* Compatibility::
+* Zsh Line Editor::
+* Parameters::
+* Options::
+* Shell Builtin Commands::
+* Programmable Completion::
+
+ -- Indices --
+
+* Concept Index::
+* Variables Index::
+* Options Index::
+* Functions Index::
+* Editor Functions Index::
+* Keystroke Index::
+
+ -- The Detailed Node Listing --
+
+Introduction
+
+* Author::
+* Availability::
+* Undocumented Features::
+* Mailing Lists::
+* Further Information::
+
+Shell Grammar
+
+* Simple Commands & Pipelines::
+* Precommand Modifiers::
+* Complex Commands::
+* Alternate Forms For Complex Commands::
+* Reserved Words::
+* Comments::
+* Aliasing::
+* Quoting::
+
+Expansion
+
+* Filename Expansion::
+* Process Substitution::
+* Parameter Expansion::
+* Command Substitution::
+* Arithmetic Expansion::
+* Brace Expansion::
+* Filename Generation::
+* History Expansion::
+
+Zsh Line Editor
+
+* Movement::
+* History Control::
+* Modifying Text::
+* Arguments::
+* Completion::
+* Miscellaneous::
+
+Parameters
+
+* Array Parameters::
+* Positional Parameters::
+* Parameters Set By The Shell::
+* Parameters Used By The Shell::
+
+Options
+
+* Description of Options::
+* Single Letter Options::
+
+Programmable Completion
+
+* Command Flags::
+* Options Flags::
+* Alternative Completion::
+* Extended Completion::
+* Example::
+
+
+File: zsh.info,  Node: The Z Shell Guide,  Next: Introduction,  Prev: Top,  Up: Top
+
+The Z Shell Guide
+*****************
+
+This document has been produced from the texinfo file `zsh.texi',
+included in the `Doc' sub-directory of the Zsh distribution.
+
+Origins
+=======
+
+The texinfo guide was originally put together by Jonathan Hardwick,
+`jch@cs.cmu.edu', who converted the `zsh.1' file distributed with zsh
+v2.5.0.  After a period of neglect it was updated by Clive Messer,
+`clive@epos.demon.co.uk' to reflect the many changes made to both the
+shell, the original `zsh.1', (which due to its size and ever increasing
+number of options has since been split into several man-pages: `zsh.1',
+`zshall.1', `zshbuiltins.1', `zshcompctl.1', `zshcompctl.1',
+`zshexpn.1', `zshmisc.1', `zshoptions.1', `zshparam.1', `zshzle.1'),
+and also now includes other useful information from the `META-FAQ'.
+
+Producing documentation from zsh.texi.
+======================================
+
+Whilst this guide for the most part duplicates the man-pages, (suitably
+marked-up into texinfo), and is not intended to replace them, it does
+offer several advantages over them, not least that the texinfo source
+may be converted into several formats, e.g.,
+
+The Info guide.
+     The Info format allows searching for topics, commands, functions,
+     etc.  from the many Indices. The command `makeinfo zsh.texi' is
+     used to produce the Info documentation.
+
+The printed guide.
+     The command `texi2dvi zsh.texi' will output `zsh.dvi' which can
+     then be processed with `dvips' and optionally `gs' (Ghostscript) to
+     produce a nicely formatted printed guide.
+
+The html guide.
+     Mark Borges, `mdb@cdc.noaa.gov', maintains an html version of this
+     guide at `http://www.mal.com/zsh/Doc/zsh_toc.html'.
+     (The html version is produced with `texi2html', which may be
+     obtained from `http://wwwcn.cern.ch/dci/texi2html/'. The command
+     is, `texi2html -split_chapter -expandinfo zsh.texi')
+
+For those who do not have the necessary tools to process texinfo,
+precompiled documentation, (PostScript, dvi, info and html formats), is
+available from the zsh archive site or its mirrors in the file,
+`zsh-doc.tar.gz'. (*Note Availability::, for a list of sites.)
+
+Future
+======
+
+This guide is actively maintained by Clive Messer,
+`clive@epos.demon.co.uk', and Mark Borges, `mdb@cdc.noaa.gov'.
+Patches, comments, criticism, and suggestions should be sent to either
+of the above or alternatively, the "zsh-workers" mailing list,
+`zsh-workers@math.gatech.edu'.
+
+
+File: zsh.info,  Node: Introduction,  Next: Invocation,  Prev: The Z Shell Guide,  Up: Top
+
+Introduction
+************
+
+Zsh is a UNIX command interpreter (shell) usable as an interactive login
+shell and as a shell script command processor.  Of the standard shells,
+zsh most closely resembles ksh but includes many enhancements.  Zsh has
+command line editing, builtin spelling correction, programmable command
+completion, shell functions (with autoloading), a history mechanism,
+and a host of other features.
+
+* Menu:
+
+* Author::
+* Availability::
+* Undocumented Features::
+* Mailing Lists::
+* Further Information::
+
+
+File: zsh.info,  Node: Author,  Next: Availability,  Up: Introduction
+
+Author
+======
+
+Zsh was originally written by Paul Falstad `pjf@cts.com'.  Zsh is now
+maintained by the members of the zsh workers mailing list
+`zsh-workers@math.gatech.edu'.  The development is currently
+coordinated by Zoltan Hidvegi, `hzoli@cs.elte.hu'.
+
+
+File: zsh.info,  Node: Availability,  Next: Undocumented Features,  Prev: Author,  Up: Introduction
+
+Availability
+============
+
+Zsh is available from the following anonymous ftp sites.  The first is
+the official archive site.  The rest are mirror sites which are kept
+frequently up to date.  The sites marked with `(G)' may mirror
+`ftp.math.gatech.edu' instead of the primary site.
+
+Hungary
+     `ftp://ftp.cs.elte.hu/pub/zsh/'
+     `ftp://ftp.kfki.hu/pub/packages/zsh/'
+
+Australia
+     `ftp://ftp.ips.oz.au/pub/packages/zsh/'  `(G)'
+
+France
+     `ftp://ftp.cenatls.cena.dgac.fr/pub/shells/zsh/'
+
+Germany
+     `ftp://ftp.fu-berlin.de/pub/unix/shells/zsh/'
+     `ftp://ftp.gmd.de/packages/zsh/'
+     `ftp://ftp.uni-trier.de/pub/unix/shell/zsh/'
+
+Japan
+     `ftp://ftp.tohoku.ac.jp/mirror/zsh/'
+     `ftp://ftp.iij.ad.jp/pub/misc/zsh/'
+
+Norway
+     `ftp://ftp.uit.no/pub/unix/shells/zsh/'
+
+Sweden
+     `ftp://ftp.lysator.liu.se/pub/unix/zsh/'
+
+UK
+     `ftp://ftp.net.lut.ac.uk/zsh/'
+
+USA
+     `ftp://ftp.math.gatech.edu/pub/zsh/'
+     `ftp://uiarchive.uiuc.edu/pub/packages/shells/zsh/'
+     `ftp://ftp.sterling.com/zsh/'  `(G)'
+     `ftp://ftp.rge.com/pub/shells/zsh/'  `(G)'
+
+
+File: zsh.info,  Node: Undocumented Features,  Next: Mailing Lists,  Prev: Availability,  Up: Introduction
+
+Undocumented Features
+=====================
+
+Known only to the recipients of the `zsh-workers' mailing list.
+To join the mailing lists, see *Note Mailing Lists::.
+
+
+File: zsh.info,  Node: Mailing Lists,  Next: Further Information,  Prev: Undocumented Features,  Up: Introduction
+
+Mailing Lists
+=============
+
+Zsh has 3 mailing lists:
+
+`zsh-announce@math.gatech.edu'
+     Announcements about releases, major changes in the shell and the
+     monthly posting of the Zsh FAQ. (moderated)
+
+`zsh-users@math.gatech.edu'
+     User discussions.
+
+`zsh-workers@math.gatech.edu'
+     Hacking, development, bug reports and patches.
+
+To subscribe, send mail with the SUBJECT `subscribe <e-mail-address>'
+to the associated administrative address for the mailing list.
+
+`zsh-announce-request@math.gatech.edu'
+`zsh-users-request@math.gatech.edu'
+`zsh-workers-request@math.gatech.edu'
+
+YOU ONLY NEED TO JOIN ONE OF THE MAILING LISTS AS THEY ARE NESTED.
+
+All submissions to `zsh-announce' are automatically forwarded to
+`zsh-users'.
+All submissions to `zsh-users' are automatically forwarded to
+`zsh-workers'.
+
+Un-subscribing is done similarly.
+
+If you have problems subscribing/unsubscribing to any of the mailing
+lists, send mail to Richard Coleman, `coleman@math.gatech.edu'.
+
+
+File: zsh.info,  Node: Further Information,  Prev: Mailing Lists,  Up: Introduction
+
+Further Information
+===================
+
+* Menu:
+
+* The Zsh FAQ::
+* The Zsh Web Page::
+* See Also::
+
+
+File: zsh.info,  Node: The Zsh FAQ,  Next: The Zsh Web Page,  Up: Further Information
+
+The Zsh FAQ
+-----------
+
+Zsh has a list of Frequently Asked Questions (FAQ) maintained by Peter
+Stephenson, `P.Stephenson@swansea.ac.uk'.  It is regularly posted to
+the newsgroup `comp.unix.shell' and the `zsh-announce' mailing list.
+The latest version can be found at any of the Zsh ftp sites, or at:
+`http://www.mal.com/zsh/FAQ/'
+
+
+File: zsh.info,  Node: The Zsh Web Page,  Next: See Also,  Prev: The Zsh FAQ,  Up: Further Information
+
+The Zsh Web Page
+----------------
+
+Zsh has a web page maintained by Mark Borges, `mdb@cdc.noaa.gov' which
+is located at: `http://www.mal.com/zsh/'.
+
+
+File: zsh.info,  Node: See Also,  Prev: The Zsh Web Page,  Up: Further Information
+
+See Also
+--------
+
+sh(1), csh(1), tcsh(1), rc(1), bash(1), ksh(1), zshbuiltins(1),
+zshcompctl(1), zshexpn(1), zshparam(1), zshzle(1), zshoptions(1),
+zshmisc(1)
+
+IEEE Standard for information Technology - Portable Operating System
+Interface (POSIX) - Part 2: Shell and Utilities, IEEE Inc, 1993, ISBN
+1-55937-255-9.
+
+
+File: zsh.info,  Node: Invocation,  Next: Startup/Shutdown Files,  Prev: Introduction,  Up: Top
+
+Invocation
+**********
+
+If the `-s' flag is not present and an argument is given, the first
+argument is taken to be the pathname of a script to execute.  The
+remaining arguments are assigned to the positional parameters.  The
+following flags are interpreted by the shell when invoked:
+
+`-c STRING'
+     Read commands from STRING.
+
+`-i'
+     Force shell to be interactive.
+
+`-s'
+     Read command from the standard input.
+
+
+File: zsh.info,  Node: Startup/Shutdown Files,  Next: Shell Grammar,  Prev: Invocation,  Up: Top
+
+Startup/Shutdown Files
+**********************
+
+Commands are first read from `/etc/zshenv'.  If the `RCS' option is
+unset within `/etc/zshenv', all other initialization files are skipped.
+Otherwise, commands are read from `$ZDOTDIR/.zshenv' (if `ZDOTDIR' is
+unset, `HOME' is used instead).  If the first character of argument
+zero passed to the shell is `-', or if the `-l' flag is present, then
+the shell is assumed to be a login shell, and commands are read from
+`/etc/zprofile' and then `$ZDOTDIR/.zprofile'.  Then, if the shell is
+interactive and the `NO_RCS' option is unset, commands are read from
+`/etc/zshrc' and then `$ZDOTDIR/.zshrc'.  Finally, if the shell is a
+login shell, `/etc/zlogin' and `$ZDOTDIR/.zlogin' are read.
+
+Files
+=====
+
+$ZDOTDIR/.zshenv
+$ZDOTDIR/.zprofile
+$ZDOTDIR/.zshrc
+$ZDOTDIR/.zlogin
+$ZDOTDIR/.zlogout
+${TMPPREFIX}*  (default is /tmp/zsh*)
+/etc/zshenv
+/etc/zprofile
+/etc/zshrc
+/etc/zlogin
+/etc/zlogout
+
+
+File: zsh.info,  Node: Shell Grammar,  Next: Expansion,  Prev: Startup/Shutdown Files,  Up: Top
+
+Shell Grammar
+*************
+
+* Menu:
+
+* Simple Commands & Pipelines::
+* Precommand Modifiers::
+* Complex Commands::
+* Alternate Forms For Complex Commands::
+* Reserved Words::
+* Comments::
+* Aliasing::
+* Quoting::
+
+
+File: zsh.info,  Node: Simple Commands & Pipelines,  Next: Precommand Modifiers,  Up: Shell Grammar
+
+Simple Commands
+===============
+
+A "simple command" is a sequence of optional parameter assignments
+followed by blank-separated words, with optional redirections
+interspersed.  The first word is the command to be executed, and the
+remaining words, if any, are arguments to the command.  If a command
+name is given, the parameter assignments modify the environment of the
+command when it is executed.  The value of a simple command is its exit
+status, or 128 plus the signal number if terminated by a signal.
+
+A "pipeline" is a sequence of one or more commands separated by `|' or
+`|&'.  `|&' is shorthand for `2>&1 |'.  The standard output of each
+command is connected to the standard input of the next command in the
+pipeline.  If a pipeline is preceded by `coproc', it is executed as a
+coprocess; a two-way pipe is established between it and the parent
+shell.  The shell can read from or write to the coprocess by means of
+the `>&p' and `<&p' redirection operators.  The value of a pipeline is
+the value of the last command.  If a pipeline is not preceded by `!',
+the value of that pipeline is the logical `NOT' of the value of the
+last command.
+
+A "sublist" is a sequence of one or more pipelines separated by `&&' or
+`||'.  If two pipelines are separated by `&&', the second pipeline is
+executed only if the first is successful (returns a zero value).  If
+two pipelines are separated by `||', the second is executed only if the
+first is unsuccessful (returns a nonzero value).  Both operators have
+equal precedence and are left associative.
+
+A "list" is a sequence of zero or more sublists separated by, and
+optionally terminated by, `;', `&', `&|', `&!', or a newline.  Normally
+the shell waits for each list to finish before executing the next one.
+If a list is terminated by a `&', `&|', or `&!', the shell executes it
+in the background, and does not wait for it to finish.
+
+
+File: zsh.info,  Node: Precommand Modifiers,  Next: Complex Commands,  Prev: Simple Commands & Pipelines,  Up: Shell Grammar
+
+Precommand Modifiers
+====================
+
+A simple command may be preceded by a "precommand" modifier which will
+alter how the command is interpreted.  These modifiers are shell builtin
+commands with the exception of `nocorrect' which is a reserved word.
+
+`-'
+     The command is executed with a `-' prepended to its `argv[0]'
+     string.
+
+`noglob'
+     Filename generation (globbing) is not performed on any of the
+     words.
+
+`nocorrect'
+     Spelling correction is not done on any of the words.
+
+`exec'
+     The command is executed in the parent shell without forking.
+
+`command'
+     The command word is taken to be the name of an external command,
+     rather than a shell function or builtin.
+
+
+File: zsh.info,  Node: Complex Commands,  Next: Alternate Forms For Complex Commands,  Prev: Precommand Modifiers,  Up: Shell Grammar
+
+Complex Commands
+================
+
+A "complex command" in zsh is one of the following:
+
+`if LIST then LIST [ elif LIST then LIST ] ... [ else LIST ] fi'
+     The `if LIST' is executed, and, if it returns a zero exit status,
+     the `then LIST' is executed.  Otherwise, the `elif LIST' is
+     executed and, if its value is zero, the `then LIST' is executed.
+     If each `elif LIST' returns nonzero, the `else LIST' is executed.
+
+`for NAME [ in WORD ... TERM ] do LIST done'
+     Where TERM is one or more newline or `;'.  Expand the list of
+     WORDs, and set the parameter NAME to each of them in turn,
+     executing LIST each time.  If the `in WORD' is omitted, use the
+     positional parameters instead of the WORDS.
+
+`for (( [EXPR1] ; [EXPR2] ; [EXPR3] )) do LIST done'
+     The arithmetic expression EXPR1 is evaluated first (*Note
+     Arithmetic Evaluation::).  The arithmetic expression EXPR2 is
+     repeatedly evaluated until it evaluates to zero and when non-zero,
+     LIST is executed and the arithmetic expression EXPR3 evaluated.
+     If any expression is omitted, then it behaves as if it evaluated
+     to 1.
+
+`while LIST do LIST done'
+     Execute the `do LIST' as long as the `while LIST' returns a zero
+     exit status.
+
+`until LIST do LIST done'
+     Execute the `do LIST' as long as `until LIST' returns a nonzero
+     exit status.
+
+`repeat WORD do LIST done'
+     WORD is expanded and treated as an arithmetic expression, which
+     must evaluate to a number N.  LIST is then executed N times.
+
+`case WORD in [ [(] PATTERN [ | PATTERN ] ... ) LIST ;; ] ... esac'
+     Execute the LIST associated with the first PATTERN that matches
+     WORD, if any.  The form of the patterns is the same as that used
+     for filename generation.  *Note Filename Generation::.
+
+`select NAME [ in WORD ... TERM ] do LIST done'
+     Where TERM is one ore more newline or `;'.  Print the set of
+     WORDs, each preceded by a number.  If the `in WORD' is omitted,
+     use the positional parameters.  The `PROMPT3' prompt is printed
+     and a line is read from standard input.  If this line consists of
+     the number of one of the listed WORDs, then the parameter NAME is
+     set to the WORD corresponding to this number.  If this line is
+     empty, the selection list is printed again.  Otherwise, the value
+     of the parameter NAME is set to null.  The contents of the line
+     read from standard input is saved in the parameter `REPLY'.  LIST
+     is executed for each selection until a break or end-of-file is
+     encountered.
+
+`( LIST )'
+     Execute LIST in a subshell.  Traps set by the `trap' builtin are
+     reset to their default values while executing `list'.
+
+`{ LIST }'
+     Execute LIST.
+
+`function WORD ... [ () ] [ TERM ] { LIST }'
+`WORD ... () [ TERM ] { LIST }'
+`WORD ... () [ TERM ] COMMAND'
+     Where TERM is one ore more newline or `;'.  Define a function
+     which is referenced by any one of WORD.  Normally, only one WORD
+     is provided; multiple WORDs are usually only useful for setting
+     traps.  The body of the function is the LIST between the `{' and
+     `}'.  *Note Functions::.
+
+`time [ PIPELINE ]'
+     The PIPELINE is executed, and timing statistics are reported on
+     the standard error in the form specified by the `TIMEFMT'
+     parameter.  If PIPELINE is omitted, print statistics about the
+     shell process and its children.
+
+`[[ EXP ]]'
+     Evaluates the conditional expression EXP and return a zero exit
+     status if it is true.  *Note Conditional Expressions::, for a
+     description of EXP.
+
+
+File: zsh.info,  Node: Alternate Forms For Complex Commands,  Next: Reserved Words,  Prev: Complex Commands,  Up: Shell Grammar
+
+Alternate Forms For Complex Commands
+====================================
+
+Many of zsh's complex commands have alternate forms.  These particular
+versions of complex commands should be considered deprecated and may be
+removed in the future.  The versions in the previous section should be
+preferred instead. The short versions below only work if `SUBLIST' is
+of the form `{ LIST }' or if the `NO_SHORT_LOOPS' option is not set.
+
+`if LIST { LIST } [ elif LIST { LIST } ] ... [ else { LIST } ]'
+     An alternate form of `if'.
+
+`if LIST SUBLIST'
+     A short form of previous one.
+
+`for NAME ( WORD ... ) SUBLIST'
+     A short form of `for'.
+
+`for NAME [ in WORD ... TERM ] SUBLIST'
+     Where TERM is one or more newline or `;'.  Another short form of
+     `for'.
+
+`for (( [EXPR1] ; [EXPR2] ; [EXPR3] )) SUBLIST'
+     A sort form of the arithmetic `for' command.
+
+`foreach NAME ( WORD ... ) LIST end'
+     Another form of `for'.
+
+`while LIST { LIST }'
+     An alternative form of `while'.
+
+`until LIST { LIST }'
+     An alternative form of `until'.
+
+`repeat WORD SUBLIST'
+     This is a short form of `repeat'.
+
+`case WORD { [ [(] PATTERN [ | PATTERN ] ... ) LIST ;; ] ... }'
+     An alternative form of `case'.
+
+`select NAME [ in WORD TERM ] SUBLIST'
+     Where TERM is one or more newline or `;'.  A short form of
+     `select'.
+
+
+File: zsh.info,  Node: Reserved Words,  Next: Comments,  Prev: Alternate Forms For Complex Commands,  Up: Shell Grammar
+
+Reserved Words
+==============
+
+The following words with the exception of `}' are recognized as
+"reserved words" when used as the first word of a command unless quoted
+or disabled using `disable -r':
+
+`do' `done' `esac' `then' `elif' `else' `fi' `for' `case' `if' `while'
+`function' `repeat' `time' `until' `select' `coproc' `nocorrect'
+`foreach' `end' `!' `[[' `{' `}'
+
+
+File: zsh.info,  Node: Comments,  Next: Aliasing,  Prev: Reserved Words,  Up: Shell Grammar
+
+Comments
+========
+
+In non-interactive shells, or in interactive shells with the
+`INTERACTIVE_COMMENTS' option set, a word beginning with the third
+character of the `histchars' parameter (`#' by default) causes that
+word and all the following characters up to a newline to be ignored.
+
+
+File: zsh.info,  Node: Aliasing,  Next: Quoting,  Prev: Comments,  Up: Shell Grammar
+
+Aliasing
+========
+
+Every token in the shell input is checked to see if there is an alias
+defined for it.  If so, it is replaced by the text of the alias if it is
+in command position (if it could be the first word of a simple command),
+or if the alias is global.  If the text ends with a space, the next word
+in the shell input is treated as though it were in command position for
+purposes of alias expansion.  An alias is defined using the `alias'
+builtin; global aliases may be defined using the `-g' option to that
+builtin.
+
+Alias substitution is done on the shell input before any other
+substitution except history substitution.  Therefore, if an alias is
+defined for the word `foo', alias substitution may be avoided by
+quoting part of the word, e.g. `\foo'.  But there is nothing to prevent
+an alias being defined for `\foo' as well.
+
+
+File: zsh.info,  Node: Quoting,  Prev: Aliasing,  Up: Shell Grammar
+
+Quoting
+=======
+
+A character may be "quoted" (that is, made to stand for itself) by
+preceding it with a `\'.  `\' followed by a newline is ignored.  All
+characters enclosed between a pair of single quotes (`''') are quoted,
+except the first character of `histchars' (`!' by default).  A single
+quote cannot appear within single quotes.  Inside double quotes (`""'),
+parameter and command substitution occurs, and `\' quotes the
+characters `\', ``', `"', and `$'.
+
+
+File: zsh.info,  Node: Expansion,  Next: Redirection,  Prev: Shell Grammar,  Up: Top
+
+Expansion
+*********
+
+The types of expansions performed are "history expansion", "alias
+expansion", "process substitution", "parameter expansion", "command
+substitution", "arithmetic expansion", "brace expansion", "filename
+expansion", and "filename generation".
+
+Expansion is done in the above specified order in five steps.  The
+first is "history expansion" which is only performed in interactive
+shells.  The next step is "alias expansion" which is done right before
+the command line is parsed.  They are followed by "process
+substitution", "parameter expansion", "command substitution",
+"arithmetic expansion", and "brace expansion" which are performed in
+one step in left-to-right fashion.  After these expansions, all
+unquoted occurrences of the characters `\', `'', and `"' are removed
+and the result is subjected to "filename expansion" followed by
+"filename generation".
+
+If the `SH_FILE_EXPANSION' option is set, the order of expansion is
+modified for compatibility with `sh' and `ksh'.  "Filename expansion" is
+performed immediately after "alias substitution", preceding the set of
+five substitutions mentioned above.
+
+* Menu:
+
+* Filename Expansion::
+* Process Substitution::
+* Parameter Expansion::
+* Command Substitution::
+* Arithmetic Expansion::
+* Brace Expansion::
+* Filename Generation::
+* History Expansion::
+
+
+File: zsh.info,  Node: Filename Expansion,  Next: Process Substitution,  Up: Expansion
+
+Filename Expansion
+==================
+
+Each word is checked to see if it begins with an unquoted `~'.  If it
+does, then the word up to a `/', or the end of the word if there is no
+`/', is checked to see if it can be substituted in one of the ways
+described here.  If so, then the `~' and the checked portion are
+replaced with the appropriate substitute value.
+
+A `~' by itself is replaced by the value of the `HOME' parameter.  A
+`~' followed by a `+' or a `-' is replaced by the value of `PWD' or
+`OLDPWD', respectively.
+
+A `~' followed by a number is replaced by the directory at that
+position in the directory stack.  `~0' is equivalent to `~+', and `~1'
+is the top of the stack.  `~+' followed by a number is replaced by the
+directory at that position in the directory stack.  `~+0' is equivalent
+to `~+', and `~+1' is the top of the stack.  `~-' followed by a number
+is replaced by the directory that many positions from the bottom of the
+stack.  `~-0' is the bottom of the stack.  The `PUSHD_MINUS' option
+exchanges the effects of `~+' and `~-' where they are followed by a
+number.
+
+A `~' followed by anything not already covered is looked up as a named
+directory, and replaced by the value of that named directory if found.
+Named directories are typically home directories for users on the
+system.  They may also be defined if the text after the `~' is the name
+of a string shell parameter whose value begins with a `/'.  It is also
+possible to define directory names using the `-d' option to the `hash'
+builtin.
+
+In  certain circumstances (in prompts, for instance), when the shell
+prints a path, the path is checked to see if it has a named directory
+as its prefix.  If so, then the prefix portion is replaced with a `~'
+followed by the name of the directory.  The shortest way of referring
+to the directory is used, with ties broken in favour of using a named
+directory, except when the directory is `/'.
+
+If a word begins with an unquoted `=' and the `EQUALS' option is set,
+the remainder of the word is taken as the name of a command or alias.
+If a command exists by that name, the word is replaced by the full
+pathname of the command.  If an alias exists by that name, the word is
+replaced with the text of the alias.
+
+Filename expansion is performed on the right hand side of a parameter
+assignment, including those appearing after commands of the `typeset'
+family.  In this case, the right hand side will be treated as a
+colon-separated list in the manner of `PATH' so that a `~' or an `='
+following a `:' is eligible  for expansion.  All such behavior can be
+disabled by quoting the `~', the `=', or the whole expression (but not
+simply the colon); the `EQUALS' option is also respected.
+
+If the option `MAGIC_EQUAL_SUBST' is set, any unquoted shell argument in
+the form `IDENTIFIER=EXPRESSION' becomes eligible for file expansion as
+described in the previous  paragraph.  Quoting the first `=' also
+inhibits this.
+
+
+File: zsh.info,  Node: Process Substitution,  Next: Parameter Expansion,  Prev: Filename Expansion,  Up: Expansion
+
+Process Substitution
+====================
+
+Each command argument of the form `<(LIST)', `>(LIST)' or `=(LIST)' is
+subject to process substitution.  In the case of the `<' and `>' forms,
+the shell will run process LIST asynchronously, connected to a named
+pipe (FIFO).  The name of this pipe will become the argument to the
+command.  If the form with `>' is selected then writing to this file
+will provide input for LIST.  If `<' is used, then the file passed as
+an argument will be a named pipe connected to the output of the LIST
+process.  For example,
+
+   `paste <(cut -f1 FILE1) <(cut -f3 FILE2) | tee >(PROCESS1)
+>(PROCESS2) >/dev/null'
+
+`cut's fields 1 and 3 from the files FILE1 and FILE2 respectively,
+`paste's the results together, and sends it to the processes PROCESS1
+and PROCESS2.  Note that the file, which is passed as an argument to
+the command, is a system pipe so programs that expect to `lseek(2)' on
+the file will not work.  Also note that the previous example can be
+more compactly and efficiently written as:
+
+   `paste <(cut -f1 FILE1) <(cut -f3 FILE2) >>(PROCESS1) >>(PROCESS2)'
+
+The shell uses pipes instead of FIFOs to implement the latter two
+process substitutions in the above example.
+
+If `=' is used, then the file passed as an argument will be the name of
+a temporary file containing the output of the LIST process.  This may
+be used instead of the `<' form for a program that expects to
+`lseek(2)' on the input file.
+
+
+File: zsh.info,  Node: Parameter Expansion,  Next: Command Substitution,  Prev: Process Substitution,  Up: Expansion
+
+Parameter Expansion
+===================
+
+The character `$' is used to introduce parameter expansions.  *Note
+Parameters::, for a description of parameters.  In the expansions
+discussed below that require a pattern, the form of the pattern is the
+same as that used for filename generation; *Note Filename Generation::.
+
+`${NAME}'
+     The value, if any, of the parameter NAME is substituted.  The
+     braces are required if NAME is followed by a letter, digit, or
+     underscore that is not to be interpreted as part of its name.  If
+     NAME is an array parameter, then the values of each element of
+     NAME is substituted, one element per word.  Otherwise, the
+     expansion results in one word only; no word splitting is done on
+     the result.
+
+`${+NAME}'
+     If NAME is the name of a set parameter, `1' is substituted,
+     otherwise `0' is substituted.
+
+`${NAME:-WORD}'
+     If NAME is set and is non-null then substitute its value;
+     otherwise substitute WORD. If NAME is missing, substitute WORD.
+
+`${NAME:=WORD}'
+     If NAME is unset or is null then set it to WORD; the value of the
+     parameter is then substituted.
+
+`${NAME::=WORD}'
+     Set NAME to WORD; the value of the parameter is then substituted.
+
+`${NAME:?WORD}'
+     If NAME is set and is non-null, then substitute its value;
+     otherwise, print WORD and exit from the shell.  If WORD is
+     omitted, then a standard message is printed.
+
+`${NAME:+WORD}'
+     If NAME is set and is non-null then substitute WORD; otherwise
+     substitute nothing.
+
+`${NAME#PATTERN}'
+`${NAME##PATTERN}'
+     If the PATTERN matches the beginning of the value of NAME, then
+     substitute the value of NAME with the matched portion deleted;
+     otherwise, just substitute the value of NAME.  In the first form,
+     the smallest matching pattern is preferred; in the second form,
+     the largest matching pattern is preferred.  If name is an array and
+     the substitution is not quoted or the `@' flag or the `NAME[@]'
+     syntax is used, matching is performed on each array elements
+     separately.
+
+`${NAME%PATTERN}'
+`${NAME%%PATTERN}'
+     If the PATTERN matches the end of the value of NAME, then
+     substitute the value of NAME with the matched portion deleted;
+     otherwise, just substitute the value of NAME.  In the first form,
+     the smallest matching pattern is preferred; in the second form, the
+     largest matching pattern is preferred.  If name is an array and
+     the substitution is not quoted or the `@' flag or the `NAME[@]'
+     syntax is used, matching is performed on each array elements
+     separately.
+
+`${NAME:#PATTERN}'
+     If the pattern matches the value of NAME, then substitute the empty
+     string; otherwise, just substitute the value of NAME.  If NAME is
+     an array and the substitution is not quoted or the `@' flag or the
+     `NAME[@]' syntax is used, matching is performed on each array
+     elements separately, and the matched array elements are removed
+     (use the `M' flag to remove the non-matched elements).
+
+`${#SPEC}'
+     If SPEC is one of the above substitutions, substitute the length
+     in characters of the result instead of the result itself.  If SPEC
+     is an array expression, substitute the number of elements of the
+     result.
+
+`${^SPEC}'
+     Turn on the value of the `RC_EXPAND_PARAM' option for the
+     evaluation of SPEC; if the `^' is doubled, turn it off.  When this
+     option is set, array expansions of the form `foo${xx}bar', where
+     the parameter `xx' is set to `(a b c)', are substituted with
+     `fooabar foobbar foocbar' instead of the default `fooa b cbar'.
+
+`${=SPEC}'
+     Turn on the value of the `SH_WORD_SPLIT' option for the evaluation
+     of SPEC; if the `=' is doubled, turn it off.  When this option is
+     set, parameter values are split into separate words using `IFS' as
+     a delimiter before substitution.  This is done by default in most
+     other shells.
+
+`${~SPEC}'
+     Turn on the value of the `GLOB_SUBST' option for the evaluation of
+     SPEC; if the `~' is doubled, turn it off.  When this option is set,
+     any pattern characters resulting from the substitution become
+     eligible for file expansion and filename generation.
+
+If the colon is omitted from one of the above expressions containing a
+colon, then the shell only checks whether NAME is set or not, not
+whether it is null.
+
+If a `${...}' type parameter expression or a `$(...)' type command
+substitution is used in place of NAME above, it is substituted first
+and the result is used as it were the value of NAME.
+
+If the opening brace is directly followed by an opening parenthesis the
+string up to the matching closing parenthesis will be taken as a list
+of flags.  Where arguments are valid, any character, or the matching
+pairs `(...)', `{...}', `[...]', or `<...>', may be used in place of
+the colon as delimiters.  The following flags are supported:
+
+`A'
+     Create an array parameter with `${...:=...}' or `${...::=...}'.
+     Assignment is made before sorting or padding.
+
+`@'
+     In double quotes, array elements are put into separate words. Eg.
+     `${(@)FOO}' is equivalent to `${FOO[@]}' and `${(@)FOO[1,2]}' is
+     the same as `$FOO[1]' `$FOO[2]'.
+
+`e'
+     Perform "parameter expansion", "command substitution" and
+     "arithmetic expansion" on the result.  Such expansions can be
+     nested but too deep recursion may have unpredictable effects.
+
+`o'
+     Sort the resulting words in ascending order.
+
+`O'
+     Sort the resulting words in descending order.
+
+`i'
+     With `o' or `O', makes the sort case-insensitive.
+
+`L'
+     Converts all letters in the result to lowercase.
+
+`U'
+     Converts all letters in the result to uppercase.
+
+`C'
+     Capitalizes the resulting words
+
+`c'
+     With `${#NAME}', count the total number of characters in an array,
+     as if the elements were concatenated with spaces between them.
+
+`w'
+     With `${#NAME}', count words in arrays or strings; the `s' flag
+     may be used to set a word delimiter.
+
+`W'
+     Similar to `w' with the difference that empty words between
+     repeated delimiters are also counted.
+
+`p'
+     Recognize the same escape sequences as the `print' builtin in
+     string arguments to subsequent flags.
+
+`l:EXPR::STRING1::STRING2:'
+     Pad the resulting words on the left.  Each word will be truncated
+     if required and placed in a field EXPR characters wide.  The space
+     to the left will be filled with STRING1 (concatenated as often as
+     needed), or spaces if STRING1 is not given.  If both STRING1 and
+     STRING2 are given, this string will be placed exactly once
+     directly to the left of the resulting word.
+
+`r:EXPR::STRING1::STRING2:'
+     As `l', but pad the words on the right.
+
+`j:STRING:'
+     Join the words or arrays together using STRING as a separator.
+     Note that this occurs before word splitting by the `SH_WORD_SPLIT'
+     option.
+
+`F'
+     Join the words of arrays together using newline as a separator.
+     This is a shorthand for `pj:\n:'.
+
+`s:STRING:'
+     Force word splitting (see the option `SH_WORD_SPLIT') at the
+     separator STRING.  Splitting only occurs in places where an array
+     value is valid.
+
+`f'
+     Split the result of the expansion to lines.  This is a shorthand
+     for `ps:\n:'.
+
+`S'
+     (This and all remaining flags are used with the `${...#...}' and
+     `${...%...}' forms).  Search substrings as well as beginnings or
+     ends.
+
+`I:EXPR:'
+     Search the EXPR'th match (where EXPR evaluates to a number).
+
+`M'
+     Include the matched portion in the result.
+
+`R'
+     Include the unmatched portion in the result (the Rest).
+
+`B'
+     Include the index of the beginning of the match in the result.
+
+`E'
+     Include the index of the end of the match in the result.
+
+`N'
+     Include the length of the match in the result.
+
+
+File: zsh.info,  Node: Command Substitution,  Next: Arithmetic Expansion,  Prev: Parameter Expansion,  Up: Expansion
+
+Command Substitution
+====================
+
+A command enclosed in parentheses preceded by a dollar sign, like so:
+`$(...)' or quoted with grave accents: ``...`' is replaced with its
+standard output, with any trailing newlines deleted.  If the
+substitution is not enclosed in double quotes, the output is broken into
+words using the `IFS' parameter.  The substitution `$(cat FOO)' may be
+replaced by the equivalent but faster `$(<FOO)'.  In either case, if the
+option `GLOB_SUBST' is set the output is eligible for filename
+generation.
+
+
+File: zsh.info,  Node: Arithmetic Expansion,  Next: Brace Expansion,  Prev: Command Substitution,  Up: Expansion
+
+Arithmetic Expansion
+====================
+
+A string of the form `$[EXP]' is substituted with the value of the
+arithmetic expression EXP.  EXP is subjected to "parameter expansion",
+"command substitution" and "arithmetic expansion" before it is
+evaluated.  *Note Arithmetic Evaluation::.
+
+
+File: zsh.info,  Node: Brace Expansion,  Next: Filename Generation,  Prev: Arithmetic Expansion,  Up: Expansion
+
+Brace Expansion
+===============
+
+A string of the form `foo{xx,yy,zz}bar' is expanded to the individual
+words `fooxxbar', `fooyybar', and `foozzbar'.  Left-to-right order is
+preserved.  This construct may be nested.  Commas may be quoted in
+order to include them literally in a word.
+
+An expression of the form `{X-Y}', where X and Y are single characters,
+is expanded to every character between X and Y, inclusive.
+
+An expression of the form `{N1..N2}', where N1 and N2 are integers, is
+expanded to every number between N1 and N2, inclusive.  If either
+number begins with a zero, all the resulting numbers will be padded
+with leading zeroes to that minimum width.  If the numbers are in
+decreasing order the resulting sequence will also be in decreasing
+order.
+
+If a brace expression matches none of the above forms, it is left
+unchanged, unless the `BRACE_CCL' option is set.  In that case, it is
+expanded to a sorted list of the individual characters between the
+braces, in the manner of a search set.  `-' is treated specially as in
+a search set, but `^' or `!' as the first character is treated normally.
+
+
+File: zsh.info,  Node: Filename Generation,  Next: History Expansion,  Prev: Brace Expansion,  Up: Expansion
+
+Filename Generation
+===================
+
+If a word contains an unquoted instance of one of the characters `*',
+`|', `<', `[', or `?', it is regarded as a pattern for filename
+generation, unless the `GLOB' option is unset.  If the `EXTENDED_GLOB'
+option is set, the `^', `~', and `#' characters also denote a pattern;
+otherwise (except for an initial `~', *Note Filename Expansion::) they
+are not treated specially by the shell.  The word is replaced with a
+list of sorted filenames that match the pattern.  If no matching
+pattern is found, the shell gives an error message, unless the
+`NULL_GLOB' option is set, in which case the word is deleted; or unless
+the `NOMATCH' option is unset, in which case the word is left
+unchanged.  In filename generation, the character `/' must be matched
+explicitly; also, a `.' must be matched explicitly at the beginning of
+a pattern or after a `/', unless the `GLOB_DOTS' option is set.  No
+filename generation pattern matches the files `.' or `..'.  In other
+instances of pattern matching, the `/' and `.' are not treated
+specially.
+
+`*'
+     Matches any string, including the null string.
+
+`?'
+     Matches any character.
+
+`[...]'
+     Matches any of the enclosed characters. Ranges of characters can
+     be specified by separating two characters by a `-'.  A `-' or `]'
+     may be matched by including it as the first character in the list.
+
+`[^...]'
+`[!...]'
+     Like `[...]', except that it matches any character which is not in
+     the given set.
+
+`<x-y>'
+     Matches any number in the range `x' to `y', inclusive.  If `x' is
+     omitted, the number must be less than or equal to `y'.  If `y' is
+     omitted, the number must be greater than or equal to `x'.  A
+     pattern of the form `<->' matches any number.
+
+`^x'
+     Matches anything except the pattern `x'.
+
+`x|y'
+     Matches either `x' or `y'.
+
+`x#'
+     Matches zero or more occurrences of the pattern `x'.
+
+`x##'
+     Matches one or more occurrences of the pattern `x'.
+
+Parentheses may be used for grouping.  Note that the `|' character must
+be within parentheses, so that the lexical analyzer does not think it
+is a pipe character.  Also note that `/' has a higher precedence than
+`^'; that is:
+
+   `ls ^foo/bar'
+
+will search directories in `.' except `./foo' for a file named `bar'.
+
+A pathname component of the form `(FOO/)#' matches a path consisting of
+zero or more directories matching the pattern FOO.  As a shorthand,
+`**/' is equivalent to `(*/)#'.  Thus:
+
+   `ls (*/)#BAR'
+
+or
+
+   `ls **/BAR'
+
+does a recursive directory search for files named BAR, not following
+symbolic links.  For this you can use the form `***/'.
+
+If used for filename generation, a pattern may contain an exclusion
+specifier.  Such patterns are of the form `PAT1~PAT2'.  This pattern
+will generate all files matching PAT1, but which do not match PAT2.
+For example, `*.c~lex.c' will match all files ending in `.c', except
+the file `lex.c'.  This may appear inside parentheses.  Note that `~'
+has higher precedence than `|', so that `pat1|pat2~pat3' matches any
+time that PAT1 matches, or if PAT2 matches while PAT3 does not.  Note
+also that any `/' characters are not treated specially in the exclusion
+specifier, so that a `*' will match multiple path segments if they
+appear in the pattern to the left of the `~'.
+
+Patterns used for filename generation may also end in a list of
+qualifiers enclosed in parentheses.  The qualifiers specify which
+filenames that otherwise match the given pattern will be inserted in the
+argument list.  A qualifier may be any one of the following:
+
+`/'
+     Directories
+
+`.'
+     Plain files
+
+`@'
+     Symbolic links
+
+`='
+     Sockets
+
+`p'
+     Named pipes (FIFOs)
+
+`*'
+     Executable plain files (0100)
+
+`%'
+     Device files (character or block special)
+
+`%b'
+     Block special files
+
+`%c'
+     Character special files
+
+`r'
+     owner-readable files (0400)
+
+`w'
+     owner-writable files (0200)
+
+`x'
+     owner-executable files (0100)
+
+`A'
+     group-readable files (0040)
+
+`I'
+     group-writable files (0020)
+
+`E'
+     group-executable files (0010)
+
+`R'
+     world-readable files (0004)
+
+`W'
+     world-writable files (0002)
+
+`X'
+     world-executable files (0001)
+
+`s'
+     Setuid files (04000)
+
+`S'
+     Setgid files (02000)
+
+`t'
+     files with the sticky bit (01000)
+
+`dDEV'
+     Files on the device DEV
+
+`l[+|-]CT'
+     Files having a link count less than `CT (-)', greater than `CT
+     (+)', or is equal to `CT'.
+
+`U'
+     Files owned by the effective user id.
+
+`G'
+     Files owned by the effective group id.
+
+`uID'
+     Files owned by user ID if ID is a number.  If not, the character
+     after the `u' will be used as a separator and the string between
+     it and the next matching separator (`(', `[', `{', and `<' match
+     `)', `]', `}', and `>' respectively; any other character matches
+     itself) will be taken as a user name and translated into the
+     corresponding user id (e.g.  `u:foo:' or `u[foo]' for user `foo').
+
+`gID'
+     Like `uID' but with group ids or names.
+
+`a[Mwhm][-|+]N'
+     Files accessed exactly N days ago.  Files accessed within the last
+     N days are selected using a negative value for N (`-n').  Files
+     accessed more than N days ago are selected by a positive N value
+     (`+n').  Optional unit specifiers `M', `w', `h', or `m' (e.g.
+     `ah5') cause the check to be performed with months (of 30 days),
+     weeks, hours, or minutes instead of days, respectively.  For
+     instance, `echo *(ah-5)' would echo files accessed within the last
+     five hours.
+
+`m[Mwhm][-|+]N'
+     Like the file access qualifier, except that it uses the file
+     modification time.
+
+`c[Mwhm][-|+]N'
+     Like the file access qualifier, except that it uses the file inode
+     change time.
+
+`L[+-]N'
+     Files less than N bytes (`-'), more than N bytes (`+'), or exactly
+     N bytes in length.  If this flag is directly followed by a `k'
+     (`K'), `m' (`M'), or `p' (`P') (e.g. `Lk+50') the check is
+     performed with kilobytes, megabytes, or blocks (of 512 bytes)
+     instead.
+
+`^'
+     Negates all qualifiers following it.
+
+`-'
+     Toggles between making the qualifiers work on symbolic links (the
+     default), and the files they point to.
+
+`M'
+     Sets the `MARK_DIRS' option for the current pattern.
+
+`T'
+     Appends a trailing qualifier mark to the file names, analogous to
+     the `LIST_TYPES', for the current pattern (overrides `M').
+
+`N'
+     Sets the `NULL_GLOB' option for the current pattern.
+
+`D'
+     Sets the `GLOB_DOTS' option for the current pattern.
+
+More than one of these lists can be combined, separated by commas; the
+whole list matches if at least one of the sublists matches (they are
+`or''ed, the qualifiers in the sublists are `and''ed).
+
+If a `:' appears in a qualifier list, the remainder of the expression
+in parentheses is interpreted as a modifier (*Note Modifiers::).  Note
+that each modifier must be introduced by a separate `:'.  Note also
+that the result after modification does not have to be an existing
+file.  The name of any existing file can be followed by a modifier of
+the form `(:...)' even if no filename generation is performed.
+
+Thus:
+
+   `ls *(-/)'
+
+lists all directories and symbolic links that point to directories, and
+
+   `ls *(%W)'
+
+lists all world-writable device files in the current directory, and
+
+   `ls *(W,X)'
+
+lists all files in the current directory that are world-writable or
+world-executable, and
+
+   `echo /tmp/foo*(u0^@:t)'
+
+outputs the basename of all root-owned files beginning with the string
+`foo' in `/tmp', ignoring symlinks, and
+
+   `ls *.*~(lex|parse).[ch](^D^l1)'
+
+lists all files having a link count of one whose names contain a dot
+(but not those starting with a dot, since `GLOB_DOTS' is explicitly
+switched off) except for `lex.c', `lex.h', `parse.c', and `parse.h'.
+
+
+File: zsh.info,  Node: History Expansion,  Prev: Filename Generation,  Up: Expansion
+
+History Expansion
+=================
+
+History substitution allows you to use words from previous command lines
+in the command line you are typing.  This simplifies spelling
+corrections and the repetition of complicated commands or arguments.
+Command lines are saved in the history list, the size of which is
+controlled by the `HISTSIZE' variable.  The most recent command is
+retained in any case.  A history substitution begins with the first
+character of the `histchars' parameter which is `!' by default and may
+occur anywhere on the command line; history substitutions do not nest.
+The `!' can be escaped with `\' or can be enclosed between a pair of
+single quotes (`''') to suppress its special meaning. Double quotes
+will not work for this.
+
+Input lines containing history substitutions are echoed on the terminal
+after being expanded, but before any other substitutions take place or
+the command gets executed.
+
+* Menu:
+
+* Event Designators::
+* Word Designators::
+* Modifiers::
+
+
+File: zsh.info,  Node: Event Designators,  Next: Word Designators,  Up: History Expansion
+
+Event Designators
+-----------------
+
+An event designator is a reference to a command-line entry in the
+history list.
+
+`!'
+     Start a history substitution, except when followed by a blank,
+     newline, `=', or `('.
+
+`!!'
+     Refer to the previous command.  By itself, this substitution
+     repeats the previous command.
+
+`!N'
+     Refer to command-line N.
+
+`!-N'
+     Refer to the current command-line minus N.
+
+`!STR'
+     Refer to the most recent command starting with STR.
+
+`!?STR[?]'
+     Refer to the most recent command containing STR.
+
+`!#'
+     Refer to the current command line typed in so far.  The line is
+     treated as if it were complete up to and including the word before
+     the one with the `!#' reference.
+
+`!{...}'
+     Insulate a history reference from adjacent characters (if
+     necessary).
+
+
+File: zsh.info,  Node: Word Designators,  Next: Modifiers,  Prev: Event Designators,  Up: History Expansion
+
+Word Designators
+----------------
+
+A word designator indicates which word or words of a given command line
+will be included in a history reference.  A `:' separates the event
+specification from the word designator.  It can be omitted if the word
+designator begins with a `^', `$', `*', `-' or `%'.  Word designators
+include:
+
+`0'
+     The first input word (command).
+
+`N'
+     The N'th argument.
+
+`^'
+     The first argument, that is, `1'.
+
+`$'
+     The last argument.
+
+`%'
+     The word matched by (the most recent) `?STR' search.
+
+`x-y'
+     A range of words; `-y' abbreviates `0-y'.
+
+`*'
+     All the arguments, or a null value if there is just one word in
+     the event.
+
+`x*'
+     Abbreviates `x-$'.
+
+`x-'
+     Like `x*' but omitting word `$'.
+
+Note that a `%' word designator will only work when used as `!%',
+`!:%', `!?str?:%' and only when used after a `!?' substitution.
+Anything else will result in an error, although the error may not be
+the most obvious one.
+

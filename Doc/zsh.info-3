@@ -1,0 +1,1055 @@
+This is Info file zsh.info, produced by Makeinfo-1.55 from the input
+file ./zsh.texi.
+
+This is a texinfo version of the man page for the Z Shell, originally by
+Paul Falstad.  It was converted from the `zsh.1' file distributed with
+zsh v2.5.0 by Jonathan Hardwick, `jch@cs.cmu.edu' and updated/modified
+by Clive Messer, `clive@epos.demon.co.uk' to its present state.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the entire resulting derived work is distributed under the terms
+of a permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: zsh.info,  Node: Miscellaneous,  Prev: Completion,  Up: Zsh Line Editor
+
+Miscellaneous
+=============
+
+`accept-and-hold (`ESC-A' `ESC-a') (unbound) (unbound)'
+     Push the contents of the buffer on the buffer stack and execute it.
+
+`accept-and-infer-next-history'
+     Execute the contents of the buffer.  Then search the history list
+     for a line matching the current one and push the event following
+     onto the buffer stack.
+
+`accept-line (`^J' `^M') (`^J' `^M') (`^J' `^M')'
+     Execute the contents of the buffer.
+
+`accept-line-and-down-history (`^O') (unbound) (unbound)'
+     Execute the current line, and push the next history event on the
+     the buffer stack.
+
+`vi-cmd-mode (`^X^V') (unbound) (`^[')'
+     Enter command mode; that is, use the alternate keymap.  Yes, this
+     is bound by default in emacs mode.
+
+`vi-caps-lock-panic'
+     Hang until any lowercase key is pressed.  This is for vi users
+     without the mental capacity to keep track of their caps lock key
+     (like the author).
+
+`clear-screen (`^L' `ESC-^L') (`^L') (`^L')'
+     Clear the screen and redraw the prompt.
+
+`describe-key-briefly'
+     Waits for keypress, then prints the function bound to the pressed
+     key.
+
+`exchange-point-and-mark (`^X^X') (unbound) (unbound)'
+     Exchange the cursor position with the position of the mark.
+
+`execute-named-cmd (`ESC-x') (unbound) (unbound)'
+     Read the name of a editor command and execute it.  A restricted
+     set of editing functions is available in the mini-buffer.  An
+     interrupt signal, as defined by the stty setting, will abort the
+     function.  The allowed functions are: `backward-delete-char',
+     `vi-backward-delete-char', `clear-screen', `redisplay',
+     `quoted-insert', `vi-quoted-insert', `kill-region' (kills the last
+     word), `backward-kill-word', `vi-backward-kill-word',
+     `kill-whole-line', `vi-kill-line', `backward-kill-line',
+     `list-choices', `delete-char-or-list', `complete-word',
+     `expand-or-complete', `expand-or-complete-prefix', `accept-line',
+     and `vi-cmd-mode' (treated the same as accept line).  The SPC and
+     TAB characters, if not bound to one of these functions, will
+     complete the name and then list the possibilities if the
+     `AUTO_LIST' option is set.  Any string that is bound to an
+     out-string (via `bindkey -s') will behave as if out-string were
+     typed directly.  Any other character that is not bound to
+     `self-insert' or `self-insert-unmeta' will beep and be ignored.
+     If the function is called from vi command mode, the bindings of
+     the current insert mode will be used.
+
+`execute-last-named-cmd (`ESC-z') (unbound) (unbound)'
+     Redo the last function executed with `execute-named-cmd'.
+
+`get-line (`ESC-G' `ESC-g') (unbound) (unbound)'
+     Pop the top line off the buffer stack and insert it at the cursor
+     position.
+
+`pound-insert (unbound) (`#') (unbound)'
+     If there is no `#' character at the beginning of the buffer, add
+     one to the beginning of each line.  If there is one, remove a `#'
+     from each line that has one.  In either case, accept the current
+     line.  The `INTERACTIVE_COMMENTS' option must be set for this to
+     have any usefulness.
+
+`vi-pound-insert'
+     If there is no `#' character at the beginning of the current line,
+     add one.  If there is one, remove it.  The `INTERACTIVE_COMMENTS'
+     option must be set for this to have any usefulness.
+
+`push-input'
+     Push the entire current multi-line construct onto the buffer stack
+     and return to the top-level (`PS1') prompt.  If the current parser
+     construct is only a single line, this is exactly like `push-line'.
+     Next time the editor starts up or is popped with `get-line', the
+     construct will be popped off the top of the buffer stack and
+     loaded into the editing buffer.
+
+`push-line (`^Q' `ESC-Q' `ESC-q') (unbound) (unbound)'
+     Push the current buffer onto the buffer stack and clear the buffer.
+     Next time the editor starts up, the buffer will be popped off the
+     top of the buffer stack and loaded into the editing buffer.
+
+`push-line-or-edit'
+     At the top-level (`PS1') prompt, equivalent to `push-line'.  At a
+     secondary (`PS2') prompt, move the entire current multi-line
+     construct into the editor buffer.  The latter is equivalent to
+     `push-line' followed by `get-line'.
+
+`redisplay (unbound) (`^R') (`^R')'
+     Redisplays the edit buffer.
+
+`send-break (`^G' `ESC-^G') (unbound) (unbound)'
+     Abort the current editor function, e.g. `execute-named-command', or
+     the editor itself, e.g. if you are in `vared'.  Otherwise abort the
+     parsing of the current line.
+
+`run-help (`ESC-H' `ESC-h') (unbound) (unbound)'
+     Push the buffer onto the buffer stack, and execute the command
+     `run-help CMD', where CMD is the current command.  `run-help' is
+     normally aliased to `man'.
+
+`vi-set-buffer (unbound) (`"') (unbound)'
+     Specify a buffer to be used in the following command.  There are
+     35 buffers that can be  specified: the  26  "named" buffers `"a'
+     to  `"z'  and the nine "queued" buffers "1 to "9.  The named
+     buffers can also be specified as `"A' to `"Z'.  When a buffer is
+     specified for a cut command, the text being cut replaces the
+     previous contents of the specified buffer.  If a named buffer is
+     specified using a capital, the newly cut text is appended to the
+     buffer instead of overwriting it.  If no buffer is specified for a
+     cut command, `"1' is used, and the contents of `"1' to `"8' are
+     each shifted along one buffer; the contents of `"9' is lost.
+
+`vi-set-mark (unbound) (`m') (unbound)'
+     Set the specified mark at the cursor position.
+
+`set-mark-command (`^@') (unbound) (unbound)'
+     Set the mark at the cursor position.
+
+`spell-word (`ESC-$' `ESC-S' `ESC-s') (unbound) (unbound)'
+     Attempt spelling correction on the current word.
+
+`undefined-key (lots o' keys) (lots o' keys) (unbound)'
+     Beep.
+
+`undo (`^_' `^Xu' `^X^U') (unbound) (unbound)'
+     Incrementally undo the last text modification.
+
+`vi-undo-change (unbound) (`u') (unbound)'
+     Undo the last text modification.  If repeated, redo the
+     modification.
+
+`where-is'
+     Read the name of an editor command and and print the listing of
+     key sequences that invoke the specified command.
+
+`which-command (`ESC-?') (unbound) (unbound)'
+     Push the buffer onto the buffer stack, and execute the command
+     `which-command CMD', where CMD is the current command.
+     `which-command' is normally aliased to `whence'.
+
+`vi-digit-or-beginning-of-line(unbound) (`0') (unbound)'
+     If the last command executed was a digit as part of an argument,
+     continue the argument.  Otherwise, execute `vi-beginning-of-line'.
+
+
+File: zsh.info,  Node: Parameters,  Next: Options,  Prev: Zsh Line Editor,  Up: Top
+
+Parameters
+**********
+
+A parameter has a name, a value, and a number of attributes.  A name may
+be any sequence of alphanumeric characters and `_''s, or the single
+characters `*', `@', `#', `?', `-', `$', or `!'.  The value may be
+either a scalar (a string), an integer, or an array.  To assign a
+scalar or integer value to a parameter, use the `typeset' builtin.  To
+assign an array value, use `set -A NAME VALUE ...'.  The value of a
+parameter may also be assigned by writing:
+
+   `NAME=VALUE ...'
+
+If the integer attribute, `-i', is set for NAME, the VALUE is subject
+to arithmetic evaluation.
+
+* Menu:
+
+* Array Parameters::
+* Positional Parameters::
+* Parameters Set By The Shell::
+* Parameters Used By The Shell::
+
+
+File: zsh.info,  Node: Array Parameters,  Next: Positional Parameters,  Up: Parameters
+
+Array Parameters
+================
+
+The value of an array parameter may be assigned by writing:
+
+   NAME=(VALUE ...) ...
+
+Individual elements of an array may be selected using a subscript.  A
+subscript of the form `[EXP]' selects the single element EXP, where EXP
+is an arithmetic expression which will be subject to arithmetic
+expansion as if it were surrounded by `$((...))'.  The elements are
+numbered beginning with 1 unless the `KSH_ARRAYS' option is set when
+they are numbered from zero.
+
+A subscript of the form `[*]' or `[@]' evaluates to all elements of an
+array; there is no difference between the two except when they appear
+within double quotes.  `"$foo[*]"' evaluates to `"$foo[1] $foo[2]
+..."', while `"$foo[@]"' evaluates to `"$foo[1]"' `"$foo[2]"', etc.
+
+A subscript of the form `[EXP1,EXP2]' selects all elements in the range
+EXP1 to EXP2, inclusive.  If one of the subscripts evaluates to a
+negative number, say `-N', then the N'th element from the end of the
+array is used.  Thus `$foo[-3]' is the third element from the end of
+the array `foo', and `$foo[1,-1]' is the same as `$foo[*]'.
+
+Subscripting may also be performed on non-array values, in which case
+the subscripts specify a substring to be extracted.  For example, if
+`FOO' is set to `foobar', then `echo $FOO[2,5]' prints `ooba'.
+
+Subscripts may be used inside braces used to delimit a parameter name,
+thus `${foo[2]}' is equivalent to `$foo[2]'.  If the `KSH_ARRAYS'
+option is set, the braced form is the only one that will work, the
+subscript otherwise not being treated specially.
+
+If a subscript is used on the left side of an assignment the selected
+range is replaced by the expression on the right side.
+
+If the opening bracket or the comma is directly followed by an opening
+parenthesis the string up to the matching closing parenthesis is
+considered to be a list of flags.  The flags currently understood are:
+
+`e'
+     This option has no effect and retained for backward compatibility
+     only.
+
+`w'
+     If the parameter subscripted is a scalar, then this flag makes
+     subscription work on a per-word basis instead of characters.
+
+`s:STRING:'
+     Defines the STRING that separates words (for use with the `w'
+     flag).
+
+`p'
+     Recognize the same escape sequences as the `print' builtin in the
+     string argument of a subsequent `s' flag.
+
+`f'
+     If the parameter subscripted is a scalar than this flag makes
+     subscription work on a per-line basis instead of characters.
+     This is a shorthand for `pws:\n:'.
+
+`r'
+     If this flag is given the exp is taken as a pattern and the result
+     is the first matching array element, substring or word (if the
+     parameter is an array, if it is a scalar, or if it is a scalar and
+     the `w' flag is given, respectively); note that this is like
+     giving a number: `$foo[(r)??,3]' and `$foo[(r)??,(r)f*]' work.
+
+`R'
+     Like `r', but gives the last match.
+
+`i'
+     Like `r', but gives the index of the match instead; this may not be
+     combined with a second argument.
+
+`I'
+     Like `i', but gives the index of the last match.
+
+`n:EXPR:'
+     If combined with `r', `R', `i', or `I', makes them return the N'th
+     or N'th last match (if EXPR evaluates to N).
+
+
+File: zsh.info,  Node: Positional Parameters,  Next: Parameters Set By The Shell,  Prev: Array Parameters,  Up: Parameters
+
+Positional Parameters
+=====================
+
+Positional parameters are set by the shell on invocation, by the `set'
+builtin, or by direct assignment.  The parameter N, where N is a
+number, is the N'th positional parameter.  The parameters `*', `@', and
+`argv' are arrays containing all the positional parameters; thus
+`argv[N]', is equivalent to simply N.
+
+
+File: zsh.info,  Node: Parameters Set By The Shell,  Next: Parameters Used By The Shell,  Prev: Positional Parameters,  Up: Parameters
+
+Parameters Set By The Shell
+===========================
+
+The following parameters are automatically set by the shell:
+
+`!'
+     The process id of the last background command invoked.
+
+`#'
+     The number of positional parameters in decimal.
+
+`ARGC'
+     Same as `#'.  It has no special meaning in sh/ksh compatibility
+     mode.
+
+`$'
+     The process id of this shell.
+
+`-'
+     Flags supplied to the shell on invocation or by the `set' or
+     `setopt' commands.
+
+`*'
+     An array containing the positional parameters.
+
+`argv'
+     Same as `*'.  It has no special meaning in sh/ksh compatibility
+     mode.
+
+`@'
+     Same as `argv[@]' but it can be used in sh/ksh compatibility mode.
+
+`?'
+     The exit value returned by the last command.
+
+`status'
+     Same as `?'.  It has no special meaning in sh/ksh compatibility
+     mode.
+
+`_'
+     The last argument of the previous command.  Also, this parameter
+     is set in the environment of every command executed to the full
+     pathname of the command.
+
+`EGID'
+     The effective group id of the shell process.  If you have
+     sufficient privileges, you may change the effective group id of
+     the shell process by assigning to this parameter.  Also (assuming
+     sufficient privileges), you may start a single command with a
+     different effective group id by: `(EGID=egid ; command)'
+
+`EUID'
+     The effective user id of the shell process.  If you have sufficient
+     privileges, you may change the effective user id of the shell
+     process by assigning to this parameter.  Also (assuming sufficient
+     privileges), you may start a single command with a different
+     effective user id by: `(EUID=euid ; command)'
+
+`ERRNO'
+     The value of `errno' as set by the most recently failed system
+     call.  This value is system dependent and is intended for debugging
+     purposes.
+
+`GID'
+     The group id of the shell process.  If you have sufficient
+     privileges, you may change the group id of the shell process by
+     assigning to this parameter.  Also (assuming sufficient
+     privileges), you may start a single command under a different
+     group id by: `(GID=gid ; command)'
+
+`HOST'
+     The current hostname.
+
+`LINENO'
+     The line number of the current line within the current script being
+     executed.
+
+`LOGNAME'
+     If the corresponding variable is not set in the environment of the
+     shell, it is initialized to the login name corresponding to the
+     current login session.  This parameter is exported by default but
+     this can be disabled using the `typeset' builtin.
+
+`MACHTYPE'
+     The machine type (microprocessor class or machine model), as
+     determined at compile time.
+
+`OLDPWD'
+     The previous working directory.
+
+`OPTARG'
+     The value of the last option argument processed by the `getopts'
+     command.
+
+`OPTIND'
+     The index of the last option argument processed by the `getopts'
+     command.
+
+`OSTYPE'
+     The operating system, as determined at compile time.
+
+`PPID'
+     The process id of the parent of the shell.
+
+`PWD'
+     The present working directory.
+
+`RANDOM'
+     A random integer from 0 to 32767, newly generated each time this
+     parameter is referenced.  The random number generator can be
+     seeded by assigning a numeric value to `RANDOM'.
+
+`SECONDS'
+     The number of seconds since shell invocation.  If this parameter is
+     assigned a value, then the value returned upon reference will be
+     the value that was assigned plus the number of seconds since the
+     assignment.
+
+`SHLVL'
+     Incremented by one each time a new shell is started.
+
+`signals'
+     An array containing the names of the signals.
+
+`TTY'
+     The name of the tty associated with the shell, if any.
+
+`TTYIDLE'
+     The idle time of the tty associated with the shell in seconds or
+     -1 if there is no such tty.
+
+`UID'
+     The user id of the shell process.  If you have sufficient
+     privileges, you may change the user id of the shell by assigning
+     to this parameter.  Also (assuming sufficient privileges), you may
+     start a single command under a different user id by: `(UID=uid ;
+     command)'
+
+`USERNAME'
+     The username corresponding to the user id of the shell process.
+     If you have sufficient privileges, you may change the username
+     (and also the user id and group id) of the shell by assigning to
+     this parameter.  Also (assuming sufficient privileges), you may
+     start a single command under a different username (and user id and
+     group id) by: `(USERNAME=username ; command)'
+
+`VENDOR'
+     The vendor, as determined at compile time.
+
+`ZSHNAME'
+`ZSH_NAME'
+     Expands to the basename of the command used to invoke this
+     instance of zsh.
+
+`ZSH_VERSION'
+     The version number of this zsh.
+
+
+File: zsh.info,  Node: Parameters Used By The Shell,  Prev: Parameters Set By The Shell,  Up: Parameters
+
+Parameters Used By The Shell
+============================
+
+The following parameters are used by the shell:
+
+`ARGV0'
+     If exported, its value is used as argv[0] of external commands.
+     Usually used in constructs like `ARGV0=emacs nethack'.
+
+`BAUD'
+     The baud rate of the current connection.  Used by the line editor
+     update mechanism to compensate for a slow terminal by delaying
+     updates until necessary.  This may be profitably set to a lower
+     value in some circumstances, e.g. for slow modems dialing into a
+     communications server which is connected to a host via a fast
+     link; in this case, this variable would be set by default to the
+     speed of the fast link, and not the modem.  This parameter should
+     be set to the baud rate of the slowest part of the link for best
+     performance.  The compensation mechanism can be turned off by
+     setting the variable to zero.
+
+`cdpath (CDPATH)'
+     An array (colon-separated list) of directories specifying the
+     search path for the `cd' command.
+
+`COLUMNS'
+     The number of columns for this terminal session.  Used for printing
+     select lists and for the line editor.
+
+`DIRSTACKSIZE'
+     The maximum size of the directory stack.  If the stack gets larger
+     than this, it will be truncated automatically.  This is useful
+     with the `AUTO_PUSHD' option.
+
+`FCEDIT'
+     The default editor for the `fc' builtin.
+
+`fignore (FIGNORE)'
+     An array (colon-separated list) containing the suffixes of files
+     to be ignored during filename completion.  However, if the
+     completion generates only files which would match if this variable
+     would be ignored, than these files are completed anyway.
+
+`fpath (FPATH)'
+     An array (colon-separated list) of directories specifying the
+     search path for function definitions.  This path is searched when
+     a function with the `-u' attribute is referenced.  If an
+     executable file is found, then it is read and executed in the
+     current environment.
+
+`histchars'
+     Three characters used by the shell's history and lexical analysis
+     mechanism.  The first character signals the start of a history
+     substitution (default `!').  The second character signals the start
+     of a quick history substitution (default `^').  The third character
+     is the comment character (default `#').
+
+`HISTCHARS'
+     Depreciated. Use `histchars'.
+
+`HISTFILE'
+     The file to save the history in when an interactive shell exits.
+     If unset, the history is not saved.
+
+`HISTSIZE'
+     The maximum size of the history list.
+
+`HOME'
+     The default argument for the `cd' command.
+
+`IFS'
+     Internal field separators, normally space, tab, and newline, that
+     are used to separate words which result from command or parameter
+     substitution and words read by the `read' builtin.  Any characters
+     from the set space, tab and newline that appear in the `IFS' are
+     called "IFS white space".  One or more IFS white space characters
+     or one non-IFS white space character together with any adjacent
+     IFS white space character delimit a field.  If an IFS white space
+     character appears twice consecutively in the `IFS', this character
+     is treated as if it were not an IFS white space character.
+
+`KEYTIMEOUT'
+     The time the shell waits, in hundredths of seconds, for another
+     key to be pressed when reading bound multi-character sequences.
+
+`LANG'
+     This variable determines the locale category for any category not
+     specifically selected via a variable starting with `LC_'.
+
+`LC_ALL'
+     This variable overrides the value of the `LANG' variable and the
+     value of any of the other variables starting with `LC_'.
+
+`LC_COLLATE'
+     This variable determines the locale category for character
+     collation information within ranges in glob brackets and for
+     sorting.
+
+`LC_CTYPE'
+     This variable determines the locale category for character handling
+     functions.
+
+`LC_MESSAGES'
+     This variable determines the language in which messages should be
+     written.  Note that zsh does not use message catalogs.
+
+`LC_TIME'
+     This variable determines the locale category for date and time
+     formatting in promt escape sequences.
+
+`LINES'
+     The number of lines for this terminal session.  Used for printing
+     select lists and for the line editor.
+
+`LISTMAX'
+     In the line editor, the number of filenames to list without asking
+     first.  If set to zero, the shell asks only if the listing would
+     scroll off the screen.
+
+`LOGCHECK'
+     The interval in seconds between checks for login/logout activity
+     using the `watch' parameter.
+
+`MAIL'
+     If this parameter is set and `mailpath' is not set, the shell looks
+     for mail in the specified file.
+
+`MAILCHECK'
+     The interval in seconds between checks for new mail.
+
+`mailpath (MAILPATH)'
+     An array (colon-separated list) of filenames to check for new
+     mail.  Each filename can be followed by a `?' and a message that
+     will be printed.  The message will undergo parameter expansion,
+     command substitution and arithmetic substitution with the variable
+     `$_' defined as the name of the file that has changed.  The
+     default message is `You have new mail'.  If an element is a
+     directory instead of a file the shell will recursively check every
+     file in every subdirectory of the element.
+
+`manpath (MANPATH)'
+     An array (colon-separated list) whose value is not used by the
+     shell.  The `manpath' array can be useful, however, since setting
+     it also sets `MANPATH', and vice versa.
+
+`NULLCMD'
+     The command name to assume if a redirection is specified with no
+     command.  Defaults to `cat'.  For sh/ksh-like behaviour, change
+     this to `:'.  For csh-like behaviour, unset this parameter; the
+     shell will print an error message if null commands are entered.
+
+`path (PATH)'
+     An array (colon-separated list) of directories to search for
+     commands.  When this parameter is set, each directory is scanned
+     and all files found are put in a hash table.
+
+`POSTEDIT'
+     This string is output whenever the line editor exits.  It usually
+     contains termcap strings to reset the terminal.
+
+`PS1'
+     The primary prompt string, printed before a command is read; the
+     default is `%m%# '.  If the escape sequence takes an optional
+     integer, it should appear between the `%' and the next character
+     of the sequence.  The following escape sequences are recognized:
+
+    `%%'
+          A `%'.
+
+    `%)'
+          A `)'.
+
+    `%d'
+    `%/'
+          Present working directory (`$PWD').
+
+    `%~'
+          `$PWD'.  If it has a named directory as its prefix, that part
+          is replaced by a `~' followed by the name of the directory.
+          If it starts with `$HOME', that part is replaced by a `~'.
+
+    `%c'
+    `%.'
+    `%C'
+          Trailing component of `$PWD'.  An integer may follow the `%'
+          to get more than one component.  Unless `%C' is used, tilde
+          expansion is performed first.
+
+    `!'
+    `%h'
+    `%!'
+          Current history event number.
+
+    `%M'
+          The full machine hostname.
+
+    `%m'
+          The hostname up to the first `.'.  An integer may follow the
+          `%' to specify how many components of the hostname are
+          desired.
+
+    `%S (%s)'
+          Start (stop) standout mode.
+
+    `%U (%u)'
+          Start (stop) underline mode.
+
+    `%B (%b)'
+          Start (stop) boldface mode.
+
+    `%t'
+    `%@'
+          Current time of day, in 12-hour, am/pm format.
+
+    `%T'
+          Current time of day, in 24-hour format.
+
+    `%*'
+          Current time of day in 24-hour format, with seconds.
+
+    `%n'
+          `$USERNAME'.
+
+    `%w'
+          The date in day-dd format.
+
+    `%W'
+          The date in mm/dd/yy format.
+
+    `%D'
+          The date in yy-mm-dd format.
+
+    `%D{STRING}'
+          STRING is formatted using the `strftime' function.  See
+          `strftime(3)' for more details, if your system has it.
+
+    `%l'
+          The line (tty) the user is logged in on.
+
+    `%?'
+          The return code of the last command executed just before the
+          prompt.
+
+    `%_'
+          The status of the parser, i.e. the shell constructs (like
+          `if' and `for') that have been started on the command line.
+          If given an integer number, that many strings will be
+          printed; zero or no integer means print as many as there are.
+
+    `%E'
+          Clears to end of line.
+
+    `%#'
+          A `#' if the shell is running as root, a `%' if not.
+          Equivalent to `%(#.#.%%)'
+
+    `%v'
+          The value of the first element of the `psvar' array parameter.
+          Following the `%' with an integer gives that element of the
+          array.
+
+    `%{...%}'
+          Include a string as a literal escape sequence.  The string
+          within the braces should not change the cursor position.
+
+    `%(x.TRUE-TEXT.FALSE-TEXT)'
+          Specifies a ternary expression.  The character following the
+          `x' is arbitrary; the same character is used to separate the
+          text for the true result from that for the false result.  The
+          separator may not appear in the `true-text', except as part
+          of a `%' sequence.  A `)' may appear in the `false-text' as a
+          `%)'.  `true-text' and `false-text' may both contain contain
+          arbitrarily-nested escape sequences, including further
+          ternary expressions.  The left parenthesis may be preceded or
+          followed by a positive integer `n', which defaults to zero.
+          The test character `x' may be any of the following:
+
+         `c'
+         `.'
+         `~'
+               True if the current path, with prefix replacement, has
+               at least N elements.
+
+         `/'
+         `C'
+               True if the current absolute path has at least N
+               elements.
+
+         `t'
+               True if the time in minutes is equal to N.
+
+         `T'
+               True if the time in hours is equal to N.
+
+         `d'
+               True if the day of the month is equal to N.
+
+         `D'
+               True if the month is equal to N (January = 0).
+
+         `w'
+               True if the day of the week is equal to N (Sunday = 0).
+
+         `?'
+               True if the exit status of the last command was N.
+
+         `#'
+               True if the effective uid of the current process is N.
+
+         `g'
+               True if the effective gid of the current process is N.
+
+         `L'
+               True if the `SHLVL' parameter is at least N.
+
+         `S'
+               True if the `SECONDS' parameter is at least N.
+
+         `v'
+               True if the array `psvar' has at least N elements.
+
+         `_'
+               True if at least N shell constructs were started.
+
+         `%<STRING<'
+         `%>STRING>'
+         `%[XSTRING]'
+               Specifies truncation behaviour.  The third form is
+               equivalent to `%XSTRINGX', i.e. `X' may be `<' or `>'.
+               The numeric argument, which in the third form may appear
+               immediately after the `[', specifies the maximum
+               permitted length of the various strings that can be
+               displayed in the prompt.  If this integer is zero, or
+               missing, truncation is disabled.  Truncation is initially
+               disabled.  The forms with `<' truncate at the left of
+               the string, and the forms with `>' truncate at the right
+               of the string.  For example, if the current directory is
+               `/home/pike', the prompt `%8<..<%/' will expand to
+               `..e/pike'.  The `string' will be displayed in place of
+               the truncated portion of any string.  In this string,
+               the terminating character (`<', `>' or `]'), or in fact
+               any character, may be quoted by a preceding `\'.  `%'
+               sequences are not treated specially.  If the `string' is
+               longer than the specified truncation length, it will
+               appear in full, completely replacing the truncated
+               string.
+
+`PS2'
+     The secondary prompt, printed when the shell needs more
+     information to complete a command.  Recognizes the same escape
+     sequences as `$PS1'.  The default is `%_> '.
+
+`PS3'
+     Selection prompt used within a `select' loop.  Recognizes the same
+     escape sequences as `PS1'.  The default is `?# '.
+
+`PS4'
+     The execution trace prompt.  Default is `+ '.
+
+`PROMPT'
+`PROMPT2'
+`PROMPT3'
+`PROMPT4'
+     Same as `PS1', `PS2', `PS3', and `PS4', respectively.  These
+     parameters do not have any special meaning in sh/ksh compatibility
+     mode.
+
+`psvar (PSVAR)'
+     An array (colon-separated list) whose first nine values can be
+     used in `PROMPT' strings.  Setting `psvar' also sets `PSVAR', and
+     vice versa.
+
+`prompt'
+     Same as `PS1'.  It has no special meaning in sh/ksh compatibility
+     mode.
+
+`READNULLCMD'
+     The command name to assume if a single input redirection is
+     specified with no command.  Defaults to `more'.
+
+`REPORTTIME'
+     If nonzero, commands whose combined user and system execution times
+     (measured in seconds) are greater than this value have timing
+     statistics printed for them.
+
+`RPROMPT'
+`RPS1'
+     This prompt is displayed on the right-hand side of the screen when
+     the primary prompt is being displayed on the left.  This does not
+     work if the `SINGLELINEZLE' option is set.  Recognizes the same
+     escape sequences as `PROMPT'.
+
+`SAVEHIST'
+     The maximum number of history events to save in the history file.
+
+`SPROMPT'
+     The prompt used for spelling correction.  The sequence `%R' expands
+     to the string which presumably needs spelling correction, and `%r'
+     expands to the proposed correction.  All other `PROMPT' escapes are
+     also allowed.
+
+`STTY'
+     If this parameter is set in a command's environment, the shell
+     runs the `stty' command with the value of this parameter as
+     arguments in order to set up the terminal before executing the
+     command.  The modes apply only to the command, and are reset when
+     it finishes or is suspended.  If the command is suspended and
+     continued later with the `fg' or `wait' builtins it will see the
+     modes specified by `STTY', as if it were not suspended.  This
+     (intentionally) does not apply if the command is continued via
+     `kill -CONT'.  `STTY' is ignored if the command is run in the
+     background, or if it is in the environment of the shell but not
+     explicitly assigned to in the input line.  This avoids running
+     `stty' at every external command by accidentally exporting it.
+     Also note that `STTY' should not be used for window size
+     specifications; these will not be local to the command.
+
+`TIMEFMT'
+     The format of process time reports with the `time' keyword.  The
+     default is `%E real  %U user  %S system  %P %J'.  Recognizes the
+     following escape sequences:
+
+    `%'
+          A `%'.
+
+    `%U'
+          CPU seconds spent in user mode.
+
+    `%S'
+          CPU seconds spent in kernel mode.
+
+    `%E'
+          Elapsed time in seconds.
+
+    `%P'
+          The CPU percentage, computed as (%U+%S)/%E.
+
+    `%J'
+          The name of this job.
+
+     A star may be inserted between the percent sign and flags printing
+     time.  This cause the time to be printed in `hh:mm:ss.ttt' format
+     (hours and minutes are only printed if they are not zero).
+
+`TMOUT'
+     If this parameter is nonzero, the shell will receive an `ALRM'
+     signal if a command is not entered within the specified number of
+     seconds after issuing a prompt.  If there is a trap on `SIGALRM',
+     it will be executed and a new alarm is scheduled using the value
+     of the `TMOUT' parameter after executing the trap.  If no trap is
+     set, and the idle time of the terminal is not less than the value
+     of the `TMOUT' parameter, zsh terminates.  Otherwise a new alarm
+     is scheduled to `TMOUT' seconds after the last keypress.
+
+`TMPPREFIX'
+     A pathname prefix which the shell will use for all temporary files.
+     Note that this should include an initial part for the file name as
+     well as any directory names.  The default is `/tmp/zsh'.
+
+`watch (WATCH)'
+     An array (colon-separated list) of login/logout events to report.
+     If it contains the single word `all', then all login/logout events
+     are reported.  If it contains the single word `notme', then all
+     login/logout events are reported except for those originating from
+     `$USERNAME'.  An entry in this list may consist of a username, an
+     `@' followed by a remote hostname, and a `%' followed by a line
+     (tty).  Any or all of these components may be present in an entry;
+     if a login/logout event matches all of them, it is reported.
+
+`WATCHFMT'
+     The format of login/logout reports if the `watch' parameter is set.
+     Default is `%n has %a %l from %m'.  Recognizes the following escape
+     sequences:
+
+    `%n'
+          The name of the user that logged in/out.
+
+    `%a'
+          The observed action, i.e. `logged on' or `logged off'.
+
+    `%l'
+          The line (tty) the user is logged in on.
+
+    `%M'
+          The full hostname of the remote host.
+
+    `%m'
+          The hostname up to the first `.'.  If only the IP address is
+          available or the utmp field contains the name of an X-windows
+          display, the whole name is printed.
+
+          NOTE: The `%m' and `%M' escapes will work only if there is a
+          host name field in the `utmp' on your machine.  Otherwise
+          they are treated as ordinary strings.
+
+    `%S (%s)'
+          Start (stop) standout mode.
+
+    `%U (%u)'
+          Start (stop) underline mode.
+
+    `%B (%b)'
+          Start (stop) boldface mode.
+
+    `%t'
+    `%@'
+          The time, in 12-hour, am/pm format.
+
+    `%T'
+          The time, in 24-hour format.
+
+    `%w'
+          The date in day-dd format.
+
+    `%W'
+          The date in mm/dd/yy format.
+
+    `%D'
+          The date in yy-mm-dd format.
+
+    `%(x:TRUE-TEXT:FALSE-TEXT)'
+          Specifies a ternary expression.  The character following the
+          `x' is arbitrary; the same character is used to separate the
+          text for the true result from that for the false result.
+          Both the separator and the right parenthesis may be escaped
+          with a backslash.  Ternary expressions may be nested.
+
+          The test character `x' may be any one of `l', `n', `m', or
+          `M', which indicate a true result if the corresponding escape
+          sequence would return a non-empty value; or it may be `a',
+          which indicates a true result if the watched user has logged
+          in, or false if he has logged out.  Other characters evaluate
+          to neither true nor false; the entire expression is omitted
+          in this case.
+
+          If the result is true, then the TRUE-TEXT is formatted
+          according to the result above and printed, and the FALSE-TEXT
+          is skipped.  If false, the TRUE-TEXT is skipped, and the
+          FALSE-TEXT is formatted and printed.  Either or both of the
+          branches may be empty, but both separators must always be
+          present.
+
+`WORDCHARS'
+     A list of non-alphanumeric characters considered part of a word by
+     the line editor.
+
+`ZDOTDIR'
+     The directory to search for shell startup files (`.zshrc', etc), if
+     not `$HOME'.
+
+
+File: zsh.info,  Node: Options,  Next: Shell Builtin Commands,  Prev: Parameters,  Up: Top
+
+Options
+*******
+
+* Menu:
+
+* Specifying Options::
+* Description of Options::
+* Single Letter Options::
+
+
+File: zsh.info,  Node: Specifying Options,  Next: Description of Options,  Up: Options
+
+Specifying Options
+==================
+
+Options are primarily referred to by name.  These names are case
+insensitive and underscores are ignored.  For example, `allexport' is
+equivalent to `A__lleXP_ort'.
+
+The sense of an option name may be inverted by preceding it with `no',
+so `setopt No_Beep' is equivalent to `unsetopt beep'.  This inversion
+can only be done once, so `nonobeep' is *not* a synonym for `beep'.
+Similarly, `tify' is *not* a synonym for `nonotify' (the inversion of
+`notify').
+
+Some options also have one or more single letter names.  There are two
+sets of single letter options: one used by default, and another used to
+emulate `sh'/`ksh' (used when the `SH_OPTION_LETTERS' option is set).
+The single letter options can be used on the shell command line, or
+with the `set', `setopt' and `unsetopt' builtins, as normal Unix
+options preceded by `-'.
+
+The  sense of the single letter options may be inverted by using `+'
+instead of `-'.  Some of the single letter option names refer to an
+option being off, in which case the inversion of that name refers to the
+option being on.  For example, `+n' is the short name of `exec', and
+`-n' is the short name of its inversion, `noexec'.
+

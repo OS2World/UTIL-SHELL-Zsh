@@ -1,0 +1,777 @@
+This is Info file zsh.info, produced by Makeinfo-1.55 from the input
+file ./zsh.texi.
+
+This is a texinfo version of the man page for the Z Shell, originally by
+Paul Falstad.  It was converted from the `zsh.1' file distributed with
+zsh v2.5.0 by Jonathan Hardwick, `jch@cs.cmu.edu' and updated/modified
+by Clive Messer, `clive@epos.demon.co.uk' to its present state.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the entire resulting derived work is distributed under the terms
+of a permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: zsh.info,  Node: Description of Options,  Next: Single Letter Options,  Prev: Specifying Options,  Up: Options
+
+Description of Options
+======================
+
+`ALL_EXPORT (-a, ksh: -a)'
+     All parameters subsequently defined are automatically exported.
+
+`ALWAYS_LAST_PROMPT'
+     If unset, key functions that list completions try to return to the
+     last prompt if given a numeric argument.  If set, these functions
+     try to return to the last prompt if given no numeric argument.
+
+`ALWAYS_TO_END'
+     If a completion is performed with the cursor within a word, and a
+     full completion is inserted, the cursor is moved to the end of the
+     word.  That is, the cursor is moved to the end of the word if
+     either a single match is inserted or menu completion is performed.
+
+`APPEND_HISTORY'
+     If this is set, zsh sessions will append their history list to the
+     history file, rather than overwrite it.  Thus, multiple parallel
+     zsh sessions will all have their history lists added to the
+     history file, in the order they are killed.  *Note Shell Builtin
+     Commands::, for the `fc' command.
+
+`AUTO_CD (-J)'
+     If a command is issued that can't be executed as a normal command,
+     and the command is the name of a directory, perform the `cd'
+     command to that directory.
+
+`AUTO_LIST (-9)'
+     Automatically list choices on an ambiguous completion.
+
+`AUTO_MENU'
+     Automatically use menu completion after the second consecutive
+     request for completion, for example by pressing the TAB key
+     repeatedly.  This option is overridden by `MENU_COMPLETE'.
+
+`AUTO_NAME_DIRS'
+     Any parameter that is set to the absolute name of a directory
+     immediately becomes a name for that directory, that will be used
+     by the `%~' and related prompt sequences, and will be available
+     when completion is performed on a word starting with `~'.
+     (Otherwise, the parameter must be used in the form `~param' first.)
+
+`AUTO_PARAM_KEYS'
+     If a parameter name was completed and a following character
+     (normally a space) automatically inserted, and the next character
+     typed is one of those that have to come directly after the name
+     (like `}', `:', etc.), the character is inserted *before* the
+     space rather than after.
+
+`AUTO_PARAM_SLASH'
+     If a parameter is completed whose content is the name of a
+     directory, then add a trailing slash instead of a space.
+
+`AUTO_PUSHD (-N)'
+     Make `cd' push the old directory onto the directory stack.
+
+`AUTO_REMOVE_SLASH'
+     When the last character resulting from a completion is a slash and
+     the next character typed is a word delimiter or a slash, remove
+     the slash.
+
+`AUTO_RESUME (-W)'
+     Treat single word simple commands without redirection as
+     candidates for resumption of an existing job.
+
+`BAD_PATTERN (+2)'
+     If a pattern for filename generation is badly formed, print an
+     error message.  (If this option is unset, the pattern will be left
+     unchanged.)
+
+`BANG_HIST (+K)'
+     Perform textual history substitution, `csh'-style, treating the
+     character `!' specially.
+
+`BEEP (+B)'
+     Beep on error in ZLE.
+
+`BG_NICE (-6)'
+     Run all background jobs at a lower priority.  This option is set by
+     default.
+
+`BRACE_CCL'
+     Expand expressions in braces which would not otherwise undergo
+     brace expansion to a lexically ordered list of all the characters.
+     *Note Brace Expansion::.
+
+`BSD_ECHO'
+     Make the echo builtin compatible with the BSD `echo(1)' command.
+     This disables backslashed escape sequences in echo strings unless
+     the `-e' option is specified.
+
+`CDABLE_VARS (-T)'
+     If the argument to a `cd' command (or an implied `cd' with the
+     `AUTO_CD' option set) is not a directory, and does not begin with a
+     slash, try to expand the expression as if it were preceded by a
+     `~' (*note Filename Expansion::.).
+
+`CHASE_LINKS (-w)'
+     Resolve symbolic links to their true values when changing
+     directory.
+
+`CLOBBER (+C, ksh: +C)'
+     Allows `>' redirection to truncate existing files, and `>>' to
+     create files.  Otherwise `>!' or `>|' must be used to truncate a
+     file, and `>>!' or `>>|' to create a file.
+
+`COMPLETE_ALIASES'
+     Prevents aliases on the command line from being internally
+     substituted before completion is attempted.  The effect is to make
+     the alias a distinct command for completion purposes.
+
+`COMPLETE_IN_WORD'
+     If unset, the cursor is moved to the end of the word if completion
+     is started.  Otherwise it stays where it is and completion is done
+     from both ends.
+
+`CORRECT (-0)'
+     Try to correct the spelling of commands.
+
+`CORRECT_ALL (-O)'
+     Try to correct the spelling of all arguments in a line.
+
+`CSH_JUNKIE_HISTORY'
+     A history reference without an event specifier will always refer
+     to the previous command.  Without this option, such a history
+     reference refers to the same event as the previous history
+     reference, defaulting to the previous command.
+
+`CSH_JUNKIE_LOOPS'
+     Allow loop bodies to take the form `LIST; end' instead of `do
+     LIST; done'.
+
+`CSH_JUNKIE_QUOTES'
+     Changes the rules for single- and double-quoted text to match that
+     of `csh'.  These require that embedded newlines be preceded by a
+     backslash; unescaped newlines will cause an error message.
+
+`CSH_NULL_GLOB'
+     If a pattern for filename generation has no matches, delete the
+     pattern from the argument list; do not report an error unless all
+     the patterns in a command have no matches.  Overrides `NULL_GLOB'.
+
+`EQUALS'
+     Perform `=' filename substitution.  (*Note Filename Expansion::.)
+
+`ERR_EXIT (-e, ksh: -e)'
+     If a command has a non-zero exit status, execute the `ZERR' trap,
+     if set, and exit.  This is disabled while running initialization
+     scripts.
+
+`EXEC (+n, ksh: +n)'
+     Do execute commands.  Without this option, commands are read and
+     checked for syntax errors, but not executed.
+
+`EXTENDED_GLOB'
+     Treat the `#', `~' and `^' characters as part of patterns for
+     filename generation, etc.  (An initial unquoted `~' always
+     produces named directory expansion (*note Filename Expansion::.).)
+
+`EXTENDED_HISTORY'
+     Save beginning and ending timestamps to the history file.  The
+     format of these timestamps is `:<BEGINNING TIME>:<ENDING
+     TIME>:<COMMAND>'.
+
+`FLOW_CONTROL'
+     If this option is unset, output flow control via start/stop
+     characters (usually assigned to `^S'/`^Q') is disabled in the
+     shell's editor.
+
+`FUNCTION_ARGZERO'
+     When executing a shell function or sourcing a script, set `$0'
+     temporarily to the name of the function/script.
+
+`GLOB (+F, ksh: +f)'
+     Perform filename generation.  (*Note Filename Generation::.)
+
+`GLOB_ASSIGN'
+     If this option is set, filename generation (globbing) is performed
+     on the right hand side of scalar parameter assignments of the form
+     `NAME=PATTERN' (e.g. ``param=*'').  If the result has more than
+     one word the parameter will become an array with those words as
+     arguments. This option is provided for backwards compatibility
+     only: globbing is always performed on the right hand side of array
+     assignments of the form ``NAME=( VALUE )'' (e.g. ``param=(*)'')
+     and this form is recommended for clarity; with this option set, it
+     is not possible to predict whether the result will be an array or
+     a scalar.
+
+`GLOB_COMPLETE'
+     When the current word has a glob pattern, do not insert all the
+     words resulting from the expansion but cycle through them like
+     `MENU_COMPLETE'.  If no matches are found, a `*' is added to the
+     end of the word, or inserted at the cursor if `COMPLETE_IN_WORD'
+     is set, and completion is attempted again.  Using patterns works
+     not only for files but for all completions, such as options, user
+     names, etc.
+
+`GLOB_DOTS (-4)'
+     Do not require a leading `.' in a filename to be matched
+     explicitly.
+
+`GLOB_SUBST'
+     Treat any characters resulting from parameter substitution as being
+     eligible for file expansion and filename generation, and any
+     characters resulting from command substitution as being eligible
+     for filename generation.
+
+`HASH_CMDS'
+     Note the location of each command the first time it is executed.
+     Subsequent invocations of the same command will use the saved
+     location, avoiding a path search.  If this option is unset, no
+     path hashing will be done at all.
+
+`HASH_DIRS'
+     Whenever a command is executed, hash the directory containing it,
+     as well as all directories that occur earlier in the path.  Has no
+     effect if `HASH_CMDS' is unset.
+
+`HASH_LIST_ALL'
+     Whenever a command completion is attempted, make sure the entire
+     command path is hashed first.  This makes the first completion
+     slower.
+
+`HIST_ALLOW_CLOBBER'
+     Add `|' to output redirections in the history.  This allows history
+     references to clobber files even when `CLOBBER' is unset.
+
+`HIST_BEEP'
+     Beep when an attempt is made to access a history entry which isn't
+     there.
+
+`HIST_IGNORE_DUPS (-h)'
+     Do not enter command lines into the history list if they are
+     duplicates of the previous event.
+
+`HIST_IGNORE_SPACE (-g)'
+     Do not enter command lines into the history list if they begin
+     with a blank.
+
+`HIST_NO_STORE'
+     Remove the `history' (`fc -l') command from the history when
+     invoked.
+
+`HIST_REDUCE_BLANKS'
+     Remove superfluous blanks from each command line being added to
+     the history list.
+
+`HIST_VERIFY'
+     Whenever the user enters a line with history substitution, don't
+     execute the line directly; instead, perform history substitution
+     and reload the line into the editing buffer.
+
+`HUP'
+     Send the `HUP' signal to running jobs when the shell exits.
+
+`IGNORE_BRACES (-I)'
+     Do not perform brace expansion.
+
+`IGNORE_EOF (-7)'
+     Do not exit on end-of-file.  Require the use of `exit' or `logout'
+     instead.  However, ten consecutive EOFs will cause the shell to
+     exit anyway, to avoid the shell hanging if its tty goes away.
+
+`INTERACTIVE (-i, ksh: -i)'
+     This is an interactive shell.  This option is set upon
+     initialisation if the standard input is a tty and commands are
+     being read from standard input.  (See the discussion of
+     `SHIN_STDIN'.)  This heuristic may be overridden by specifying a
+     state for this option on the command line.  The value of this
+     option cannot be changed anywhere other than the command line.
+
+`INTERACTIVE_COMMENTS (-k)'
+     Allow comments even in interactive shells.
+
+`KSH_ARRAYS'
+     Emulate ksh array handling as closely as possible.  If this option
+     is set, array elements are numbered from zero, an array parameter
+     without subscript refers to the first element instead of the whole
+     array, and braces are required to delimit a subscript (
+     `${path[2]}' rather than just `$path[2]' ).
+
+`KSH_OPTION_PRINT'
+     Alters the way options settings are printed.
+
+`LIST_AMBIGUOUS'
+     If this option is set completions are shown only if the completions
+     don't have an unambiguous prefix or suffix that could be inserted
+     in the command line.
+
+`LIST_BEEP'
+     Beep on an ambiguous completion.
+
+`LIST_TYPES (-X)'
+     When listing files that are possible completions, show the type of
+     each file with a trailing identifying mark.
+
+`LOCAL_OPTIONS'
+     If this option is set at the point of return from a shell
+     function, all the options (including this one) which were in force
+     upon entry to the function are restored.  Otherwise, only this
+     option and the `XTRACE' and `PRINT_EXIT_VALUE' options are
+     restored.  Hence if this is explicitly unset by a shell function
+     the other options in force at the point of return will remain so.
+     A shell function can also guarantee itself a known shell
+     configuration with a formulation like `emulate zsh; setopt
+     localoptions'.
+
+`LOGIN (-l, ksh: -l)'
+     This is a login shell.
+
+`LONG_LIST_JOBS (-R)'
+     List jobs in the long format by default.
+
+`MAGIC_EQUAL_SUBST'
+     All unquoted arguments of the form `IDENTIFIER=EXPRESSION'
+     appearing after the command name have file expansion performed on
+     EXPRESSION as if it were a parameter assignment.  The argument is
+     not otherwise treated specially; it is passed to the command as a
+     single argument, and not used as an actual parameter assignment.
+
+`MAIL_WARNING (-U)'
+     Print a warning message if a mail file has been accessed since the
+     shell last checked.
+
+`MARK_DIRS (-8, ksh: -X)'
+     Append a trailing `/' to all directory names resulting from
+     filename generation (globbing).
+
+`MENU_COMPLETE (-Y)'
+     On an ambiguous completion, instead of listing possibilities or
+     beeping, insert the first match immediately.  Then when completion
+     is requested again, remove the first match and insert the second
+     match, etc.  When there are no more matches, go back to the first
+     one again.  `reverse-menu-complete' may be used to loop through
+     the list in the other direction.  This option overrides
+     `AUTO_MENU'.
+
+`MONITOR (-m, ksh: -m)'
+     Allow job control.  Set by default in interactive shells.
+
+`MULTIOS'
+     Perform implicit `tee's or `cat's when multiple redirections are
+     attempted. *Note Redirection::.
+
+`NOMATCH (-3)'
+     If a pattern for filename generation has no matches, print an
+     error, instead of leaving it unchanged in the argument list.  This
+     also applies to file expansion of an initial `~' or `='.
+
+`NOTIFY (-5, ksh: -b)'
+     Report the status of background jobs immediately, rather than
+     waiting until just before printing a prompt.
+
+`NULL_GLOB (-G)'
+     If a pattern for filename generation has no matches, delete the
+     pattern from the argument list instead of reporting an error.
+     Overrides `NOMATCH'.
+
+`NUMERIC_GLOB_SORT'
+     If numeric filenames are matched by a filename generation pattern,
+     sort the filenames numerically rather than lexicographically.
+
+`OVERSTRIKE'
+     Start up the line editor in overstrike mode.
+
+`PATH_DIRS (-Q)'
+     Perform a path search even on command names with slashes in them.
+     Thus if
+          `/usr/local/bin'
+     is in the user's path, and he types `X11/xinit', the command
+          `/usr/local/bin/X11/xinit'
+     will be executed (assuming it exists).  This applies to the `.'
+     builtin as well as to command execution.  Commands explicitly
+     beginning with `/', `./' or `../' are not subject to path search.
+
+`POSIX_BUILTINS'
+     When this option is set the `command' builtin can be used to
+     execute shell builtin commands.  Parameter assignments specified
+     before shell functions and special builtins are kept after the
+     command completes unless the special builtin is prefixed with the
+     `command' builtin.  Special builtins are `.', `:', `break',
+     `continue', `declare', `eval', `exit', `export', `integer',
+     `local', `readonly', `return', `set', `shift', `source', `times',
+     `trap' and `unset'.
+
+`PRINT_EXIT_VALUE (-1)'
+     Print the exit value of programs with non-zero exit status.
+
+`PRIVILEGED (-p, ksh: -p)'
+     Turn on privileged mode.  This is enabled automatically on startup
+     if the effective user (group) id is not equal to the real user
+     (group) id.  Turning this option off causes the effective user and
+     group ids to be set to the real user and group ids.  This option
+     disables sourcing user startup files.  If zsh is invoked as sh or
+     ksh with this option set, `/etc/suid_profile' is sourced (after
+     `/etc/profile' on interactive shells).  Sourcing `~/.profile' is
+     disabled and the contents of the `ENV' variable is ignored.  This
+     option cannot be changed using the `-m' option of `setopt' and
+     `unsetopt' and changing it inside a function always changes it
+     globally regardless of the `LOCAL_OPTIONS' option.
+
+`PROMPT_CR (+V)'
+     Print a carriage return just before printing a prompt in the line
+     editor.
+
+`PROMPT_SUBST'
+     If set, "parameter expansion", "command substitution" and
+     "arithmetic expansion" is performed in prompts.
+
+`PUSHD_IGNORE_DUPS'
+     Don't push multiple copies of the same directory onto the directory
+     stack.
+
+`PUSHD_MINUS'
+     Exchanges the meanings of `+' and `-' when used with a number to
+     specify a directory in the stack.
+
+`PUSHD_SILENT (-E)'
+     Do not print the directory stack after `pushd' or `popd'.
+
+`PUSHD_TO_HOME (-D)'
+     Have `pushd' with no arguments act like `pushd $HOME'.
+
+`RC_EXPAND_PARAM (-P)'
+     Array expansions of the form `foo${xx}bar', where the parameter
+     `xx' is set to `(a b c)', are substituted with `fooabar foobbar
+     foocbar' instead of the default `fooa b cbar'.
+
+`RC_QUOTES'
+     Allow the character sequence `''' to signify a single quote within
+     singly quoted strings.
+
+`RCS (+f)'
+     After `/etc/zshenv' is sourced on startup, source the `/etc/zshrc',
+     `.zshrc',  `/etc/zlogin', `.zlogin', and `.zlogout' files, as
+     described in *Note Startup/Shutdown Files::.  If this option is
+     unset, only the `/etc/zshenv' file is sourced.
+
+`REC_EXACT (-S)'
+     In completion, recognize exact matches even if they are ambiguous.
+
+`RM_STAR_SILENT (-H)'
+     Do not query the user before executing `rm *' or `rm path/*'.
+
+`SH_FILE_EXPANSION'
+     Perform filename expansion (e.g., `~' expansion) before parameter
+     expansion, command substitution, arithmetic expansion and brace
+     expansion.  If this option is unset, it is performed after brace
+     expansion, so things like `~$USERNAME' and `~{pfalstad,rc}' will
+     work.
+
+`SH_GLOB'
+     Disables the special meaning of `(', `|', `)' and `<' for globbing
+     the result of parameter and command substitutions, and in some
+     other places where the shell accepts patterns.  This option is set
+     if `zsh' is invoked as `sh' or `ksh'.
+
+`SHIN_STDIN (-s, ksh: -s)'
+     Commands are being read from the standard input.  Commands are
+     read from standard input if no command is specified with `-c' and
+     no file of commands is specified.  If `SHIN_STDIN' is set
+     explicitly on the command line, any argument that would otherwise
+     have been taken as a file to run will instead be treated as a
+     normal positional parameter.  Note that setting or un-setting this
+     option on the command line does not necessarily affect the state
+     the option will have while the shell is running; that is purely an
+     indicator of whether or not commands are actually being read from
+     standard input.  The value of this option cannot be changed
+     anywhere other than the command line.
+
+`SH_OPTION_LETTERS'
+     If this option is set the shell tries to interpret single letter
+     options (which are used with `set' and `setopt') like `ksh' does.
+     This also affects the value of the `-' special parameter.
+
+`SHORT_LOOPS'
+     Allow the short forms of `for', `select', `if', and `function'
+     constructs.
+
+`SH_WORD_SPLIT (-y)'
+     Causes field splitting to be performed on unquoted parameter
+     expansions.  Note that this option has nothing to do with word
+     splitting.  *Note Parameter Expansion::.
+
+`SINGLE_COMMAND (-t, ksh: -t)'
+     If the shell is reading from standard input, it exits after a
+     single command has been executed.  This also makes the shell
+     non-interactive, unless the `INTERACTIVE' option is explicitly set
+     on the command line.  The value of this option cannot be changed
+     anywhere other than the command line.
+
+`SINGLE_LINE_ZLE (-M)'
+     Use single-line command line editing instead of multi-line.
+
+`SUN_KEYBOARD_HACK (-L)'
+     If a line ends with a back-quote, and there are an odd number of
+     back-quotes on the line, ignore the trailing back-quote.  This is
+     useful on some keyboards where the return key is too small, and
+     the back-quote key lies annoyingly close to it.
+
+`UNSET (+u, ksh: +u)'
+     Treat unset parameters as if they were empty when substituting.
+     Otherwise they are treated as an error.
+
+`VERBOSE (-v, ksh: -v)'
+     Print shell input lines as they are read.
+
+`XTRACE (-x, ksh: -x)'
+     Print commands and their arguments as they are executed.
+
+`ZLE (-Z)'
+     Use the zsh line editor.
+
+
+File: zsh.info,  Node: Single Letter Options,  Prev: Description of Options,  Up: Options
+
+Single Letter Options
+=====================
+
+Default Set
+-----------
+
+`-0'
+     `CORRECT'
+
+`-1'
+     `PRINT_EXIT_VALUE'
+
+`-2'
+     `NO_BAD_PATTERN'
+
+`-3'
+     `NO_NOMATCH'
+
+`-4'
+     `GLOB_DOTS'
+
+`-5'
+     `NOTIFY'
+
+`-6'
+     `BG_NICE'
+
+`-7'
+     `IGNORE_EOF'
+
+`-8'
+     `MARK_DIRS'
+
+`-9'
+     `AUTO_LIST'
+
+`-B'
+     `NO_BEEP'
+
+`-C'
+     `NO_CLOBBER'
+
+`-D'
+     `PUSHD_TO_HOME'
+
+`-E'
+     `PUSHD_SILENT'
+
+`-F'
+     `NO_GLOB'
+
+`-G'
+     `NULL_GLOB'
+
+`-H'
+     `RM_STAR_SILENT'
+
+`-I'
+     `IGNORE_BRACES'
+
+`-J'
+     `AUTO_CD'
+
+`-K'
+     `NO_BANG_HIST'
+
+`-L'
+     `SUN_KEYBOARD_HACK'
+
+`-M'
+     `SINGLE_LINE_ZLE'
+
+`-N'
+     `AUTO_PUSHD'
+
+`-O'
+     `CORRECT_ALL'
+
+`-P'
+     `RC_EXPAND_PARAM'
+
+`-Q'
+     `PATH_DIRS'
+
+`-R'
+     `LONG_LIST_JOBS'
+
+`-S'
+     `REC_EXACT'
+
+`-T'
+     `CDABLE_VARS'
+
+`-U'
+     `MAIL_WARNING'
+
+`-V'
+     `NO_PROMPT_CR'
+
+`-W'
+     `AUTO_RESUME'
+
+`-X'
+     `LIST_TYPES'
+
+`-Y'
+     `MENU_COMPLETE'
+
+`-Z'
+     `ZLE'
+
+`-a'
+     `ALL_EXPORT'
+
+`-e'
+     `ERR_EXIT'
+
+`-f'
+     `NO_RCS'
+
+`-g'
+     `HIST_IGNORE_SPACE'
+
+`-h'
+     `HIST_IGNORE_DUPS'
+
+`-i'
+     `INTERACTIVE'
+
+`-k'
+     `INTERACTIVE_COMMENTS'
+
+`-l'
+     `LOGIN'
+
+`-m'
+     `MONITOR'
+
+`-n'
+     `NO_EXEC'
+
+`-p'
+     `PRIVILEGED'
+
+`-s'
+     `SHIN_STDIN'
+
+`-t'
+     `SINGLE_COMMAND'
+
+`-u'
+     `NO_UNSET'
+
+`-v'
+     `VERBOSE'
+
+`-w'
+     `CHASE_LINKS'
+
+`-x'
+     `XTRACE'
+
+`-y'
+     `SH_WORD_SPLIT'
+
+sh/ksh Emulation Set
+--------------------
+
+`-C'
+     `NO_CLOBBER'
+
+`-X'
+     `MARK_DIRS'
+
+`-a'
+     `ALL_EXPORT'
+
+`-b'
+     `NOTIFY'
+
+`-e'
+     `ERR_EXIT'
+
+`-f'
+     `NO_GLOB'
+
+`-i'
+     `INTERACTIVE'
+
+`-l'
+     `LOGIN'
+
+`-m'
+     `MONITOR'
+
+`-n'
+     `NO_EXEC'
+
+`-p'
+     `PRIVILEGED'
+
+`-s'
+     `SHIN_STDIN'
+
+`-t'
+     `SINGLE_COMMAND'
+
+`-u'
+     `NO_UNSET'
+
+`-v'
+     `VERBOSE'
+
+`-x'
+     `XTRACE'
+
+Also Note
+---------
+
+`-A'
+     Used by set for setting arrays
+
+`-c'
+     Used on the command line to specify a single command
+
+`-m'
+     Used by setopt for pattern-matching option setting
+
+`-o'
+     Used in all places to allow use of long option names
+
+Note that the use of `-m' in `setopt' and `unsetopt', allowing the
+specification of option names by glob patterns, clashes with the use of
+`-m' for setting the `MONITOR' option.
+

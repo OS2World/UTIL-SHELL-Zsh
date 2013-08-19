@@ -1,0 +1,450 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:579: checking host system type
+configure:804: checking for gcc
+configure:881: checking whether the C compiler (gcc  ) works
+configure:895: gcc -o conftest    conftest.c  1>&5
+configure:915: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:920: checking whether we are using GNU C
+configure:929: gcc -E conftest.c
+configure:944: checking whether gcc accepts -g
+configure:999: checking how to run the C preprocessor
+configure:1020: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1060: checking whether gcc needs -traditional
+configure:1085: termio.h: No such file or directory
+configure:1105: checking for working const
+configure:1159: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:1133: warning: unused variable `s'
+configure:1153: warning: unused variable `foo'
+configure:1121: warning: unused variable `zero'
+configure:1115: warning: unused variable `x'
+configure:1132: warning: `t' might be used uninitialized in this function
+configure:1150: warning: `b' might be used uninitialized in this function
+configure:1179: checking for gcc option to accept ANSI C
+configure:1207: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c 1>&5
+configure:1228: checking for function prototypes
+configure:1241: checking size of long
+configure:1260: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  1>&5
+configure:1252: warning: return-type defaults to `int'
+configure: In function `main':
+configure:1257: warning: control reaches end of non-void function
+configure:1280: checking if signed to unsigned casting is broken
+configure:1292: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  1>&5
+configure:1289: warning: return-type defaults to `int'
+configure: failed program was:
+#line 1288 "configure"
+#include "confdefs.h"
+main(){return((int)(unsigned char)((char) -1) == 255);}
+configure:1315: checking if the compiler supports variable-lenth arrays
+configure:1327: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:1323: warning: unused variable `i'
+configure:1348: checking whether make sets ${MAKE}
+configure:1384: checking for a BSD compatible install
+configure:1437: checking for mawk
+configure:1437: checking for gawk
+configure:1437: checking for nawk
+configure:1437: checking for awk
+configure:1470: checking for dirent.h that defines DIR
+configure:1483: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:1479: warning: unused variable `dirp'
+configure:1508: checking for opendir in -ldir
+configure:1527: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c -ldir   1>&5
+ld: No such file or directory for libdir.a
+configure: failed program was:
+#line 1516 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char opendir();
+
+int main() {
+opendir()
+; return 0; }
+configure:1591: checking for ANSI C header files
+configure:1604: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1671: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  1>&5
+configure: In function `main':
+configure:1667: warning: control reaches end of non-void function
+configure:1695: checking whether time.h and sys/time.h may both be included
+configure:1709: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:1705: warning: unused variable `tp'
+configure:1730: checking whether stat file-mode macros are broken
+configure:1786: checking for sys/wait.h that is POSIX.1 compatible
+configure:1807: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure:1834: checking for sys/time.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for sys/times.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for sys/select.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for termcap.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for termio.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1840: termio.h: No such file or directory
+configure: failed program was:
+#line 1839 "configure"
+#include "confdefs.h"
+#include <termio.h>
+configure:1834: checking for termios.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for sys/param.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for sys/filio.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for string.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for memory.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for limits.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for fcntl.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for libc.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1840: libc.h: No such file or directory
+configure: failed program was:
+#line 1839 "configure"
+#include "confdefs.h"
+#include <libc.h>
+configure:1834: checking for sys/utsname.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for sys/resource.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for locale.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for errno.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for stdlib.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1834: checking for unistd.h
+configure:1844: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1915: checking for conflicts in sys/time.h and sys/select.h
+configure:1928: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+In file included from configure:1922:
+/usr/include/sys/select.h:46: syntax error before `pid_t'
+configure: In function `main':
+configure:1924: warning: unused variable `i'
+configure: failed program was:
+#line 1920 "configure"
+#include "confdefs.h"
+#include <sys/time.h>
+#include <sys/select.h>
+int main() {
+int i;
+; return 0; }
+configure:1950: checking ut_host in struct utmp
+configure:1963: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:1959: warning: statement with no effect
+configure:2025: checking POSIX termios
+configure:2040: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  1>&5
+configure:2056: checking TIOCGWINSZ in termios.h
+configure:2069: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  1>&5
+configure: In function `main':
+configure:2065: warning: unused variable `x'
+configure:2124: checking for sys/ptem.h
+configure:2134: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2130: sys/ptem.h: No such file or directory
+configure: failed program was:
+#line 2129 "configure"
+#include "confdefs.h"
+#include <sys/ptem.h>
+configure:2167: checking for tgetent in -ltermcap
+configure:2186: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c -ltermcap   1>&5
+configure:2211: checking for getdomainname
+configure:2239: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+/tmp/cc0093651.o: Undefined symbol _getdomainname referenced from text segment
+configure: failed program was:
+#line 2216 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char getdomainname(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getdomainname();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_getdomainname) || defined (__stub___getdomainname)
+choke me
+#else
+getdomainname();
+#endif
+
+; return 0; }
+configure:2265: checking for getdomainname in -lnsl
+configure:2284: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c -lnsl   -ltermcap 1>&5
+ld: No such file or directory for libnsl.a
+configure: failed program was:
+#line 2273 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char getdomainname();
+
+int main() {
+getdomainname()
+; return 0; }
+configure:2368: checking if an include file defines ospeed
+configure:2386: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2446: checking if tgetent accepts NULL
+configure:2458: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2455: warning: return-type defaults to `int'
+configure: In function `main':
+configure:2455: warning: control reaches end of non-void function
+configure: failed program was:
+#line 2454 "configure"
+#include "confdefs.h"
+main(){int i = tgetent((char*)0,"vt100");exit(!i || i == -1);}
+configure:2481: checking return type of signal handlers
+configure:2503: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:2499: warning: unused variable `i'
+configure:2522: checking for pid_t
+configure:2555: checking for off_t
+configure:2588: checking for mode_t
+configure:2621: checking for uid_t in sys/types.h
+configure:2655: checking for size_t
+configure:2689: checking for sigset_t
+configure:2702: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:2698: warning: unused variable `tempsigset'
+configure:2723: checking for struct timezone
+configure:2735: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure: In function `main':
+configure:2731: warning: unused variable `dummy_tz'
+configure:2756: checking whether getpgrp takes no argument
+configure:2819: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2780: warning: return-type defaults to `int'
+configure: In function `main':
+configure:2815: warning: control reaches end of non-void function
+configure:2851: checking for strftime
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for waitpid
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for select
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for tcsetpgrp
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for tcgetattr
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for strstr
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for lstat
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for getlogin
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for setpgid
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for gettimeofday
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for gethostname
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for mkfifo
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for wait3
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for difftime
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for sigblock
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for sigsetmask
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for sigrelse
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+/tmp/cc0098541.o: Undefined symbol _sigrelse referenced from text segment
+configure: failed program was:
+#line 2856 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char sigrelse(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char sigrelse();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_sigrelse) || defined (__stub___sigrelse)
+choke me
+#else
+sigrelse();
+#endif
+
+; return 0; }
+configure:2851: checking for sighold
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+/tmp/cc0098681.o: Undefined symbol _sighold referenced from text segment
+configure: failed program was:
+#line 2856 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char sighold(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char sighold();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_sighold) || defined (__stub___sighold)
+choke me
+#else
+sighold();
+#endif
+
+; return 0; }
+configure:2851: checking for killpg
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for sigaction
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for getrlimit
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for sigprocmask
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for setuid
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for seteuid
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for setreuid
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for setresuid
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+/tmp/cc0100171.o: Undefined symbol _setresuid referenced from text segment
+configure: failed program was:
+#line 2856 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char setresuid(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char setresuid();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_setresuid) || defined (__stub___setresuid)
+choke me
+#else
+setresuid();
+#endif
+
+; return 0; }
+configure:2851: checking for strerror
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2851: checking for nis_list
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+/tmp/cc0100511.o: Undefined symbol _nis_list referenced from text segment
+configure: failed program was:
+#line 2856 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char nis_list(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char nis_list();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_nis_list) || defined (__stub___nis_list)
+choke me
+#else
+nis_list();
+#endif
+
+; return 0; }
+configure:2851: checking for initgroups
+configure:2879: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2962: checking for working strcoll
+configure:2975: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:2971: warning: return-type defaults to `int'
+configure: In function `main':
+configure:2972: warning: control reaches end of non-void function
+configure:2999: checking what style of signals to use
+configure:3032: checking where signal.h is located
+configure:3049: checking where the RLIMIT macros are located
+configure:3074: checking for /dev/fd filesystem
+configure:3090: checking for RFS superroot directory
+configure:3106: checking for NIS
+configure:3123: checking for NIS+
+configure:3141: checking where utmp is located
+configure:3159: checking where wtmp is located
+configure:3177: checking if typeahead needs FIONREAD
+configure:3194: checking for brk() prototype in <unistd.h>
+configure:3207: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure:3201: conflicting types for `brk'
+/usr/include/unistd.h:113: previous declaration of `brk'
+configure: In function `main':
+configure:3203: warning: unused variable `i'
+configure: failed program was:
+#line 3199 "configure"
+#include "confdefs.h"
+#include <unistd.h>
+double brk();
+int main() {
+int i;
+; return 0; }
+configure:3228: checking for sbrk() prototype in <unistd.h>
+configure:3241: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure:3235: conflicting types for `sbrk'
+/usr/include/unistd.h:151: previous declaration of `sbrk'
+configure: In function `main':
+configure:3237: warning: unused variable `i'
+configure: failed program was:
+#line 3233 "configure"
+#include "confdefs.h"
+#include <unistd.h>
+double sbrk();
+int main() {
+int i;
+; return 0; }
+configure:3264: checking for ioctl prototype in <sys/ioctl.h>
+configure:3277: gcc -c  -Wall -Wno-implicit -Wmissing-prototypes -O2  conftest.c 1>&5
+configure:3271: conflicting types for `ioctl'
+/usr/include/sys/ioctl.h:72: previous declaration of `ioctl'
+configure: In function `main':
+configure:3273: warning: unused variable `i'
+configure: failed program was:
+#line 3269 "configure"
+#include "confdefs.h"
+#include <sys/ioctl.h>
+   int ioctl(double x);
+int main() {
+int i;
+; return 0; }
+configure:3299: checking if named FIFOs work
+configure:3338: gcc -o conftest  -Wall -Wno-implicit -Wmissing-prototypes -O2   conftest.c  -ltermcap 1>&5
+configure:3312: warning: return-type defaults to `int'
+configure: In function `main':
+configure:3334: warning: control reaches end of non-void function
+configure:3360: checking if echo in /bin/sh interprets escape sequences

@@ -1,0 +1,396 @@
+Sat Dec 21 02:00:12 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/version.h: zsh-3.1.0 released
+
+	* Makefile.in: modifications for the beta series
+
+	* Src/Zle/zle_main.c, Src/globals.h, Src/hist.c, Src/module.c,
+ 	  Src/zsh.h: changes to allow compilation on SunOS 4 with K&R
+ 	  compiler
+
+	* Doc/zsh.texi, Doc/zshbuiltins.man, Src/builtin.c, Src/hashtable.h:
+	  pwd now accepts -L and -P to be compatible with bash and ksh
+
+	* configure, configure.in: SunOS 4 shared libraries do not work
+ 	  when they are stripped
+
+Thu Dec 19 21:27:17 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/init.c: work around a bug in NeXTStep 3.2 which caused slow
+ 	  refresh
+
+	* Etc/FAQ: FAQ from Peter: Id: zsh.FAQ,v 2.22 1996/12/19 09:52:11
+ 	  pws Exp
+
+Wed Dec 18 23:51:24 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Doc/zsh.texi, Etc/FAQ, META-FAQ: ftp.prz.tu-berlin.de no longer
+ 	  mirrors zsh, uiarchive.uiuc.edu name correction
+
+Tue Dec 17 20:08:58 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/params.c: remove some compiler varnings
+
+	* Src/Makefile.in: rlimits.h depends on rlimits.awk.  Cosmetic
+ 	  changes.  From Zefram (2589)
+
+Mon Dec 16 03:33:12 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* README: unknown limits should no longer be a problem
+
+	* Src/glob.c: toggles were not reset after a comma in a glob
+ 	  qualifier list (e.g. *(@-.,/))
+
+	* Src/builtin.c: fg %% failed and disabled job control sometimes
+ 	  when there were no current job
+
+Sun Dec 15 01:07:40 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* README: beta warning
+
+	* Misc/compctl-examples: compctl for zmodload
+
+Sat Dec 14 22:50:00 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Zle/zle_main.c: Remove unnecessary prefix delay in zle.
+  	  From Zefram (2583)
+
+	* Src/exec.c (execcmd): builtin < / > / closed stdin
+
+	* configure, Src/Makefile.in, Src/builtin.c, Src/rlimits.awk,
+ 	  configure.in: awk generated rlimits from Peter (2573)
+
+	* config.guess, config.sub, configure, configure.in: upgrade to
+ 	  autoconf-2.12.  Linux machines are still recognized without the
+ 	  -gnu suffix
+
+	* configure, configure.in: working fifos should be tested in /tmp
+
+Wed Dec 11 02:30:39 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Zle/zle_tricky.c, Src/builtin.c, Src/exec.c, Src/globals.h,
+ 	  Src/hist.c, Src/init.c, Src/input.c, Src/lex.c, Src/zsh.h:
+ 	  remove the alias stack and fix several related bugs. From Peter
+ 	  (2548, 2551)
+
+	* Doc/zsh.texi, META-FAQ: ftp mirror site changes
+
+	* Src/params.c: use the heap in getstrvalue()
+
+Tue Dec 10 02:27:35 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Zle/zle_refresh.c: single line zle refresh bugfix from Geoff
+ 	  (2549)
+
+	* Src/subst.c: ${(l:4:)foo} stopped working between 3.0.0 and 3.0.1
+
+	* Src/math.c: $((#\c)) character code expansion did not work when
+ 	  c was a metafied
+
+	* Src/params.c: $foo[i] did not work when foo[i] was a metafied
+ 	  character
+
+	* Src/builtin.c: use the heap in zexit()
+
+Sun Dec  8 21:32:06 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/utils.c, Doc/zshbuiltins.man, Src/hashtable.h, Src/module.c:
+ 	  zmodload can be used to define atoloaded builtins and module
+ 	  dependencies
+
+	* Doc/zsh.texi, Doc/zshoptions.man: options documentation
+ 	  improvements from Zefram (2529)
+
+	* Src/globals.h, Src/hist.c, Src/zsh.h: HIST_REDUCE_BLANKS from
+ 	  Wayne (2446)
+
+	* Etc/FEATURES, Etc/NEWS: news in zsh-3.1
+
+	* Src/hashtable.h: security: do not import MODULE_PATH
+
+	* Src/input.c: no further input should be attempted when lexstop
+ 	  is true (e.g. after eof).
+
+	* Src/Makefile.in: make tags fix
+
+	* Misc/compctl-examples: MH compctl changes from Peter (2535)
+
+	* Src/Zle/zle_tricky.c, Src/glob.c, Src/hashtable.c, Src/utils.c:
+ 	  unmetafy did not put a null terminator to the end of the string.
+  	  zreaddir discarded the metafied filename.  readdir was used
+ 	  instead of zreaddir in zle_tricky.c.  From Zefram (2533)
+
+	* Src/Zle/zle_vi.c: vi-replace-chars now emulates better the real
+ 	  vi.  From Zefram (2496)
+
+	* Src/jobs.c: CLK_TCK is 60 on NeXT not 64 as defined in the
+ 	  system headers.  From Robert F Tobler
+ 	  <rft@raven.cg.tuwien.ac.at> (2522)
+
+	* Src/input.c, Src/zsh.h: alias foo='a=b foo' ; foo caused an
+ 	  infinite loop.  From Peter (2515)
+
+	* Src/builtin.c, Src/zsh.h: put hash tables to a linked list when
+ 	  hash-debug is enabled and move the simplified bin_hashinfo into
+ 	  hashtable.c.  From Zefram (2509)
+
+	* Src/builtin.c, Src/Zle/compctl.c: more bad option fixes. Make
+ 	  the getopts builtin 8-bit clean.  From Zefram (2508)
+
+	* Src/builtin.c: show metafied characters correctly in bad option
+ 	  errors.  From Zefram (2497)
+
+Thu Dec  5 03:59:45 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Makefile.in, Src/Modules/Makefile.in, Src/Modules/example.c,
+ 	  Src/Zle/Makefile.in, Src/Zle/deltochar.c, Src/Zle/zle.h,
+ 	  Src/Zle/zle_bindings.c, Src/Zle/zle_hist.c, Src/Zle/zle_main.c,
+ 	  Src/Zle/zle_misc.c, Src/Zle/zle_move.c, Src/Zle/zle_refresh.c,
+ 	  Src/Zle/zle_tricky.c, Src/Zle/zle_utils.c, Src/Zle/zle_vi.c,
+ 	  Src/Zle/zle_word.c, Src/builtin.c, Src/globals.h,
+ 	  Src/hashtable.c, Src/hashtable.h, Src/init.c, Src/input.c,
+ 	  Src/loop.c, Src/main.c, Src/module.c, Src/modules-bltin,
+ 	  Src/prompt.c, Src/prototypes.h, Src/utils.c, Src/zsh.h,
+ 	  configure, configure.in: Move zle into a separate directory and
+ 	  convert it to an optional auto-loadable module.  Create Modules
+ 	  subdirectory.  Many Makefile changes.  boot_modname and
+ 	  cleanup_modname is back since on elf all module use one common
+ 	  name space.  Lots of other changes.
+
+Wed Nov 27 03:20:53 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Zle/zle_main.c, Src/Zle/zle_vi.c: ANSI was broken and fixed
+ 	  again in zle_main.c ESC in vi command mode caused SEGV.  From
+ 	  Zefram (2479)
+
+	* configure, configure.in: -pedantic is used with
+ 	  --enable-zsh-debug.  Link non-debugged zsh with -s.  From Zefram
+ 	  (2479)
+
+Tue Nov 26 02:45:15 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/exec.c: the STTY parameter did not work well when pipes were
+ 	  used.  From Peter (2474)
+
+	* Src/Zle/zle_main.c: little fix for the bindkey patch from Peter
+ 	  (2470)
+
+	* Doc/zshbuiltins.man, Src/Zle/zle.h, Src/Zle/zle_bindings.c,
+ 	  Src/Zle/zle_hist.c, Src/Zle/zle_main.c, Src/Zle/zle_misc.c,
+ 	  Src/Zle/zle_tricky.c, Src/Zle/zle_vi.c, Src/builtin.c,
+ 	  Src/globals.h, Src/hashtable.c, Src/init.c: big multi-character
+ 	  key bindings fix from Zefram (2464)
+
+	* Doc/zshbuiltins.man, Src/hashtable.h, Src/module.c, Src/zsh.h:
+ 	  The -f option of zmodload is removed.  Improved zmodload
+ 	  documentation.
+
+	* Src/hashtable.h, Doc/zshbuiltins.man, Src/module.c: zmodload
+ 	  with -i will not complain and will succeed without doing
+ 	  anything if an already loaded module is loaded or a non-loaded
+ 	  module is unloaded.  From Zefram (2463)
+
+	* Doc/Makefile.in, Doc/zshbuiltins.man, Doc/zshparam.man: zmodload
+ 	  documentation.  It only appears in the final manual if dynamic
+ 	  modules are enabled.  Note that the texinfo documentation is
+ 	  still missing.  From Zefram (2460)
+
+	* Etc/FAQ: FAQ from Peter: Id: zsh.FAQ,v 2.21 1996/11/25 09:13:28
+ 	  pws Exp
+
+Mon Nov 25 02:39:08 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/module.c: try to load the modules with .DL_EXT appended
+ 	  first.  Honor PATH_DIRS when loading a module.
+
+	* Src/Makefile.in: handle force ruleas as in the top-level Makefile
+
+	* Makefile.in, Src/Makefile.in, Src/init.c: module install added,
+ 	  default module_path is $(libdir)/zsh/$(VERSION).  From Zefram
+ 	  (2458 and 2465 with modifications)
+
+	* Src/Makefile.in: optimized and made more silent
+
+	* Src/Makefile.in, Src/Modules/example.c, Src/Zle/deltochar.c,
+ 	  Src/init.c, Src/main.c, Src/module.c: modules can now statically
+ 	  compiled into zsh.  From Zefram (2455)
+
+Sun Nov 24 22:44:12 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Zle/zle_move.c: vi-goto-mark fix from Thorsten
+
+	* Src/utils.c: dupnode mergerd into the simplified dupstruct2,
+ 	  freetreenode merged into the simplified freestruct
+
+	* Src/globals.h, Src/text.c, Doc/zsh.texi, Doc/zshmisc.man,
+ 	  Src/lex.c, Src/loop.c, Src/parse.c, Src/utils.c, Src/zsh.h: for
+ 	  ((expr; expr; expr)) command added
+
+Sat Nov 23 23:34:58 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/exec.c:
+	  ((...)) substituted the expression twice and coredumped on (())
+
+	* Doc/zsh.texi, Doc/zshcompctl.man: compctl -e clarification from
+ 	  Peter (2453)
+
+	* Src/hist.c (hend): minor cleanup from Wayne (2447)
+
+	* Doc/zsh.texi, Doc/zshzle.man, Src/Zle/zle_hist.c:
+ 	  insert-last-word with numeric arguments inserts the given word
+ 	  from the previous history event.  From Bart (2445),
+ 	  documentation by me.
+
+	* Src/subst.c, acconfig.h, config.h.in, configure, configure.in:
+ 	  added configure check for variable-length automatic arrays
+
+Wed Nov 20 00:58:06 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/utils.c: The spell checker always tries to fix as many
+ 	  leading directory compontents as possible.  From Bart (2429)
+
+	* Src/Zle/zle.h, Src/Zle/zle_main.c, Src/Zle/zle_misc.c,
+ 	  Src/Zle/zle_tricky.c, Src/Zle/zle_vi.c: the source was not ANSI
+ 	  C compatible.  From Thorsten Meinecke <kaefer@aglaia.aball.DE>
+
+	* Src/Zle/zle_tricky.c: my spell-word fix used an uninitialised
+ 	  pointer.  Fix from Bart (2428)
+
+Sun Nov 17 21:21:22 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Makefile.in: fix the .SUFFIXES list
+
+	* Src/module.c: do not call dlclose() if cleanup_module failed
+ 	  (returned nonzero)
+
+	* Src/Makefile.in, Src/init.c, Src/main.c, Src/prototypes.h,
+ 	  configure, configure.in: try to support dynamic loading on SVR4
+ 	  systems
+
+	* config.h.in: Makefile and configure fixes from Zefram (2416)
+
+	* Src/params.c: remove a few memory leaks when initialising the
+ 	  parameter table.
+
+	* Src/exec.c, Src/zsh.h: allow arbitrary number of multios.  From
+ 	  Zefram (2414)
+
+	* Src/exec.c, Src/parse.c, Src/text.c, Src/zsh.h: do not convert
+ 	  ((...)) to builtin let internally.
+
+Sat Nov 16 23:57:40 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/zle_tricky.c: spell-word zle function did not work for word
+ 	  beginning with a tilde
+
+	* Src/hist.c: histignoredups ignores insignificant whitespace
+ 	  changes.  From Peter (1949)
+
+	* Src/zle_main.c: execute-last-named-cmd may point to an already
+ 	  removed zle function after a zle module is deleted.  From Zefram
+ 	  (2418)
+
+	* Doc/Makefile.in: give some explanation if the user compiling zsh
+ 	  has no makeinfo
+
+	* configure.in: fix a problem introduced by patch 2338.  From
+ 	  Zefram (2416)
+
+	* Makefile.in, acconfig.h, configure.in: Makefile and configure
+ 	  fixes from Zefram (2416)
+
+	* Src/zle_tricky.c: the cursor moved back on TAB when it was on
+ 	  "".  From Zefram (2415)
+
+Thu Nov 14 12:59:25 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/zle_refresh.c: one more refresh fix from Geoff (2404)
+
+	* Src/Makefile.in, Src/Modules/deltochar.c, Src/Modules/example.c,
+ 	  configure, configure.in: move modules into Src/Modules
+
+Wed Nov 13 21:47:28 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Modules/deltochar.c, Src/Modules/example.c, Src/module.c:
+ 	  unload the module if the boot routine failed
+
+	* config.guess, config.sub: recognize i[6-9]86
+
+	* Src/globals.h, Src/init.c, Src/utils.c: make fdtable dynamic
+
+	* Src/zle_refresh.c: zle_refresh fix from Geoff (2387)
+
+	* Src/zle_refresh.c: some checks added.  From Geoff (2386)
+
+	* Src/zle_refresh.c: fix an off-by-one array bound bug.  From
+ 	  Geoff (2359)
+
+	* Doc/zsh.texi, Doc/zshbuiltins.man, Src/Modules/deltochar.c,
+ 	  Src/hashtable.h, Src/module.c, Src/zle_main.c: handle name
+ 	  clashes when adding zle modules and remove bindings when a zle
+ 	  module is removed.  From Peter (2370)
+
+	* Src/zle_refresh.c: zle_refresh scrolling change from Geoff (2351)
+
+	* Src/Modules/deltochar.c, Src/module.c, Src/zle.h,
+ 	  Src/zle_main.c, Src/zle_misc.c, Src/zle_tricky.c, Src/zle_vi.c:
+ 	  zle function modules from Peter (2339)
+
+Tue Nov 12 21:35:18 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/init.c, Src/zle_refresh.c: zle-refresh patch from Geoff (2336)
+
+	* Src/hashtable.h, Src/module.c: rename modload to zmodload.  From
+ 	  Peter (2333)
+
+	* Src/Makefile.in: added automatic ansi2knr rules
+
+Mon Nov 11 21:55:17 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Makefile.in, Src/Modules/example.c, Src/module.c, configure,
+ 	  configure.in: various module changes from Zefram (2338)
+
+	* configure, configure.in: a $ was missing.  IRIX gcc needs
+ 	  -shared for modules.  From Peter
+
+Wed Nov  6 20:54:33 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Makefile.in, Src/mod_example.c: moduule modifications for
+ 	  old compilers
+
+Sun Nov  3 23:00:05 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/system.h: set OPEN_MAX to 64 if NOFILE is not defined
+
+	* Src/hashtable.c: disable -f TRAPxxx permanently removed the
+	  function
+
+	* Functions/pushd: setopt localoptions must come after
+	  emulate -R zsh
+
+Sat Nov  2 22:47:53 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/compat.c, Src/hashtable.c, Src/utils.c: do not blindly
+ 	  assume that . and .. are always the first two enrties in a
+ 	  directory.  Problem discovered by Hideki ONO and fixed by Bart
+ 	  (2309)
+
+	* Src/utils.c: max_zsh_fd should not be decreased below zero
+
+Thu Oct 31 01:38:10 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/Makefile.in, Src/globals.h, Src/hashtable.c,
+ 	  Src/hashtable.h, Src/init.c, Src/mod_example.c, Src/module.c,
+ 	  Src/prototypes.h, Src/zsh.h, acconfig.h, config.h.in, configure,
+ 	  configure.in: support dynamically loaded binary modules
+
+	* Src/hist.c: zsh splitted lines longer than 1022 while reading
+ 	  the history file
+
+	* Src/glob.c (doesmatch): <-number> range glob did not work
+
+	* Src/builtin.c: read -c ignored its first parameter
+
+Fri Oct 25 20:50:38 1996  Zoltán Hidvégi  <hzoli@cs.elte.hu>
+
+	* Src/version.h: zsh-3.0.1 released

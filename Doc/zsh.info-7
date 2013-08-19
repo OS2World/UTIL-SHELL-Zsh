@@ -1,0 +1,493 @@
+This is Info file zsh.info, produced by Makeinfo-1.55 from the input
+file ./zsh.texi.
+
+This is a texinfo version of the man page for the Z Shell, originally by
+Paul Falstad.  It was converted from the `zsh.1' file distributed with
+zsh v2.5.0 by Jonathan Hardwick, `jch@cs.cmu.edu' and updated/modified
+by Clive Messer, `clive@epos.demon.co.uk' to its present state.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the entire resulting derived work is distributed under the terms
+of a permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: zsh.info,  Node: Functions Index,  Next: Editor Functions Index,  Prev: Options Index,  Up: Top
+
+Functions Index
+***************
+
+* Menu:
+
+* -:                                    Shell Builtin Commands.
+* .:                                    Shell Builtin Commands.
+* alias:                                Shell Builtin Commands.
+* alias, use of:                        Aliasing.
+* autoload:                             Shell Builtin Commands.
+* bg:                                   Shell Builtin Commands.
+* bg, use of:                           Jobs & Signals.
+* bindkey:                              Shell Builtin Commands.
+* bindkey, use of:                      Zsh Line Editor.
+* break:                                Shell Builtin Commands.
+* builtin:                              Shell Builtin Commands.
+* bye:                                  Shell Builtin Commands.
+* case:                                 Complex Commands.
+* cd:                                   Shell Builtin Commands.
+* chdir:                                Shell Builtin Commands.
+* chpwd:                                Functions.
+* command:                              Shell Builtin Commands.
+* compctl:                              Programmable Completion.
+* continue:                             Shell Builtin Commands.
+* coproc:                               Simple Commands & Pipelines.
+* declare:                              Shell Builtin Commands.
+* dirs:                                 Shell Builtin Commands.
+* disable:                              Shell Builtin Commands.
+* disable, use of:                      Reserved Words.
+* disown:                               Shell Builtin Commands.
+* disown, use of:                       Jobs & Signals.
+* echo:                                 Shell Builtin Commands.
+* echotc:                               Shell Builtin Commands.
+* emulate:                              Shell Builtin Commands.
+* enable:                               Shell Builtin Commands.
+* eval:                                 Shell Builtin Commands.
+* exec:                                 Shell Builtin Commands.
+* exit:                                 Shell Builtin Commands.
+* export:                               Shell Builtin Commands.
+* false:                                Shell Builtin Commands.
+* fc:                                   Shell Builtin Commands.
+* fc, use of:                           Modifiers.
+* fg:                                   Shell Builtin Commands.
+* fg, use of:                           Jobs & Signals.
+* for:                                  Complex Commands.
+* function:                             Functions.
+* functions:                            Shell Builtin Commands.
+* functions, use of:                    Functions.
+* getln:                                Shell Builtin Commands.
+* getopts:                              Shell Builtin Commands.
+* hash:                                 Shell Builtin Commands.
+* history:                              Shell Builtin Commands.
+* if:                                   Complex Commands.
+* integer:                              Shell Builtin Commands.
+* integer, use of:                      Arithmetic Evaluation.
+* job:                                  Shell Builtin Commands.
+* jobs:                                 Shell Builtin Commands.
+* jobs, use of:                         Jobs & Signals.
+* kill:                                 Shell Builtin Commands.
+* let:                                  Shell Builtin Commands.
+* let, use of:                          Arithmetic Evaluation.
+* limit:                                Shell Builtin Commands.
+* local:                                Shell Builtin Commands.
+* log:                                  Shell Builtin Commands.
+* logout:                               Shell Builtin Commands.
+* noglob:                               Shell Builtin Commands.
+* notify, use of:                       Jobs & Signals.
+* periodic:                             Functions.
+* popd:                                 Shell Builtin Commands.
+* precmd:                               Functions.
+* print:                                Shell Builtin Commands.
+* pushd:                                Shell Builtin Commands.
+* pushln:                               Shell Builtin Commands.
+* pwd:                                  Shell Builtin Commands.
+* r:                                    Shell Builtin Commands.
+* read:                                 Shell Builtin Commands.
+* readonly:                             Shell Builtin Commands.
+* rehash:                               Shell Builtin Commands.
+* repeat:                               Complex Commands.
+* return:                               Shell Builtin Commands.
+* return, use of:                       Functions.
+* sched:                                Shell Builtin Commands.
+* select:                               Complex Commands.
+* set:                                  Shell Builtin Commands.
+* set, use of:                          Parameters.
+* setopt:                               Shell Builtin Commands.
+* shift:                                Shell Builtin Commands.
+* source:                               Shell Builtin Commands.
+* suspend:                              Shell Builtin Commands.
+* test:                                 Shell Builtin Commands.
+* times:                                Shell Builtin Commands.
+* trap:                                 Shell Builtin Commands.
+* TRAPDEBUG:                            Functions.
+* TRAPEXIT:                             Functions.
+* TRAPZERR:                             Functions.
+* true:                                 Shell Builtin Commands.
+* ttyctl:                               Shell Builtin Commands.
+* type:                                 Shell Builtin Commands.
+* typeset:                              Shell Builtin Commands.
+* typeset, use of:                      Parameters.
+* ulimit:                               Shell Builtin Commands.
+* umask:                                Shell Builtin Commands.
+* unalias:                              Shell Builtin Commands.
+* unfunction:                           Shell Builtin Commands.
+* unfunction, use of:                   Functions.
+* unhash:                               Shell Builtin Commands.
+* unlimit:                              Shell Builtin Commands.
+* unset:                                Shell Builtin Commands.
+* unsetopt:                             Shell Builtin Commands.
+* until:                                Complex Commands.
+* vared:                                Shell Builtin Commands.
+* wait:                                 Shell Builtin Commands.
+* whence:                               Shell Builtin Commands.
+* where:                                Shell Builtin Commands.
+* which:                                Shell Builtin Commands.
+* while:                                Complex Commands.
+
+
+File: zsh.info,  Node: Editor Functions Index,  Next: Keystroke Index,  Prev: Functions Index,  Up: Top
+
+Editor Functions Index
+**********************
+
+* Menu:
+
+* accept-and-hold:                      Miscellaneous.
+* accept-and-infer-next-history:        Miscellaneous.
+* accept-and-menu-complete:             Completion.
+* accept-line:                          Miscellaneous.
+* accept-line-and-down-history:         Miscellaneous.
+* backward-char:                        Movement.
+* backward-delete-char:                 Modifying Text.
+* backward-delete-word:                 Modifying Text.
+* backward-kill-line:                   Modifying Text.
+* backward-kill-word:                   Modifying Text.
+* backward-word:                        Movement.
+* beginning-of-buffer-or-history:       History Control.
+* beginning-of-history:                 History Control.
+* beginning-of-line:                    Movement.
+* beginning-of-line-hist:               History Control.
+* capitalize-word:                      Modifying Text.
+* clear-screen:                         Miscellaneous.
+* complete-word:                        Completion.
+* copy-prev-word:                       Modifying Text.
+* copy-region-as-kill:                  Modifying Text.
+* delete-char:                          Modifying Text.
+* delete-char-or-list:                  Completion.
+* delete-word:                          Modifying Text.
+* describe-key-briefly:                 Miscellaneous.
+* digit-argument:                       Arguments.
+* down-case-word:                       Modifying Text.
+* down-history:                         History Control.
+* down-line-or-history:                 History Control.
+* down-line-or-search:                  History Control.
+* emacs-backward-word:                  Movement.
+* emacs-forward-word:                   Movement.
+* end-of-buffer-or-history:             History Control.
+* end-of-history:                       History Control.
+* end-of-line:                          Movement.
+* end-of-line-hist:                     History Control.
+* exchange-point-and-mark:              Miscellaneous.
+* execute-last-named-cmd:               Miscellaneous.
+* execute-named-cmd:                    Miscellaneous.
+* expand-cmd-path:                      Completion.
+* expand-history:                       Completion.
+* expand-or-complete:                   Completion.
+* expand-or-complete-prefix:            Completion.
+* expand-word:                          Completion.
+* forward-char:                         Movement.
+* forward-word:                         Movement.
+* get-line:                             Miscellaneous.
+* gosmacs-transpose-chars:              Modifying Text.
+* history-beginning-search-backward:    History Control.
+* history-beginning-search-forward:     History Control.
+* history-incremental-search-backward:  History Control.
+* history-incremental-search-forward:   History Control.
+* history-search-backward:              History Control.
+* history-search-forward:               History Control.
+* infer-next-history:                   History Control.
+* insert-last-word:                     History Control.
+* kill-buffer:                          Modifying Text.
+* kill-line:                            Modifying Text.
+* kill-region:                          Modifying Text.
+* kill-whole-line:                      Modifying Text.
+* kill-word:                            Modifying Text.
+* list-choices:                         Completion.
+* list-expand:                          Completion.
+* magic-space:                          Completion.
+* menu-complete:                        Completion.
+* menu-expand-or-complete:              Completion.
+* neg-argument:                         Arguments.
+* overwrite-mode:                       Modifying Text.
+* pound-insert:                         Miscellaneous.
+* push-input:                           Miscellaneous.
+* push-line:                            Miscellaneous.
+* push-line-or-edit:                    Miscellaneous.
+* quote-line:                           Modifying Text.
+* quote-region:                         Modifying Text.
+* quoted-insert:                        Modifying Text.
+* redisplay:                            Miscellaneous.
+* reverse-menu-complete:                Completion.
+* run-help:                             Miscellaneous.
+* self-insert:                          Modifying Text.
+* self-insert-unmeta:                   Modifying Text.
+* send-break:                           Miscellaneous.
+* set-mark-command:                     Miscellaneous.
+* spell-word:                           Miscellaneous.
+* transpose-chars:                      Modifying Text.
+* transpose-words:                      Modifying Text.
+* undefined-key:                        Miscellaneous.
+* undo:                                 Miscellaneous.
+* universal-argument:                   Arguments.
+* up-case-word:                         Modifying Text.
+* up-history:                           History Control.
+* up-line-or-history:                   History Control.
+* up-line-or-search:                    History Control.
+* vi-add-eol:                           Modifying Text.
+* vi-add-next:                          Modifying Text.
+* vi-backward-blank-word:               Movement.
+* vi-backward-char:                     Movement.
+* vi-backward-delete-char:              Modifying Text.
+* vi-backward-kill-word:                Modifying Text.
+* vi-backward-word:                     Movement.
+* vi-beginning-of-line:                 Movement.
+* vi-caps-lock-panic:                   Miscellaneous.
+* vi-change:                            Modifying Text.
+* vi-change-eol:                        Modifying Text.
+* vi-change-whole-line:                 Modifying Text.
+* vi-cmd-mode:                          Miscellaneous.
+* vi-delete:                            Modifying Text.
+* vi-delete-char:                       Modifying Text.
+* vi-digit-or-beginning-of-line:        Miscellaneous.
+* vi-down-line-or-history:              History Control.
+* vi-end-of-line:                       Movement.
+* vi-fetch-history:                     History Control.
+* vi-find-next-char:                    Movement.
+* vi-find-next-char-skip:               Movement.
+* vi-find-prev-char:                    Movement.
+* vi-find-prev-char-skip:               Movement.
+* vi-first-non-blank:                   Movement.
+* vi-forward-blank-word:                Movement.
+* vi-forward-blank-word-end:            Movement.
+* vi-forward-char:                      Movement.
+* vi-forward-word:                      Movement.
+* vi-forward-word-end:                  Movement.
+* vi-goto-column:                       Movement.
+* vi-goto-mark:                         Movement.
+* vi-goto-mark-line:                    Movement.
+* vi-history-search-backward:           History Control.
+* vi-history-search-forward:            History Control.
+* vi-indent:                            Modifying Text.
+* vi-insert:                            Modifying Text.
+* vi-insert-bol:                        Modifying Text.
+* vi-join:                              Modifying Text.
+* vi-kill-eol:                          Modifying Text.
+* vi-kill-line:                         Modifying Text.
+* vi-match-bracket:                     Modifying Text.
+* vi-open-line-above:                   Modifying Text.
+* vi-open-line-below:                   Modifying Text.
+* vi-oper-swap-case:                    Modifying Text.
+* vi-pound-insert:                      Miscellaneous.
+* vi-put-after:                         Modifying Text.
+* vi-put-before:                        Modifying Text.
+* vi-quoted-insert:                     Modifying Text.
+* vi-repeat-change:                     Modifying Text.
+* vi-repeat-find:                       Movement.
+* vi-repeat-search:                     History Control.
+* vi-replace:                           Modifying Text.
+* vi-replace-chars:                     Modifying Text.
+* vi-rev-repeat-find:                   Movement.
+* vi-rev-repeat-search:                 History Control.
+* vi-set-buffer:                        Miscellaneous.
+* vi-set-mark:                          Miscellaneous.
+* vi-substitute:                        Modifying Text.
+* vi-swap-case:                         Modifying Text.
+* vi-undo-change:                       Miscellaneous.
+* vi-unindent:                          Modifying Text.
+* vi-yank:                              Modifying Text.
+* vi-yank-eol:                          Modifying Text.
+* vi-yank-whole-line:                   Modifying Text.
+* where-is:                             Miscellaneous.
+* which-command:                        Miscellaneous.
+* yank:                                 Modifying Text.
+* yank-pop:                             Modifying Text.
+
+
+File: zsh.info,  Node: Keystroke Index,  Prev: Editor Functions Index,  Up: Top
+
+Keystroke Index
+***************
+
+* Menu:
+
+* ":                                    Miscellaneous.
+* #:                                    Miscellaneous.
+* $:                                    Movement.
+* %:                                    Modifying Text.
+* ':                                    Movement.
+* +:                                    History Control.
+* ,:                                    Movement.
+* .:                                    Modifying Text.
+* /:                                    History Control.
+* 0:                                    Miscellaneous.
+* 1:                                    Arguments.
+* 9:                                    Arguments.
+* ;:                                    Movement.
+* <:                                    Modifying Text.
+* =:                                    Completion.
+* >:                                    Modifying Text.
+* ?:                                    History Control.
+* a:                                    Modifying Text.
+* A:                                    Modifying Text.
+* b:                                    Movement.
+* B:                                    Movement.
+* c:                                    Modifying Text.
+* C:                                    Modifying Text.
+* CTRL-?:                               Modifying Text.
+* CTRL-?:                               Movement.
+* CTRL-@:                               Miscellaneous.
+* CTRL-A:                               Movement.
+* CTRL-B:                               Movement.
+* CTRL-D:                               Completion.
+* CTRL-D:                               Completion.
+* CTRL-E:                               Movement.
+* CTRL-F:                               Movement.
+* CTRL-G:                               Miscellaneous.
+* CTRL-G:                               Completion.
+* CTRL-H:                               Movement.
+* CTRL-H:                               Modifying Text.
+* CTRL-J:                               Miscellaneous.
+* CTRL-K:                               Modifying Text.
+* CTRL-L:                               Miscellaneous.
+* CTRL-M:                               Miscellaneous.
+* CTRL-N:                               History Control.
+* CTRL-N:                               History Control.
+* CTRL-O:                               Miscellaneous.
+* CTRL-P:                               History Control.
+* CTRL-P:                               History Control.
+* CTRL-Q:                               Miscellaneous.
+* CTRL-Q CTRL-V:                        Modifying Text.
+* CTRL-R:                               History Control.
+* CTRL-R:                               Miscellaneous.
+* CTRL-S:                               History Control.
+* CTRL-T:                               Modifying Text.
+* CTRL-U:                               Modifying Text.
+* CTRL-U:                               Modifying Text.
+* CTRL-V:                               Modifying Text.
+* CTRL-W:                               Modifying Text.
+* CTRL-W:                               Modifying Text.
+* CTRL-X *:                             Completion.
+* CTRL-X CTRL-B:                        Modifying Text.
+* CTRL-X CTRL-F:                        Movement.
+* CTRL-X CTRL-J:                        Modifying Text.
+* CTRL-X CTRL-K:                        Modifying Text.
+* CTRL-X CTRL-N:                        History Control.
+* CTRL-X CTRL-O:                        Modifying Text.
+* CTRL-X CTRL-U:                        Miscellaneous.
+* CTRL-X CTRL-V:                        Miscellaneous.
+* CTRL-X CTRL-X:                        Miscellaneous.
+* CTRL-X g:                             Completion.
+* CTRL-X G:                             Completion.
+* CTRL-X r:                             History Control.
+* CTRL-X s:                             History Control.
+* CTRL-X u:                             Miscellaneous.
+* CTRL-Y:                               Modifying Text.
+* CTRL-Z:                               Jobs & Signals.
+* CTRL-[:                               Miscellaneous.
+* CTRL-_:                               Miscellaneous.
+* D:                                    Modifying Text.
+* d:                                    Modifying Text.
+* E:                                    Movement.
+* e:                                    Movement.
+* ESC CTRL-G:                           Miscellaneous.
+* ESC-!:                                Completion.
+* ESC-":                                Modifying Text.
+* ESC-$:                                Miscellaneous.
+* ESC-':                                Modifying Text.
+* ESC-:                                 Arguments.
+* ESC-.:                                History Control.
+* ESC-0:                                Arguments.
+* ESC-9:                                Arguments.
+* ESC-<:                                History Control.
+* ESC->:                                History Control.
+* ESC-?:                                Miscellaneous.
+* ESC-A:                                Miscellaneous.
+* ESC-a:                                Miscellaneous.
+* ESC-b:                                Movement.
+* ESC-B:                                Movement.
+* ESC-C:                                Modifying Text.
+* ESC-c:                                Modifying Text.
+* ESC-CTRL-?:                           Modifying Text.
+* ESC-CTRL-D:                           Completion.
+* ESC-CTRL-H:                           Modifying Text.
+* ESC-CTRL-I:                           Modifying Text.
+* ESC-CTRL-J:                           Modifying Text.
+* ESC-CTRL-L:                           Miscellaneous.
+* ESC-CTRL-M:                           Modifying Text.
+* ESC-CTRL-_:                           Modifying Text.
+* ESC-d:                                Modifying Text.
+* ESC-D:                                Modifying Text.
+* ESC-f:                                Movement.
+* ESC-F:                                Movement.
+* ESC-g:                                Miscellaneous.
+* ESC-G:                                Miscellaneous.
+* ESC-H:                                Miscellaneous.
+* ESC-h:                                Miscellaneous.
+* ESC-l:                                Modifying Text.
+* ESC-L:                                Modifying Text.
+* ESC-N:                                History Control.
+* ESC-n:                                History Control.
+* ESC-P:                                History Control.
+* ESC-p:                                History Control.
+* ESC-q:                                Miscellaneous.
+* ESC-Q:                                Miscellaneous.
+* ESC-s:                                Miscellaneous.
+* ESC-S:                                Miscellaneous.
+* ESC-SPACE:                            Completion.
+* ESC-t:                                Modifying Text.
+* ESC-T:                                Modifying Text.
+* ESC-U:                                Modifying Text.
+* ESC-u:                                Modifying Text.
+* ESC-W:                                Modifying Text.
+* ESC-w:                                Modifying Text.
+* ESC-x:                                Miscellaneous.
+* ESC-y:                                Modifying Text.
+* ESC-z:                                Miscellaneous.
+* ESC-[A:                               History Control.
+* ESC-[B:                               History Control.
+* ESC-[C:                               Movement.
+* ESC-[D:                               Movement.
+* ESC-_:                                History Control.
+* ESC-|:                                Movement.
+* f:                                    Movement.
+* F:                                    Movement.
+* G:                                    History Control.
+* h:                                    Movement.
+* I:                                    Modifying Text.
+* i:                                    Modifying Text.
+* J:                                    Modifying Text.
+* j:                                    History Control.
+* k:                                    History Control.
+* l:                                    Movement.
+* m:                                    Miscellaneous.
+* n:                                    History Control.
+* N:                                    History Control.
+* O:                                    Modifying Text.
+* o:                                    Modifying Text.
+* P:                                    Modifying Text.
+* p:                                    Modifying Text.
+* R:                                    Modifying Text.
+* r:                                    Modifying Text.
+* S:                                    Modifying Text.
+* s:                                    Modifying Text.
+* SPACE:                                Movement.
+* t:                                    Movement.
+* T:                                    Movement.
+* TAB:                                  Completion.
+* u:                                    Miscellaneous.
+* W:                                    Movement.
+* w:                                    Movement.
+* X:                                    Modifying Text.
+* y:                                    Modifying Text.
+* Y:                                    Modifying Text.
+* ^:                                    Movement.
+* `:                                    Movement.
+* |:                                    Movement.
+* ~:                                    Modifying Text.
+
+

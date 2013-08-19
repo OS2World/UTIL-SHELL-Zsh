@@ -1,0 +1,2 @@
+DOMOD(boot_zle)
+DOMOD(boot_compctl)

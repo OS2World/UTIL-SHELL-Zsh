@@ -1,0 +1,873 @@
+This is Info file zsh.info, produced by Makeinfo-1.55 from the input
+file ./zsh.texi.
+
+This is a texinfo version of the man page for the Z Shell, originally by
+Paul Falstad.  It was converted from the `zsh.1' file distributed with
+zsh v2.5.0 by Jonathan Hardwick, `jch@cs.cmu.edu' and updated/modified
+by Clive Messer, `clive@epos.demon.co.uk' to its present state.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the entire resulting derived work is distributed under the terms
+of a permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions.
+
+
+File: zsh.info,  Node: Flags with arguments,  Next: Control Flags,  Prev: Simple Flags,  Up: Options Flags
+
+Flags with arguments
+--------------------
+
+These have user supplied arguments to determine how the list of
+completions is to be made up:
+
+`-k ARRAY'
+     Names taken from the elements of `$ARRAY' (note that the `$' does
+     not appear on the command  line).   Alternatively, the argument
+     `ARRAY' itself may be a set of space or comma separated values in
+     parentheses, in which any delimiter may be escaped with a
+     backslash; in this case the argument should be quoted.  For
+     example, `compctl -k "(cputime filesize datasize stacksize
+     coredumpsize resident descriptors)" limit'.
+
+`-g GLOBSTRING'
+     The GLOBSTRING is expanded using filename globbing; it should be
+     quoted to protect it from immediate expansion.  The resulting
+     filenames are taken as possible completions.  Use `*(/)' instead
+     of `*/' for directories.  The `fignore' special parameter is not
+     applied to the resulting files.  More than one pattern may be
+     given separated by blanks. (Note that brace expansion is not part
+     of globbing.  Use the syntax (`either|or') to match alternatives.)
+
+`-K FUNCTION'
+     Call the given function to get the completions.  The function is
+     passed two arguments: the prefix and the suffix of the word on
+     which completion is to be attempted, in other words those
+     characters before the cursor position, and those from the cursor
+     position onwards.  The function should set the variable `reply' to
+     an array containing the completions (one completion per element);
+     note that `reply' should not be made local to the function.  From
+     such a function the command line can be accessed with the `-c' and
+     `-l' flags to the `read' builtin.  For example,
+
+     `function whoson { reply=(`users`); }'
+     `compctl -K whoson talk'
+
+     completes only logged-on users after `talk'.  Note that `whoson'
+     must return an array so that just `reply=`users`' is incorrect.
+
+`-H NUM PATTERN'
+     The possible completions are taken from the last NUM history
+     lines.  Only words matching PATTERN are taken.  If NUM is zero or
+     negative the whole history is searched and if PATTERN is the empty
+     string all words are taken (as with `*').  A typical use is
+
+     `compctl -D -f + -H 0 '' -X '(No file found; using history)''
+
+     which forces completion to look back in the history list for a
+     word if no filename matches.  The explanation string is useful as
+     it tells the user that no file of that name exists, which is
+     otherwise ambiguous.  (See the next section for `-X'.)
+
+
+File: zsh.info,  Node: Control Flags,  Prev: Flags with arguments,  Up: Options Flags
+
+Control Flags
+-------------
+
+These do not directly specify types of name to be completed, but
+manipulate the options that do:
+
+`-Q'
+     This instructs the shell not to quote any metacharacters in the
+     possible completions.  Normally the results of a completion are
+     inserted into the command line with any metacharacters quoted so
+     that they  are interpreted as  normal characters.  This is
+     appropriate for filenames and ordinary strings.  However, for
+     special effects, such as inserting a backquoted expression from a
+     completion array (`-k') so that the expression will not be
+     evaluated until the complete line is executed, this option must be
+     used.
+
+`-P PREFIX'
+     The PREFIX is inserted just before the completed string; any
+     initial part already typed will be completed and the whole PREFIX
+     ignored for completion purposes.  For example,
+
+     `compctl -j -P "%" kill'
+
+     inserts a `%' after the `kill' command and then completes job
+     names.
+
+`-S SUFFIX'
+     When a completion is found the SUFFIX is inserted after the
+     completed string.  In the case of menu completion the SUFFIX is
+     inserted immediately, but it is still possible to cycle through
+     the list of completions by repeatedly hitting the same key.
+
+`-q'
+     If used with a suffix as specified by the previous option, this
+     causes the suffix to be removed if the next character typed is a
+     blank or does not insert anything (the same rule as used for the
+     `AUTO_REMOVE_SLASH' option).  The option is most useful for list
+     separators (comma, colon, etc.).
+
+`-l CMD'
+     This option cannot be combined with any other option.  It
+     restricts the range of command line words that are considered to be
+     arguments.  If combined with one of the extended completion
+     patterns `p[...]', `r[...]', or `R[...]' (*Note Extended
+     Completion::.) the range is restricted to the arguments specified
+     in the brackets.  Completion is then performed as if these had
+     been given as arguments to the CMD supplied with the option.  If
+     the CMD string is empty the first word in the range is instead
+     taken as the command name, and command name completion performed
+     on the first word in the range.  For example,
+
+     `compctl -x 'r[-exec,;]' -l '' -- find'
+
+     completes arguments between `-exec' and the following `;' (or the
+     end of the command line if there is no such string) as if they
+     were a separate command line.
+
+`-U'
+     Use the whole list of possible completions, whether or not they
+     actually match the word on the command line.  The word typed so
+     far will be deleted.  This is most useful with a function (given
+     by the `-K' option) which can examine the word components passed
+     to it (or via the `read' builtin's `-c' and `-l' flags) and use
+     its own criteria to decide what matches.  If there is no
+     completion, the original word is retained.
+
+`-X EXPLANATION'
+     Print EXPLANATION when trying completion on the current set of
+     options.  A `%n' in this string is replaced by the number of
+     matches.
+
+
+File: zsh.info,  Node: Alternative Completion,  Next: Extended Completion,  Prev: Options Flags,  Up: Programmable Completion
+
+Alternative Completion
+======================
+
+`compctl [ -CDT ] OPTIONS + OPTIONS [ + ... ] [ + ] COMMAND ...'
+
+The form with `+' specifies alternative OPTIONS.  Completion is tried
+with the OPTIONS before the first `+'.  If this produces no matches
+completion is tried with the flags after the `+' and so on.  If there
+are no flags after the last `+' and a match has not been found up to
+that point, default completion is tried.
+
+
+File: zsh.info,  Node: Extended Completion,  Next: Example,  Prev: Alternative Completion,  Up: Programmable Completion
+
+Extended Completion
+===================
+
+`compctl  [  -CDT  ]  OPTIONS -x PATTERN OPTIONS - ... -- [ COMMAND ...
+]'
+
+`compctl [ -CDT ] OPTIONS [ -x PATTERN OPTIONS - ... -- ]'
+`        [ + OPTIONS [ -x ... -- ] ... [+] ] [ COMMAND ... ]'
+
+The form with `-x' specifies extended completion for the commands
+given; as shown, it may be combined with alternative completion using
+`+'.  Each PATTERN is examined in turn; when a match is found, the
+corresponding OPTIONS, as described in *Note Options Flags::, are used
+to generate possible completions.  If no PATTERN matches, the OPTIONS
+given before the `-x' are used.
+
+Note that each pattern should be supplied as a single argument and
+should be quoted to prevent expansion of meta-characters by the shell.
+
+A PATTERN is built of sub-patterns separated by commas; it matches if
+at least one of these sub-patterns matches (they are `or''ed).  These
+sub-patterns are in turn composed of other sub-patterns separated by
+white spaces which match if all of the sub-patterns match (they are
+`and''ed).  An element of the sub-patterns is of the  form
+`c[...][...]', where the pairs of brackets may be repeated as often as
+necessary, and matches if any of the sets of brackets match (an `or').
+The example below makes this clearer.
+
+The elements may be any of the following:
+
+`S[STRING] ...'
+     Matches if the current word on the command line starts with one of
+     the strings given in brackets.  The STRING is not removed and is
+     not part of the completion.
+
+`S[STRING] ...'
+     Like S[STRING] except that the STRING is part of the completion.
+
+`P[FROM,TO] ...'
+     Matches if the number of the current word is between one of the
+     FROM and TO pairs inclusive.  The comma and TO are optional; TO
+     defaults to the same value as FROM.  The numbers may be negative:
+     `-n' refers to the `n''th last word on the line.
+
+`C[OFFSET,STRING] ...'
+     Matches if the STRING matches the word offset by OFFSET from the
+     current word position.  Usually OFFSET will be negative.
+
+`C[OFFSET,PATTERN] ...'
+     Like C but using pattern matching instead.
+
+`W[INDEX,STRING] ...'
+     Matches if the word in position INDEX is equal to the
+     corresponding  STRING.  Note that the word count is made after any
+     alias expansion.
+
+`W[INDEX,PATTERN] ...'
+     Like W but using pattern matching instead.
+
+`N[INDEX,STRING] ...'
+     Matches if the current word contains STRING.  Anything up to and
+     including the INDEX'th occurrence of this STRING will not be
+     considered part of the completion, but the rest will.  INDEX may be
+     negative to count from the end: in most cases, INDEX will be 1 or
+     -1.
+
+`N[INDEX,STRING] ...'
+     Like N[INDEX,STRING] except that the STRING will be taken as a
+     character class.  Anything up to and including the INDEX'th
+     occurrence of any of the characters in STRING will not be
+     considered part of the completion.
+
+`M[MIN,MAX] ...'
+     Matches if the total number of words lies between MIN and MAX
+     inclusive.
+
+`R[STR1,STR2] ...'
+     Matches if the cursor is after a word with prefix STR1.  If there
+     is also a word with prefix STR2 on the command line it matches
+     only if the cursor is before this word.
+
+`R[STR1,STR2] ...'
+     Like R but using pattern matching instead.
+
+
+File: zsh.info,  Node: Example,  Prev: Extended Completion,  Up: Programmable Completion
+
+Example
+=======
+
+`compctl -u -x 's[+] c[-1,-f],s[-f+]' -g '~/Mail/*(:t)' -
+'s[-f],c[-1,-f]' -f -- mail'
+
+This is to be interpreted as follows:
+
+If the current command is `mail', then
+
+if  ((the current word begins with `+' and the previous word is `-f')
+or (the current word begins with `-f+')), then complete the
+non-directory part (the `:t' glob modifier) of files in the directory
+`~/Mail'; else
+
+if the current word begins with `-f' or the previous word was `-f',
+then complete any file; else
+
+complete user names.
+
+
+File: zsh.info,  Node: Concept Index,  Next: Variables Index,  Prev: Programmable Completion,  Up: Top
+
+Concept Index
+*************
+
+* Menu:
+
+* $0, setting:                          Description of Options.
+* alias:                                Shell Builtin Commands.
+* aliases, completion of:               Description of Options.
+* aliases, global:                      Aliasing.
+* aliases, removing:                    Shell Builtin Commands.
+* aliasing:                             Aliasing.
+* alternate forms for complex commands: Alternate Forms For Complex Commands.
+* ambiguous completions:                Description of Options.
+* annoying keyboard, sun:               Description of Options.
+* arithmetic evaluation:                Arithmetic Evaluation.
+* arithmetic expansion:                 Arithmetic Expansion.
+* arithmetic operators:                 Arithmetic Evaluation.
+* array elements:                       Array Parameters.
+* array expansion, rc style:            Parameter Expansion.
+* array parameter, declaring:           Shell Builtin Commands.
+* arrays, ksh style:                    Description of Options.
+* author:                               Author.
+* autoloading functions:                Shell Builtin Commands.
+* background jobs, IO:                  Jobs & Signals.
+* background jobs, notification:        Description of Options.
+* background jobs, priority of:         Description of Options.
+* beep, ambiguous completion:           Description of Options.
+* beep, enable:                         Description of Options.
+* beep, history:                        Description of Options.
+* bindings, key:                        Zsh Line Editor.
+* brace expansion:                      Brace Expansion.
+* brace expansion, disabling:           Description of Options.
+* brace expansion, extending:           Description of Options.
+* builtin commands:                     Shell Builtin Commands.
+* case selection:                       Complex Commands.
+* cd, automatic:                        Description of Options.
+* cd, behaving like pushd:              Description of Options.
+* cd, to parameter:                     Description of Options.
+* clobbering, of files:                 Description of Options.
+* command execution:                    Command Execution.
+* command execution, enabling:          Description of Options.
+* command hashing:                      Description of Options.
+* command substitution:                 Command Substitution.
+* commands, alternate forms for complex: Alternate Forms For Complex Commands.
+* commands, complex:                    Complex Commands.
+* commands, disabling:                  Shell Builtin Commands.
+* commands, simple:                     Simple Commands & Pipelines.
+* comments:                             Comments.
+* comments, in interactive shells:      Description of Options.
+* compatibility:                        Compatibility.
+* compatibility, csh:                   Shell Builtin Commands.
+* compatibility, ksh:                   Shell Builtin Commands.
+* compatibility, sh:                    Shell Builtin Commands.
+* completion, beep on ambiguous:        Description of Options.
+* completion, controlling:              Programmable Completion.
+* completion, exact matches:            Description of Options.
+* completion, listing choices:          Description of Options.
+* completion, menu:                     Description of Options.
+* completion, menu, on TAB:             Description of Options.
+* completion, programmable:             Programmable Completion.
+* completions, ambiguous:               Description of Options.
+* complex commands:                     Complex Commands.
+* conditional expressions:              Conditional Expressions.
+* continuing loops:                     Shell Builtin Commands.
+* coprocesses:                          Simple Commands & Pipelines.
+* correction, spelling:                 Description of Options.
+* csh, compatibility:                   Shell Builtin Commands.
+* csh, history style:                   Description of Options.
+* csh, loop style:                      Description of Options.
+* csh, null command style:              Parameters Used By The Shell.
+* csh, null globbing style:             Description of Options.
+* csh, quoting style:                   Description of Options.
+* csh, tilde expansion:                 Parameter Expansion.
+* descriptors, file:                    Redirection.
+* directories, changing:                Shell Builtin Commands.
+* directories, hashing:                 Description of Options.
+* directories, marking:                 Description of Options.
+* directories, named:                   Description of Options.
+* directories, named:                   Filename Expansion.
+* directory stack, ignoring dups:       Description of Options.
+* directory stack, printing:            Shell Builtin Commands.
+* directory stack, silencing:           Description of Options.
+* disabling brace expansion:            Description of Options.
+* disabling commands:                   Shell Builtin Commands.
+* disabling the editor:                 Description of Options.
+* disowning jobs:                       Jobs & Signals.
+* echo, BSD compatible:                 Description of Options.
+* editing parameters:                   Shell Builtin Commands.
+* editing the history:                  Shell Builtin Commands.
+* editor, disabling:                    Description of Options.
+* editor, line:                         Zsh Line Editor.
+* editor, modes:                        Zsh Line Editor.
+* editor, overstrike mode:              Description of Options.
+* editor, single line mode:             Description of Options.
+* enable history substitution:          Description of Options.
+* enable the beep:                      Description of Options.
+* enabling globbing:                    Description of Options.
+* EOF, ignoring:                        Description of Options.
+* evaluating arguments as commands:     Shell Builtin Commands.
+* evaluation, arithmetic:               Arithmetic Evaluation.
+* event designators, history:           Event Designators.
+* exclusion, globbing:                  Filename Generation.
+* execution, of commands:               Command Execution.
+* execution, timed:                     Shell Builtin Commands.
+* exit status, printing:                Description of Options.
+* exit status, trapping:                Description of Options.
+* exiting loops:                        Shell Builtin Commands.
+* expanding parameters:                 Shell Builtin Commands.
+* expansion:                            Expansion.
+* expansion style, sh:                  Description of Options.
+* expansion, arithmetic:                Arithmetic Expansion.
+* expansion, brace:                     Brace Expansion.
+* expansion, brace, disabling:          Description of Options.
+* expansion, brace, extended:           Description of Options.
+* expansion, filename:                  Filename Expansion.
+* expansion, history:                   History Expansion.
+* expansion, parameter:                 Parameter Expansion.
+* export, automatic:                    Description of Options.
+* expressions, conditional:             Conditional Expressions.
+* features, undocumented:               Undocumented Features.
+* file clobbering, allowing:            Description of Options.
+* file descriptors:                     Redirection.
+* file, history:                        Shell Builtin Commands.
+* filename expansion:                   Filename Expansion.
+* filename generation:                  Filename Generation.
+* filename generation, bad pattern:     Description of Options.
+* filename substitution, =:             Description of Options.
+* files used:                           Startup/Shutdown Files.
+* files, marking type of:               Description of Options.
+* files, shutdown:                      Startup/Shutdown Files.
+* files, startup:                       Startup/Shutdown Files.
+* files, startup:                       Startup/Shutdown Files.
+* files, temporary:                     Process Substitution.
+* flags, shell:                         Invocation.
+* flow control:                         Description of Options.
+* for loops:                            Complex Commands.
+* functions:                            Functions.
+* functions, autoloading:               Shell Builtin Commands.
+* functions, removing:                  Shell Builtin Commands.
+* functions, returning from:            Shell Builtin Commands.
+* globbing:                             Filename Generation.
+* globbing, enabling:                   Description of Options.
+* globbing, excluding patterns:         Filename Generation.
+* globbing, extended:                   Description of Options.
+* globbing, malformed pattern:          Description of Options.
+* globbing, no matches:                 Description of Options.
+* globbing, no matches:                 Description of Options.
+* globbing, null, csh style:            Description of Options.
+* globbing, of . files:                 Description of Options.
+* globbing, qualifiers:                 Filename Generation.
+* globbing, sh style:                   Description of Options.
+* grammar, shell:                       Shell Grammar.
+* hashing, of commands:                 Description of Options.
+* hashing, of directories:              Description of Options.
+* history:                              History Expansion.
+* history beeping:                      Description of Options.
+* history event designators:            Event Designators.
+* history expansion:                    History Expansion.
+* history modifiers:                    Modifiers.
+* history word designators:             Word Designators.
+* history, appending to file:           Description of Options.
+* history, editing:                     Shell Builtin Commands.
+* history, enable substitution:         Description of Options.
+* history, file:                        Shell Builtin Commands.
+* history, ignoring duplicates:         Description of Options.
+* history, ignoring spaces:             Description of Options.
+* history, timestamping:                Description of Options.
+* history, verifying substitution:      Description of Options.
+* if construct:                         Complex Commands.
+* integer parameters:                   Arithmetic Evaluation.
+* invocation:                           Invocation.
+* job control, allowing:                Description of Options.
+* jobs:                                 Jobs & Signals.
+* jobs, background priority:            Description of Options.
+* jobs, background, IO:                 Jobs & Signals.
+* jobs, disowning:                      Jobs & Signals.
+* jobs, hup:                            Description of Options.
+* jobs, killing:                        Shell Builtin Commands.
+* jobs, list format:                    Description of Options.
+* jobs, referring to:                   Jobs & Signals.
+* jobs, resuming automatically:         Description of Options.
+* jobs, suspending:                     Jobs & Signals.
+* jobs, waiting for:                    Shell Builtin Commands.
+* key bindings:                         Zsh Line Editor.
+* keys, rebinding:                      Shell Builtin Commands.
+* killing jobs:                         Shell Builtin Commands.
+* ksh, compatibility:                   Compatibility.
+* ksh, compatibility:                   Shell Builtin Commands.
+* ksh, editor mode:                     Zsh Line Editor.
+* ksh, null command style:              Parameters Used By The Shell.
+* ksh, option printing style:           Description of Options.
+* ksh, single letter options style:     Description of Options.
+* ksh, style arrays:                    Description of Options.
+* limits, resource:                     Shell Builtin Commands.
+* limits, resource:                     Shell Builtin Commands.
+* limits, resource:                     Shell Builtin Commands.
+* line editor:                          Zsh Line Editor.
+* line, reading:                        Shell Builtin Commands.
+* links, symbolic:                      Description of Options.
+* list:                                 Simple Commands & Pipelines.
+* list format, of jobs:                 Description of Options.
+* loop style, csh:                      Description of Options.
+* loops, continuing:                    Shell Builtin Commands.
+* loops, exiting:                       Shell Builtin Commands.
+* loops, for:                           Complex Commands.
+* loops, repeat:                        Complex Commands.
+* loops, until:                         Complex Commands.
+* loops, while:                         Complex Commands.
+* mail, warning of arrival:             Description of Options.
+* mailing lists:                        Mailing Lists.
+* marking directories:                  Description of Options.
+* marking file types:                   Description of Options.
+* mode, privileged:                     Description of Options.
+* modifiers, history:                   Modifiers.
+* modifiers, precommand:                Precommand Modifiers.
+* named directories:                    Filename Expansion.
+* notification of background jobs:      Description of Options.
+* null command, setting:                Parameters Used By The Shell.
+* null globbing, csh style:             Description of Options.
+* operators, arithmetic:                Arithmetic Evaluation.
+* option printing, ksh style:           Description of Options.
+* options:                              Options.
+* options, description:                 Description of Options.
+* options, processing:                  Shell Builtin Commands.
+* options, setting:                     Shell Builtin Commands.
+* options, single letter:               Single Letter Options.
+* options, specifying:                  Specifying Options.
+* options, unsetting:                   Shell Builtin Commands.
+* overstrike mode, of editor:           Description of Options.
+* parameter expansion:                  Parameter Expansion.
+* parameters:                           Parameters.
+* parameters, array:                    Shell Builtin Commands.
+* parameters, editing:                  Shell Builtin Commands.
+* parameters, expanding:                Shell Builtin Commands.
+* parameters, integer:                  Arithmetic Evaluation.
+* parameters, marking readonly:         Shell Builtin Commands.
+* parameters, positional:               Shell Builtin Commands.
+* parameters, positional:               Shell Builtin Commands.
+* parameters, setting:                  Shell Builtin Commands.
+* parameters, substituting unset:       Description of Options.
+* parameters, unsetting:                Shell Builtin Commands.
+* path search, extended:                Description of Options.
+* pipeline:                             Simple Commands & Pipelines.
+* popd, controlling syntax:             Description of Options.
+* precommand modifiers:                 Precommand Modifiers.
+* privileged mode:                      Description of Options.
+* process substitution:                 Process Substitution.
+* prompt, with CR:                      Description of Options.
+* pushd, making cd behave like:         Description of Options.
+* pushd, to home:                       Description of Options.
+* qualifiers, globbing:                 Filename Generation.
+* querying before rm *:                 Description of Options.
+* quoting:                              Quoting.
+* quoting style, csh:                   Description of Options.
+* quoting style, rc:                    Description of Options.
+* rc, array expansion style:            Parameter Expansion.
+* rc, quoting style:                    Description of Options.
+* reading a line:                       Shell Builtin Commands.
+* rebinding the keys:                   Shell Builtin Commands.
+* redirection:                          Redirection.
+* referring to jobs:                    Jobs & Signals.
+* repeat loops:                         Complex Commands.
+* reserved words:                       Reserved Words.
+* resource limits:                      Shell Builtin Commands.
+* resource limits:                      Shell Builtin Commands.
+* resource limits:                      Shell Builtin Commands.
+* resuming jobs automatically:          Description of Options.
+* rm *, querying before:                Description of Options.
+* selection, case:                      Complex Commands.
+* selection, user:                      Complex Commands.
+* sh, compatibility:                    Shell Builtin Commands.
+* sh, compatibility:                    Compatibility.
+* sh, expansion style:                  Description of Options.
+* sh, globbing style:                   Description of Options.
+* sh, word splitting style:             Parameter Expansion.
+* sh, word splitting style:             Description of Options.
+* shell flags:                          Invocation.
+* shell grammar:                        Shell Grammar.
+* shell, suspending:                    Shell Builtin Commands.
+* shell, timing:                        Shell Builtin Commands.
+* signals:                              Jobs & Signals.
+* signals, trapping:                    Shell Builtin Commands.
+* signals, trapping:                    Functions.
+* simple commands:                      Simple Commands & Pipelines.
+* single command:                       Description of Options.
+* single letter options, ksh style:     Description of Options.
+* slash, removing trailing:             Description of Options.
+* sorting, numerically:                 Description of Options.
+* spelling correction:                  Description of Options.
+* startup files:                        Startup/Shutdown Files.
+* startup files, sourcing:              Description of Options.
+* sublist:                              Simple Commands & Pipelines.
+* subshells:                            Complex Commands.
+* substitution, command:                Command Substitution.
+* substitution, process:                Process Substitution.
+* substrings:                           Array Parameters.
+* sun keyboard, annoying:               Description of Options.
+* suspending jobs:                      Jobs & Signals.
+* symbolic links:                       Description of Options.
+* temporary files:                      Process Substitution.
+* termcap string, printing:             Shell Builtin Commands.
+* testing conditional expression:       Complex Commands.
+* tilde expansion, csh:                 Parameter Expansion.
+* timed execution:                      Shell Builtin Commands.
+* timing:                               Complex Commands.
+* timing the shell:                     Shell Builtin Commands.
+* tracing, of commands:                 Description of Options.
+* tracing, of input lines:              Description of Options.
+* trapping signals:                     Functions.
+* trapping signals:                     Shell Builtin Commands.
+* tty, freezing:                        Shell Builtin Commands.
+* umask:                                Shell Builtin Commands.
+* unset parameters, substituting:       Description of Options.
+* until loops:                          Complex Commands.
+* user selection:                       Complex Commands.
+* users, watching:                      Shell Builtin Commands.
+* waiting for jobs:                     Shell Builtin Commands.
+* watching users:                       Shell Builtin Commands.
+* while loops:                          Complex Commands.
+* word designators, history:            Word Designators.
+* word splitting, sh style:             Parameter Expansion.
+* word splitting, sh style:             Description of Options.
+
+
+File: zsh.info,  Node: Variables Index,  Next: Options Index,  Prev: Concept Index,  Up: Top
+
+Variables Index
+***************
+
+* Menu:
+
+* !:                                    Parameters Set By The Shell.
+* #:                                    Parameters Set By The Shell.
+* $:                                    Parameters Set By The Shell.
+* *:                                    Parameters Set By The Shell.
+* -:                                    Parameters Set By The Shell.
+* ?:                                    Parameters Set By The Shell.
+* @:                                    Parameters Set By The Shell.
+* ARGC:                                 Parameters Set By The Shell.
+* argv:                                 Parameters Set By The Shell.
+* ARGV0:                                Parameters Used By The Shell.
+* BAUD:                                 Parameters Used By The Shell.
+* cdpath:                               Parameters Used By The Shell.
+* CDPATH:                               Parameters Used By The Shell.
+* COLUMNS:                              Parameters Used By The Shell.
+* DIRSTACKSIZE:                         Parameters Used By The Shell.
+* EDITOR:                               Zsh Line Editor.
+* EGID:                                 Parameters Set By The Shell.
+* ERRNO:                                Parameters Set By The Shell.
+* EUID:                                 Parameters Set By The Shell.
+* FCEDIT:                               Parameters Used By The Shell.
+* FIGNORE:                              Parameters Used By The Shell.
+* fignore:                              Parameters Used By The Shell.
+* FPATH:                                Parameters Used By The Shell.
+* fpath:                                Parameters Used By The Shell.
+* GID:                                  Parameters Set By The Shell.
+* histchars:                            Parameters Used By The Shell.
+* HISTCHARS:                            Parameters Used By The Shell.
+* histchars, use of:                    Comments.
+* HISTFILE:                             Parameters Used By The Shell.
+* HISTSIZE:                             Parameters Used By The Shell.
+* HISTSIZE, use of:                     History Expansion.
+* HOME:                                 Parameters Used By The Shell.
+* HOST:                                 Parameters Set By The Shell.
+* IFS:                                  Parameters Used By The Shell.
+* IFS:                                  Shell Builtin Commands.
+* IFS, use of:                          Parameter Expansion.
+* IFS, use of:                          Command Substitution.
+* KEYTIMEOUT:                           Parameters Used By The Shell.
+* LANG:                                 Parameters Used By The Shell.
+* LC_ALL:                               Parameters Used By The Shell.
+* LC_COLLATE:                           Parameters Used By The Shell.
+* LC_CTYPE:                             Parameters Used By The Shell.
+* LC_MESSAGES:                          Parameters Used By The Shell.
+* LC_TIME:                              Parameters Used By The Shell.
+* LINENO:                               Parameters Set By The Shell.
+* LINES:                                Parameters Used By The Shell.
+* LISTMAX:                              Parameters Used By The Shell.
+* LOGCHECK:                             Parameters Used By The Shell.
+* LOGNAME:                              Parameters Set By The Shell.
+* MACHTYPE:                             Parameters Set By The Shell.
+* MAIL:                                 Parameters Used By The Shell.
+* MAILCHECK:                            Parameters Used By The Shell.
+* mailpath:                             Parameters Used By The Shell.
+* MAILPATH:                             Parameters Used By The Shell.
+* MANPATH:                              Parameters Used By The Shell.
+* manpath:                              Parameters Used By The Shell.
+* NULLCMD:                              Parameters Used By The Shell.
+* OLDPWD:                               Parameters Set By The Shell.
+* OPTARG:                               Parameters Set By The Shell.
+* OPTARG, use of:                       Shell Builtin Commands.
+* OPTIND:                               Parameters Set By The Shell.
+* OPTIND, use of:                       Shell Builtin Commands.
+* OSTYPE:                               Parameters Set By The Shell.
+* PATH:                                 Parameters Used By The Shell.
+* path:                                 Parameters Used By The Shell.
+* path, use of:                         Command Execution.
+* PERIOD:                               Functions.
+* POSTEDIT:                             Parameters Used By The Shell.
+* PPID:                                 Parameters Set By The Shell.
+* prompt:                               Parameters Used By The Shell.
+* PROMPT:                               Parameters Used By The Shell.
+* PROMPT2:                              Parameters Used By The Shell.
+* PROMPT3:                              Parameters Used By The Shell.
+* PROMPT4:                              Parameters Used By The Shell.
+* PS1:                                  Parameters Used By The Shell.
+* PS2:                                  Parameters Used By The Shell.
+* PS3:                                  Parameters Used By The Shell.
+* PS4:                                  Parameters Used By The Shell.
+* PSVAR:                                Parameters Used By The Shell.
+* psvar:                                Parameters Used By The Shell.
+* PWD:                                  Parameters Set By The Shell.
+* RANDOM:                               Parameters Set By The Shell.
+* READNULLCMD:                          Parameters Used By The Shell.
+* REPORTTIME:                           Parameters Used By The Shell.
+* RPROMPT:                              Parameters Used By The Shell.
+* RPS1:                                 Parameters Used By The Shell.
+* SAVEHIST:                             Parameters Used By The Shell.
+* SECONDS:                              Parameters Set By The Shell.
+* SHLVL:                                Parameters Set By The Shell.
+* signals:                              Parameters Set By The Shell.
+* SPROMPT:                              Parameters Used By The Shell.
+* status:                               Parameters Set By The Shell.
+* STTY:                                 Parameters Used By The Shell.
+* TERM:                                 Zsh Line Editor.
+* TIMEFMT:                              Parameters Used By The Shell.
+* TMOUT:                                Parameters Used By The Shell.
+* TMPPREFIX:                            Parameters Used By The Shell.
+* TTY:                                  Parameters Set By The Shell.
+* TTYIDLE:                              Parameters Set By The Shell.
+* UID:                                  Parameters Set By The Shell.
+* USERNAME:                             Parameters Set By The Shell.
+* VENDOR:                               Parameters Set By The Shell.
+* VISUAL:                               Zsh Line Editor.
+* WATCH:                                Parameters Used By The Shell.
+* watch:                                Parameters Used By The Shell.
+* watch, use of:                        Shell Builtin Commands.
+* WATCHFMT:                             Parameters Used By The Shell.
+* WORDCHARS:                            Parameters Used By The Shell.
+* ZDOTDIR:                              Parameters Used By The Shell.
+* ZSHNAME:                              Parameters Set By The Shell.
+* ZSH_NAME:                             Parameters Set By The Shell.
+* ZSH_VERSION:                          Parameters Set By The Shell.
+* _:                                    Parameters Set By The Shell.
+
+
+File: zsh.info,  Node: Options Index,  Next: Functions Index,  Prev: Variables Index,  Up: Top
+
+Options Index
+*************
+
+* Menu:
+
+* ALL_EXPORT:                           Description of Options.
+* ALWAYS_LAST_PROMPT:                   Description of Options.
+* ALWAYS_TO_END:                        Description of Options.
+* APPEND_HISTORY:                       Description of Options.
+* AUTO_CD:                              Description of Options.
+* AUTO_LIST:                            Description of Options.
+* AUTO_MENU:                            Description of Options.
+* AUTO_NAME_DIRS:                       Description of Options.
+* AUTO_PARAM_KEYS:                      Description of Options.
+* AUTO_PARAM_SLASH:                     Description of Options.
+* AUTO_PUSHD:                           Description of Options.
+* AUTO_PUSHD, use of:                   Parameters Used By The Shell.
+* AUTO_REMOVE_SLASH:                    Description of Options.
+* AUTO_RESUME:                          Description of Options.
+* BAD_PATTERN:                          Description of Options.
+* BANG_HIST:                            Description of Options.
+* BEEP:                                 Description of Options.
+* BG_NICE:                              Description of Options.
+* BRACE_CCL:                            Description of Options.
+* BRACE_CCL, use of:                    Brace Expansion.
+* BSD_ECHO:                             Description of Options.
+* BSD_ECHO, use of:                     Shell Builtin Commands.
+* CDABLEVARS, use of:                   Shell Builtin Commands.
+* CDABLE_VARS:                          Description of Options.
+* CHASE_LINKS:                          Description of Options.
+* CHASE_LINKS, use of:                  Shell Builtin Commands.
+* CLOBBER:                              Description of Options.
+* CLOBBER, use of:                      Redirection.
+* COMPLETE_ALIASES:                     Description of Options.
+* COMPLETE_IN_WORD:                     Description of Options.
+* CORRECT:                              Description of Options.
+* CORRECT_ALL:                          Description of Options.
+* CSH_JUNKIE_HISTORY:                   Description of Options.
+* CSH_JUNKIE_LOOPS:                     Parameter Expansion.
+* CSH_JUNKIE_LOOPS:                     Description of Options.
+* CSH_JUNKIE_QUOTES:                    Description of Options.
+* CSH_NULL_GLOB:                        Description of Options.
+* EQUALS:                               Description of Options.
+* ERR_EXIT:                             Description of Options.
+* EXEC:                                 Description of Options.
+* EXTENDED_GLOB:                        Description of Options.
+* EXTENDED_GLOB, use of:                Filename Generation.
+* EXTENDED_HISTORY:                     Description of Options.
+* FLOW_CONTROL:                         Description of Options.
+* FUNCTION_ARGZERO:                     Description of Options.
+* GLOB:                                 Description of Options.
+* GLOB, use of:                         Filename Generation.
+* GLOB_ASSIGN:                          Description of Options.
+* GLOB_COMPLETE:                        Description of Options.
+* GLOB_DOTS:                            Description of Options.
+* GLOB_DOTS, setting in pattern:        Filename Generation.
+* GLOB_DOTS, use of:                    Filename Generation.
+* GLOB_SUBST:                           Description of Options.
+* HASH_CMDS:                            Description of Options.
+* HASH_DIRS:                            Description of Options.
+* HASH_LIST_ALL:                        Description of Options.
+* HIST_ALLOW_CLOBBER:                   Description of Options.
+* HIST_BEEP:                            Description of Options.
+* HIST_IGNORE_DUPS:                     Description of Options.
+* HIST_IGNORE_SPACE:                    Description of Options.
+* HIST_NO_STORE:                        Description of Options.
+* HIST_REDUCE_BLANKS:                   Description of Options.
+* HIST_VERIFY:                          Description of Options.
+* HUP:                                  Description of Options.
+* IGNORE_BRACES:                        Description of Options.
+* IGNORE_EOF:                           Description of Options.
+* IGNORE_EOF, use of:                   Shell Builtin Commands.
+* INTERACTIVE:                          Description of Options.
+* INTERACTIVE, use of:                  Description of Options.
+* INTERACTIVE_COMMENTS:                 Description of Options.
+* INTERACTIVE_COMMENTS, use of:         Comments.
+* INTERACTIVE_COMMENTS, use of:         Miscellaneous.
+* INTERACTIVE_COMMENTS, use of:         Miscellaneous.
+* KSH_ARRAYS:                           Description of Options.
+* KSH_ARRAYS, use of:                   Array Parameters.
+* KSH_OPTION_PRINT:                     Description of Options.
+* LIST_AMBIGUOUS:                       Description of Options.
+* LIST_BEEP:                            Description of Options.
+* LIST_TYPES:                           Description of Options.
+* LOCAL_OPTIONS:                        Description of Options.
+* LOGIN:                                Description of Options.
+* LONG_LIST_JOBS:                       Description of Options.
+* MAGIC_EQUAL_SUBST:                    Description of Options.
+* MAIL_WARNING:                         Description of Options.
+* MARK_DIRS:                            Description of Options.
+* MARK_DIRS, setting in pattern:        Filename Generation.
+* MENU_COMPLETE:                        Description of Options.
+* MENU_COMPLETE, use of:                Completion.
+* MONITOR:                              Description of Options.
+* MONITOR, use of:                      Jobs & Signals.
+* MULTIOS:                              Description of Options.
+* MULTIOS, use of:                      Redirection.
+* NOMATCH, use of:                      Filename Generation.
+* NOTIFY:                               Description of Options.
+* NO_NOMATCH:                           Description of Options.
+* NO_RCS, use of:                       Startup/Shutdown Files.
+* NULL_GLOB:                            Description of Options.
+* NULL_GLOB, setting in pattern:        Filename Generation.
+* NULL_GLOB, use of:                    Filename Generation.
+* NUMERIC_GLOB_SORT:                    Description of Options.
+* OVERSTRIKE:                           Description of Options.
+* PATH_DIRS:                            Description of Options.
+* POSIX_BUILTINS:                       Description of Options.
+* PRINT_EXIT_VALUE:                     Description of Options.
+* PRIVILEGED:                           Description of Options.
+* PROMPT_CR:                            Description of Options.
+* PROMPT_SUBST:                         Description of Options.
+* PUSHD_IGNORE_DUPS:                    Description of Options.
+* PUSHD_MINUS:                          Description of Options.
+* PUSHD_MINUS, use of:                  Shell Builtin Commands.
+* PUSHD_MINUS, use of:                  Shell Builtin Commands.
+* PUSHD_MINUS, use of:                  Filename Expansion.
+* PUSHD_SILENT:                         Description of Options.
+* PUSHD_SILENT, use of:                 Shell Builtin Commands.
+* PUSHD_TO_HOME:                        Description of Options.
+* PUSHD_TO_HOME, use of:                Shell Builtin Commands.
+* RCS:                                  Description of Options.
+* RC_EXPAND_PARAM:                      Description of Options.
+* RC_EXPAND_PARAM, use of:              Parameter Expansion.
+* RC_QUOTES:                            Description of Options.
+* REC_EXACT:                            Description of Options.
+* RM_STAR_SILENT:                       Description of Options.
+* SHIN_STDIN:                           Description of Options.
+* SHORT_LOOPS:                          Description of Options.
+* SH_FILE_EXPANSION:                    Description of Options.
+* SH_GLOB:                              Description of Options.
+* SH_OPTION_LETTERS:                    Description of Options.
+* SH_WORD_SPLIT:                        Description of Options.
+* SH_WORD_SPLIT, use of:                Parameter Expansion.
+* SH_WORD_SPLIT, use of:                Parameter Expansion.
+* SINGLE_COMMAND:                       Description of Options.
+* SINGLE_LINE_ZLE:                      Description of Options.
+* SINGLE_LINE_ZLE, use of:              Zsh Line Editor.
+* SUN_KEYBOARD_HACK:                    Description of Options.
+* UNSET:                                Description of Options.
+* VERBOSE:                              Description of Options.
+* XTRACE:                               Description of Options.
+* ZLE:                                  Description of Options.
+* ZLE, use of:                          Zsh Line Editor.
+

@@ -1,0 +1,137 @@
+#place in HOME with name .zshrc
+echo ~/.zshrc
+typeset -i foo
+typeset -i fii
+foo=$LPROMPT
+integer fii=(( $foo + 1 ))
+LPROMPT=$fii
+unset foo
+unset fii
+#PROMPT='[7m%~ [%T]  '
+#PROMPT=$LPROMPT'[7m%~ [%T]  '
+PROMPT='[47;1;34;m%~ [%h] [0;7;m '
+HISTFILE=~/.zshistory
+HISTSIZE=1024
+SAVEHIST=1024
+DIRSTACKSIZE=24
+#        normal:exe:dir:link
+LSCOLORS='[0;1m:[0;35;1m:[0;32;1m:[7m'
+HELPDIR=e:/etc/zsh_help
+EMACS_PATH=e:/emacs/19.33
+fignore=(.o .bak)
+cdpath=(. f:/MedSpeak f:/download d:/tcpip)
+FCEDIT=zed
+
+#
+#	options
+#
+unsetopt bg_nice
+setopt appendhistory		# ヒストリファイルは、追加方式
+setopt autolist
+setopt automenu
+setopt autopushd		# 'cd' を 'pushd' とみなす
+setopt autocd			# '% dirname' だけで cd できるようにする
+setopt completeinword
+setopt correct			# コマンドに対して名前訂正を行う
+#setopt correctall		# 全ての引き数に対して名前訂正を行う
+setopt extendedglob		# 激ワイルドカード
+setopt extendedhistory
+setopt hashcmds			# hashing
+setopt histignoredups		# 直前と同じコマンドはヒストリに入れない
+setopt histnostore
+setopt ignoreeof		# ^D で exit しない
+setopt listtypes		# ^D でリストするときに */@ を付ける
+setopt menucomplete		# <TAB> でぽんぽん！
+setopt noclobber		# > foo で foo があるときにエラー
+setopt nolistbeep		# list するときにビープしない
+setopt nonomatch		# ワイルドカードにマッチしないときにエラーにしない
+setopt printexitvalue		# 0 以外の終了コードを表示する
+setopt pushdminus		# 'pushd +3' で３番目のディレクトリ
+setopt pushdtohome
+setopt pushdignoredups		# ディレクトリスタックにすでにあるものは新たに積まない
+setopt pushdsilent
+setopt recexact			# 補完候補が複数あるときにも補完してしまえ
+setopt rcquotes			# 効率のいいクォートを教えてくれる
+
+#setopt jiskeyboardhack		# コマンドライン最後の余計な ] は無視
+#setopt ignorecases		# 補完,ワイルドカード展開時に大文字小文字区別しない
+
+#
+#	aliases
+#
+#alias a:='cd a:'
+#alias b:='cd b:'
+#alias c:='cd c:'
+#alias d:='cd d:'
+#alias e:='cd e:'
+#alias f:='cd f:'
+#alias g:='cd g:'
+alias .='source'
+alias c=${EMACS_PATH}/bin/emacsclient
+alias cal=gcal
+alias explore="cmd /c explore"
+alias elm=e:/elm/bin/elm
+alias view="cmd /c view"
+alias find-=e:/bin/find
+#alias diff='diff -acrN'
+alias lo=exit
+alias gd='dirs -v; echo -n "select number:" ; read newdir; cd -"$newdir"'
+alias grep='grep -n'
+    alias gs='f:/gs4.03/gsos2 -dNOPAUSE -sDEVICE=cdj550 -sFONTMAP=F:/GS4.03/FONTMAP.OS2 -dBitsPerPixel=32 -dShingling=1 -Depletion=1'
+alias h=history
+alias l="\ls -Fl --sort=size"
+alias L="\ls -Fl --sort=time"
+alias ls="\ls -F"
+alias m=less
+alias M=Less
+alias dirs="\dirs -v"
+alias p=popd
+alias rb="rm -fv *.bak *~ core"
+alias ren="cmd /c ren $1 $2"
+alias rm="rm -v"
+alias rrm="e:/bin/rm"
+alias soc='source ~/.zshrc ; source ~/.zshenv'
+alias t=time
+alias news=e:/bin/news.cmd
+alias unzip="\Unzip.EXE"
+
+#
+#	functions
+#
+function chrep {
+	egrep -n $* *.{c,h,cc,hh,cpp,hpp,cpv,hpv}
+}
+function mcd {
+	mkdir $*
+	cd $1
+}
+
+fpath=(e:/etc/zshscr;)
+#fpath=(f:/zsh-3.1.0/Functions;)
+unalias run-help
+# functions to autoload
+autoload cdmatch cx acx mere yu yp randline proto namedir ilogin run-help zed cdmatch2 multicomp
+
+
+bindkey '^[^i'	reverse-menu-complete
+bindkey -v
+#arrow keys
+bindkey '\000\110' vi-up-line-or-history 
+bindkey '\000\120' vi-down-line-or-history
+bindkey '\000\113' vi-backward-char
+bindkey '\000\115' vi-forward-char
+
+bindkey -a  '\000\110' vi-up-line-or-history 
+bindkey -a '\000\120' vi-down-line-or-history
+bindkey -a '\000\113' vi-backward-char
+bindkey -a '\000\115' vi-forward-char
+
+bindkey -a ';' vi-backward-word
+bindkey -a '\047' vi-forward-word
+bindkey -v
+
+#E:/os2/mode.com 96,48
+#export COLUMNS=96
+#export LINES=48
+
+time source ~/.zcomp

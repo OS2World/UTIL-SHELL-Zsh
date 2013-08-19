@@ -1,0 +1,301 @@
+# Generated automatically from Makefile.in by configure.
+#
+# $Id: Makefile.in,v 3.1.0.15 1996/12/17 19:32:22 hzoli Exp $
+#
+# Makefile for Src subdirectory
+#
+# Copyright (c) 1996 Richard Coleman
+# All rights reserved.
+#
+# Permission is hereby granted, without written agreement and without
+# license or royalty fees, to use, copy, modify, and distribute this
+# software and to distribute modified versions of this software for any
+# purpose, provided that the above copyright notice and the following
+# two paragraphs appear in all copies of this software.
+#
+# In no event shall Richard Coleman or the Zsh Development Group be liable
+# to any party for direct, indirect, special, incidental, or consequential
+# damages arising out of the use of this software and its documentation,
+# even if Richard Coleman and the Zsh Development Group have been advised of
+# the possibility of such damage.
+#
+# Richard Coleman and the Zsh Development Group specifically disclaim any
+# warranties, including, but not limited to, the implied warranties of
+# merchantability and fitness for a particular purpose.  The software
+# provided hereunder is on an "as is" basis, and Richard Coleman and the
+# Zsh Development Group have no obligation to provide maintenance,
+# support, updates, enhancements, or modifications.
+#
+
+# zsh version
+VERSION = 3.1.0
+
+SHELL = /bin/sh
+
+
+top_srcdir = ..
+srcdir     = .
+
+prefix      = /usr/local
+exec_prefix = ${prefix}
+bindir      = ${exec_prefix}/bin
+libdir      = ${exec_prefix}/lib
+MODDIR      = $(libdir)/zsh/$(VERSION)
+
+CC        = gcc
+CPPFLAGS  = 
+DEFS      = -DHAVE_CONFIG_H
+CFLAGS    =  -Wall -Wno-implicit -Wmissing-prototypes -O2
+LDFLAGS   =  
+LIBS      =  -ltermcap
+DL_EXT    = 
+DLLD      = 
+DLCFLAGS  = 
+DLLDFLAGS = 
+EXTRA_LDFLAGS = 
+
+INCLUDES = -I.. -I. -I$(srcdir) -I$(MODULE_DIR) -IZle -I$(srcdir)/Zle
+
+DNCFLAGS =
+
+COMPILE = $(CC) -c $(INCLUDES) $(CPPFLAGS) $(DEFS) $(CFLAGS) $(DNCFLAGS)
+LINK    = $(CC) $(LDFLAGS) $(EXTRA_LDFLAGS) -o $@.exe
+
+INSTALL         = /usr/bin/install -c
+INSTALL_PROGRAM = ${INSTALL}
+
+MODULE_DIR = Modules
+
+AWK = awk
+SED = sed
+
+# flags passed to recursive makes
+MAKEDEFS = CC='$(CC)' CPPFLAGS='$(CPPFLAGS)' DEFS='$(DEFS)' \
+CFLAGS='$(CFLAGS)' LDFLAGS='$(LDFLAGS)' LIBS='$(LIBS)' \
+prefix='$(prefix)' exec_prefix='$(exec_prefix)' bindir='$(bindir)' \
+libdir='$(libdir)' infodir='$(infodir)' mandir='$(mandir)' manext='$(manext)'
+
+MODBINS = $(srcdir)/modules-bltin
+
+DLEXT=.$(DL_EXT)
+NLEXT=._foobarbaz_
+
+KNR_OBJ=.o
+KNROBJ=._foo_
+
+ANSIOBJ=.o
+ANSI_OBJ=._foo_
+
+KNR_DOBJ=$(NLEXT)
+KNRDOBJ=._bar_
+
+ANSIDOBJ=$(NLEXT)
+ANSI_DOBJ=._bar_
+
+.SUFFIXES:
+.SUFFIXES: .c $(ANSIDOBJ) $(KNRDOBJ) $(ANSIOBJ) $(KNROBJ) .pro
+
+.c$(ANSIDOBJ):
+	$(COMPILE) $(DLCFLAGS) -o $@.o $<
+	$(DLLD) $(LDFLAGS) $(DLLDFLAGS) -o $@ $@.o
+	rm -f $@.o
+
+.c$(KNRDOBJ):
+	./ansi2knr $< > $@.c
+	$(COMPILE) $(DLCFLAGS) -o $@.o $@.c
+	$(DLLD) $(LDFLAGS) $(DLLDFLAGS) -o $@ $@.o
+	rm -f $@.[oc]
+
+.c$(ANSIOBJ):
+	$(COMPILE) -o $@ $<
+
+.c$(KNROBJ):
+	./ansi2knr $< > $@.c
+	$(COMPILE) -o $@ $@.c
+	rm -f $@.c
+
+.c.pro:
+	$(SED) -n -f $(srcdir)/makepro.sed $< > $@
+
+ANSI_KNR = ansi2knr
+ANSIKNR  =
+
+# this header file is parsed to generate signal names (signames.h)
+SIGNAL_H = e:/emx/include/sys/signal.h
+
+# this header file is parsed to generate limits, if available
+RLIMITS_INC_H = e:/emx/include/sys/resource.h
+
+# headers included in distribution
+DIST_HDRS = version.h globals.h hashtable.h prototypes.h signals.h \
+system.h zsh.h ztype.h Zle/zle.h
+
+# zsh headers necessary for compilation
+HDRS = $(DIST_HDRS) signames.h rlimits.h ../config.h
+
+# zsh C source included in distribution
+DIST_SRCS = builtin.c compat.c cond.c exec.c glob.c hashtable.c hist.c \
+init.c input.c jobs.c lex.c linklist.c loop.c main.c math.c mem.c module.c \
+params.c parse.c prompt.c signals.c subst.c text.c utils.c watch.c \
+Zle/zle_bindings.c Zle/zle_hist.c Zle/zle_main.c Zle/zle_misc.c \
+Zle/zle_move.c Zle/zle_refresh.c Zle/zle_tricky.c Zle/zle_utils.c \
+Zle/zle_vi.c Zle/zle_word.c Zle/zle.h Zle/compctl.c os2.c $(DIST_HDRS)
+
+# generated prototypes
+DYNAMIC_PROTO =
+NYNAMIC_PROTO = Zle/zle_bindings.pro Zle/zle_hist.pro \
+Zle/zle_main.pro Zle/zle_misc.pro Zle/zle_move.pro Zle/zle_refresh.pro \
+Zle/zle_tricky.pro Zle/zle_utils.pro Zle/zle_vi.pro Zle/zle_word.pro \
+Zle/zle_deltochar.pro Zle/compctl.pro
+
+PROTO = builtin.pro compat.pro cond.pro exec.pro glob.pro hashtable.pro \
+hist.pro init.pro input.pro jobs.pro lex.pro linklist.pro loop.pro \
+main.pro math.pro mem.pro module.pro params.pro parse.pro prompt.pro \
+signals.pro subst.pro text.pro utils.pro watch.pro os2.pro $(NYNAMIC_PROTO)
+
+# object files
+DYNAMIC_OBJS =
+NYNAMIC_OBJS = Zle/zle_bindings.o Zle/zle_hist.o Zle/zle_main.o \
+Zle/zle_misc.o Zle/zle_move.o Zle/zle_refresh.o Zle/zle_tricky.o \
+Zle/zle_utils.o Zle/zle_vi.o Zle/zle_word.o Zle/compctl.o
+LIBOBJS = builtin.o compat.o cond.o exec.o glob.o hashtable.o \
+hist.o init.o input.o jobs.o lex.o linklist.o loop.o math.o mem.o \
+module.o params.o parse.o prompt.o signals.o subst.o text.o \
+utils.o watch.o os2.o $(NYNAMIC_OBJS)
+
+# dynamically loadable modules
+MODULE_DIRS = Modules Zle
+MONULE_DIRS =
+
+LOBJS = main.o
+NOBJS = $(LIBOBJS) main.o
+
+OBJS = $(LIBOBJS) $(LOBJS)
+
+LIBZSH = libzsh.so.$(VERSION)
+NIBZSH =
+
+# ========= DEPENDENCIES FOR BUILDING ==========
+
+# default target
+all: zsh modules
+
+modules: $(PROTO) $(ANSIKNR) $(MONULE_DIRS)
+
+zsh: $(PROTO) $(ANSIKNR) $(NIBZSH) $(NOBJS)
+	$(LINK) $(NOBJS) $(LIBS)
+
+$(LIBZSH): $(LIBOBJS)
+	$(DLLD) $(LDFLAGS) $(DLLDFLAGS) -o $(LIBZSH) $(LIBOBJS) $(NLIST)
+	ln -sf $(LIBZSH) libzsh.so
+
+ansi2knr: ansi2knr.c
+	$(COMPILE) $(srcdir)/ansi2knr.c
+	$(LINK) ansi2knr.o
+
+signames.h: signames.awk $(SIGNAL_H)
+	$(AWK) -f $(srcdir)/signames.awk $(SIGNAL_H) > signames.h
+
+# this file will not be made if limits are unavailable:
+# silent so the warning doesn't appear unless necessary
+rlimits.h: rlimits.awk $(RLIMITS_INC_H)
+	@echo '$(AWK) -f $(srcdir)/rlimits.awk $(RLIMITS_INC_H) > rlimits.h'; \
+	$(AWK) -f $(srcdir)/rlimits.awk $(RLIMITS_INC_H) > rlimits.h || \
+	    echo WARNING: unknown limits:  mail rlimits.h to developers
+
+$(OBJS): $(HDRS)
+
+init.o: bltinmods.list zshpaths.h
+
+$(MODULE_DIRS): FORCE
+	@cd $@ && $(MAKE) $(MAKEDEFS) modules
+
+zshpaths.h: FORCE
+	@echo '#define MODULE_DIR "'$(MODDIR)'"' > zshpaths.h.tmp
+	@if cmp -s zshpaths.h zshpaths.h.tmp; then \
+	    rm -f zshpaths.h.tmp; \
+	    echo "\`zshpaths.h' is up to date." ; \
+	else \
+	    mv -f zshpaths.h.tmp zshpaths.h; \
+	    echo "Updated \`zshpaths.h'." ; \
+	fi
+
+bltinmods.list: $(MODBINS)
+	( for mod in `cat $(MODBINS)`; do \
+	    echo "DOMOD(boot_$$mod)"; \
+	done ) > $@
+
+$(PROTO): makepro.sed
+
+FORCE:
+
+# ========== DEPENDENCIES FOR INSTALLING ==========
+
+install: install.bin install.modules
+
+uninstall: uninstall.bin uninstall.modules
+
+# install binary, creating install directory if necessary
+install.bin: zsh
+	$(top_srcdir)/mkinstalldirs $(bindir)
+	-if [ -f $(bindir)/zsh ]; then mv $(bindir)/zsh $(bindir)/zsh.old; fi
+	$(INSTALL_PROGRAM) zsh $(bindir)/zsh
+	-if [ -f $(bindir)/zsh-$(VERSION) ]; then rm -f $(bindir)/zsh-$(VERSION); fi
+	ln $(bindir)/zsh $(bindir)/zsh-$(VERSION)
+
+# uninstall binary
+uninstall.bin:
+	-if [ -f $(bindir)/zsh ]; then rm -f $(bindir)/zsh; fi
+	-if [ -f $(bindir)/zsh-$(VERSION) ]; then rm -f $(bindir)/zsh-$(VERSION); fi
+
+# install modules
+install.modules:
+	for dir in $(MONULE_DIRS); do \
+		(cd $$dir && make install.modules); \
+	done
+
+# uninstall modules
+uninstall.modules:
+	for dir in $(MONULE_DIRS); do \
+		(cd $$dir && make uninstall.modules); \
+	done
+
+# ========== DEPENDENCIES FOR CLEANUP ==========
+
+DLCLEAN = $(MODULE_DIR)/*.$(DL_EXT) $(MODULE_DIR)/*.*.[co] $(MODULE_DIR)/*.pro
+NLCLEAN =
+mostlyclean:
+	rm -f core stamp-modobjs* *.o $(MODULE_DIR)/*.o *~
+
+clean: mostlyclean
+	rm -f zsh ansi2knr $(NLCLEAN) signames.h rlimits.h \
+	      zshpaths.h bltinmods.list *.*.c *.pro
+
+distclean: clean
+	rm -f Makefile
+
+realclean: distclean
+	rm -f TAGS tags
+
+superclean: realclean
+
+# ========== DEPENDENCIES FOR MAINTENANCE ==========
+
+subdir = Src
+
+Makefile: Makefile.in ../config.status
+	cd .. && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= ./config.status
+
+# tag file for vi
+tags: TAGS
+	cd $(srcdir) && ctags -w $(DIST_SRCS) && \
+	if test -d RCS; then \
+	    rm -f RCS/tags,v RCS/TAGS,v && \
+	    ci -t-tags -m'#tags' tags TAGS && \
+	    rcs -U tags TAGS && \
+	    co TAGS tags ; \
+	fi
+
+# tag file for emacs
+TAGS: $(DIST_SRCS)
+	cd $(srcdir) && etags $(DIST_SRCS)

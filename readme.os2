@@ -1,0 +1,47 @@
+Zsh is a popular unix shell -- check out http://www.mal.com/zsh/ for details.
+
+This is an alpha release of my port of zsh for OS2.  It isn't fully tested
+and it DOES have bugs.  The most glaring of them is the inability to run
+some programs in the same session as itself.  Note that this is also a problem
+with the earlier port of zsh (zsh01.zip on hobbes) when used with
+emx0.9c.  
+
+I've hacked my way around the problem
+by adding a feature that allows any program to be started in a separate
+session by capitalizing the first letter of it's name. (This does not include
+directory path.)  If, in addition you append the extension ".EXE" to the typed
+name, the session window remains open on exit.
+
+You must do this with subshells of 'zsh', 'unzip' (if it asks for a y or n),
+ and with 'elvis', the vi look-alike.  On my machine, 'less' occasionally 
+has problems, though not as serious.
+
+For example, I have the following aliases defined:
+alias elvis=Elvis	# starts in another session
+alias zsh=Zsh		# ditto
+alias unzip=\Unzip.EXE	# starts in another session and doesn't close on exit
+
+Installation may or may not be a snap.  I have it running on two machines:
+a pentium with Warp 4.0 and a 386 with Warp 3.0.  First, I think you need at
+least one hpfs partition (for tmp files) but I'm not sure.  If you are
+going to rebuild it, I know you do. Second, you must have emx0.9c or better
+for it to run.
+
+I defined some new environment variables as well.
+ZSH_HOME must be set to the root where your etc directory will live and
+ZSH_TMP is set to control location of all tmp files.  
+
+Although I'm not willing to call this a final product, it is unlikely that I
+will spend much more time on it.  However, if you find a bug and fix it, send
+me the patch and I'll at least maintain it.  Please no flames about poor
+documentation of my changes.  I did just enough work to get the features I
+use regularly running.
+
+My thanks to all those whose efforts this builds on, particularly EM for EMX
+(I hope someone is paying you for all your work) and the people who brought
+us zsh.
+
+Al Gelders
+Fresno, Ca.
+gelders@psnw.com
+Compuserve: 70164,2603
